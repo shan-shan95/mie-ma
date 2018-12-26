@@ -1,5 +1,15 @@
 {
   "git.ignoreLimitWarning": true,
   "editor.detectIndentation": false,
-  "editor.insertSpaces": false
+	"editor.insertSpaces": false,
+	"files.insertFinalNewline": true,
+	"hamlLint.executablePath": "bundle exec haml-lint",
+	"eslint.autoFixOnSave": true,
+	"prettier.eslintIntegration": true,
+	"prettier.jsxSingleQuote": true,
+	"prettier.singleQuote": true,
+	"eslint.run": "onSave",
+	"eslint.packageManager": "yarn",
+	"vetur.format.defaultFormatter.js": "prettier-eslint",
+	"vetur.format.options.useTabs": true
 }
