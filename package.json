@@ -1,0 +1,12 @@
+{
+  "name": "mie-ma",
+  "version": "1.0.0",
+  "description": "Mie University free market application",
+  "main": "index.js",
+  "author": "shang-shang95",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.6.3",
+    "bulma": "^0.7.2"
+  }
+}
