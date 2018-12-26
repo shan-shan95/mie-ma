@@ -1,15 +1,24 @@
 {
-  "git.ignoreLimitWarning": true,
-  "editor.detectIndentation": false,
-	"editor.insertSpaces": false,
+	"git.ignoreLimitWarning": true,
 	"files.insertFinalNewline": true,
-	"hamlLint.executablePath": "bundle exec haml-lint",
 	"eslint.autoFixOnSave": true,
 	"prettier.eslintIntegration": true,
 	"prettier.jsxSingleQuote": true,
 	"prettier.singleQuote": true,
 	"eslint.run": "onSave",
 	"eslint.packageManager": "yarn",
-	"vetur.format.defaultFormatter.js": "prettier-eslint",
-	"vetur.format.options.useTabs": true
+	"prettier.semi": false,
+	"eslint.validate": [
+		"javascript",
+		{
+			"language": "vue",
+			"autoFix": true
+		}
+	],
+	"eslint.options": {
+		"configFile": ".eslintrc.js"
+	},
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.tabSize": 2,
 }
