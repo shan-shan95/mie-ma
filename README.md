@@ -11,12 +11,14 @@
 - bundler 1.17.2
 - git
 - mysql 8.0.12
-- VSCode 
-	- 拡張機能 rufo
+- VSCode拡張機能 
+	- rufo
+	- eslint
+	- prittier
 
 ```
 $ bundle install --path=vendor/bundle
 $ yarn install
 $ cp .env.tmp .env
-$ bundle exec rails s
+$ bundle exec foreman start -p 3000 // port3000でrailsのサーバーとwebpack-dev-serverを立てている
 ```
