@@ -14,6 +14,7 @@ gem 'cancancan'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'haml-rails'
+gem 'webpacker', github: 'rails/webpacker'
 
 group :development do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -26,5 +27,5 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rufo'
+	gem 'foreman'
 end
-
