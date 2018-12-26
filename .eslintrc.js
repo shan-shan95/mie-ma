@@ -1,34 +1,35 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "extends": [
-			"plugin:vue/essential",
-			"eslint:recommended"
+  root: true,
+  env: {
+    browser: true,
+    node: true
+  },
+  parserOptions: {
+    parser: 'babel-eslint',
+    ecmaVersion: 6
+  },
+  extends: [
+    'plugin:vue/essential',
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  plugins: [
+    'vue'
+  ],
+  rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": false,
+        "files.associations": {
+          "*.vue": "vue"
+        },
+        "emmet.syntaxProfiles": {
+          "vue": "css"
+        },
+        "indent": ["error", "tab"],
+      },
     ],
-    "plugins": ['vue'],
-    "rules": {
-        "indent": [
-            "error",
-            "space"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ]
-    }
-};
+  }
+}

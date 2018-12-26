@@ -6,11 +6,11 @@
 
 <script>
 export default {
-	data() {
-		return {
-			message: 'Hello Vue!',
-		}
-	},
+  data() {
+    return {
+      message: 'Hello Vue!'
+    }
+  }
 }
 </script>
 
@@ -18,6 +18,6 @@ export default {
 p {
   font-size: 2em;
   text-align: center;
-	background-color: aquamarine;
+  background-color: aquamarine;
 }
 </style>
