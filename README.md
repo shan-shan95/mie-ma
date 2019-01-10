@@ -15,6 +15,7 @@
 	- rufo
 	- eslint
 	- prittier
+	- Vetur
 
 ```
 $ bundle install --path=vendor/bundle
