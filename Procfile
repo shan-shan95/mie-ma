@@ -1,2 +1,2 @@
 rails: bundle exec rails server
-webpack: ./bin/webpack-dev-server
+webpack-dev-server: yarn run webpack-dev-server --hot --mode development
