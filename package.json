@@ -6,8 +6,8 @@
   "author": "shang-shang95",
   "license": "MIT",
   "scripts": {
-    "build:dev": "webpack --mode development --watch",
-    "build:pro": "webpack --mode production"
+    "build:dev": "webpack --progress --mode=development --watch",
+    "build:pro": "webpack --progress --mode=production"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
