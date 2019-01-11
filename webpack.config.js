@@ -5,7 +5,7 @@ module.exports = (env, argv) => {
     entry: ['babel-polyfill', './app/assets/javascripts/application.js'],
     output: {
       filename: 'main.js',
-      path: `${__dirname}/dist`
+      path: `${__dirname}/public/packs`
     },
     devtool: IS_DEV ? 'source-map' : 'none',
     module: {
@@ -22,7 +22,8 @@ module.exports = (env, argv) => {
             loaders: {
               js: 'babel-loader!eslint-loader',
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-            }
+            },
+            extractCSS: true
           }
         }
       ]
