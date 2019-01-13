@@ -19,10 +19,9 @@
 	"eslint.options": {
 		"configFile": ".eslintrc.js"
 	},
-	"editor.insertSpaces": false,
-	"editor.detectIndentation": false,
 	"editor.tabSize": 2,
 	"vetur.validation.template": false,
 	"vetur.format.defaultFormatter.html": "none",
-	"prettier.tslintIntegration": true,
+	"editor.formatOnSave": true,
+	"javascript.validate.enable": false
 }
