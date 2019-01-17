@@ -7,7 +7,6 @@
 	"prettier.singleQuote": true,
 	"eslint.run": "onSave",
 	"eslint.packageManager": "yarn",
-	"prettier.semi": false,
 	"eslint.validate": [
 		"javascript",
 		"javascriptreact",
@@ -20,8 +19,10 @@
 		"configFile": ".eslintrc.js"
 	},
 	"editor.tabSize": 2,
-	"vetur.validation.template": false,
+	"javascript.validate.enable": false,
 	"vetur.format.defaultFormatter.html": "none",
+	"prettier.semi": false,
 	"editor.formatOnSave": true,
-	"javascript.validate.enable": false
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false
 }
