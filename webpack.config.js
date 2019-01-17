@@ -13,13 +13,13 @@ module.exports = (env, argv) => {
     },
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
-      filename: 'javascripts/[name]-[hash].js',
-      path: path.resolve(__dirname, 'public', 'assets')
+      filename: 'javascripts/bundle/[name]-[hash].js',
+      path: path.resolve(__dirname, 'app/assets')
     },
     plugins: [
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
-        filename: 'stylesheets/[name]-[hash].css'
+        filename: 'stylesheets/bundle/[name]-[hash].css'
       }),
       new webpack.HotModuleReplacementPlugin(),
       new ManifestPlugin({
@@ -50,7 +50,10 @@ module.exports = (env, argv) => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: '/public/assets/stylesheets/'
+                publicPath: path.resolve(
+                  __dirname,
+                  'app/assets/stylesheets/bundle'
+                )
               }
             },
             'css-loader',
@@ -62,9 +65,9 @@ module.exports = (env, argv) => {
           loader: 'file-loader',
           options: {
             name: '[name]-[hash].[ext]',
-            outputPath: 'images/',
+            outputPath: 'images/bundle',
             publicPath: function(path) {
-              return '../images/' + path
+              return 'images/bundle/' + path
             }
           }
         }
@@ -76,11 +79,23 @@ module.exports = (env, argv) => {
       },
       extensions: ['.js', '.scss', 'css', '.vue', '.jpg', '.png', '.gif', ' ']
     },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /.(c|sa)ss/,
+            name: 'style',
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      }
+    },
     devServer: {
       host: 'localhost',
       port: 3035,
-      publicPath: 'http://localhost:3035/public/assets/',
-      contentBase: path.resolve(__dirname, 'public', 'assets'),
+      publicPath: 'http://localhost:3035/app/assets/',
+      contentBase: path.resolve(__dirname, 'app/assets'),
       hot: true,
       disableHostCheck: true,
       historyApiFallback: true
