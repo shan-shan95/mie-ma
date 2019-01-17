@@ -20,16 +20,16 @@
 !/storage/.keep
 /node_modules
 /yarn-error.log
-/public/assets
 .byebug_history
 /vendor
-/app/assets/
+/app/assets/images/bundle
+/app/assets/javascripts/bundle
+/app/assets/stylesheets/bundle
+/app/assers/manifest.json
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 .env
-/public/packs
-/public/packs-test
 /node_modules
 /yarn-error.log
 yarn-debug.log*
