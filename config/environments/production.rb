@@ -1,4 +1,5 @@
 Rails.application.configure do
+  require_relative "../../lib/tasks/assets_path_proxy"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -91,4 +92,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.middleware.use AssetsPathProxy, ssl_verify_none: true
 end

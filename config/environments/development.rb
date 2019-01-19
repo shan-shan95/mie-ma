@@ -1,4 +1,6 @@
 Rails.application.configure do
+  require_relative "../../lib/tasks/assets_path_proxy"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -58,4 +60,6 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.middleware.use AssetsPathProxy, ssl_verify_none: true
 end
