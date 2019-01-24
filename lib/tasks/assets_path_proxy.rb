@@ -9,7 +9,7 @@ class AssetsPathProxy < Rack::Proxy
         env["HTTP_X_FORWARDED_HOST"] = dev_server
         env["HTTP_X_FORWARDED_SERVER"] = dev_server
       end
-      env["PATH_INFO"] = "/public/assets/images/bundle/" + env["PATH_INFO"].split("/").last
+      env["PATH_INFO"] = "/public/assets/images/" + env["PATH_INFO"].split("/").last
       super
     else
       @app.call(env)

@@ -18,13 +18,13 @@ module.exports = (env, argv) => {
     entry: entries,
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
-      filename: 'javascripts/bundle/[name]-[hash].js',
+      filename: 'javascripts/[name]-[hash].js',
       path: path.resolve(__dirname, 'public/assets')
     },
     plugins: [
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
-        filename: 'stylesheets/bundle/[name]-[hash].css'
+        filename: 'stylesheets/[name]-[hash].css'
       }),
       new webpack.HotModuleReplacementPlugin(),
       new ManifestPlugin({
@@ -65,10 +65,7 @@ module.exports = (env, argv) => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: path.resolve(
-                  __dirname,
-                  'public/assets/stylesheets/bundle'
-                )
+                publicPath: path.resolve(__dirname, 'public/assets/stylesheets')
               }
             },
             'css-loader',
@@ -80,9 +77,9 @@ module.exports = (env, argv) => {
           loader: 'file-loader',
           options: {
             name: '[name]-[hash].[ext]',
-            outputPath: 'images/bundle',
+            outputPath: 'images',
             publicPath: function(path) {
-              return 'images/bundle/' + path
+              return 'images/' + path
             }
           }
         }
