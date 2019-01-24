@@ -1,7 +1,6 @@
-<template>
-  <div id="app">
-    <p>{{ message }}</p>
-  </div>
+<template lang="pug">
+  div
+    p {{ message }}
 </template>
 
 <script>
@@ -18,6 +17,6 @@ export default {
 p {
   font-size: 2em;
   text-align: center;
-  background-color: aquamarine;
+  background-color: greenyellow;
 }
 </style>

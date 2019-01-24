@@ -1,20 +1,25 @@
 const path = require('path')
+const glob = require('glob')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
+let entries = {}
+glob.sync('./frontend/pages/**/*.js').map(function(file) {
+  let name = file.split('/')[4].split('.')[0]
+  entries[name] = file
+})
+
 module.exports = (env, argv) => {
   const IS_DEV = argv.mode === 'development'
 
   return {
-    entry: {
-      main: './frontend/application.js'
-    },
+    entry: entries,
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
       filename: 'javascripts/bundle/[name]-[hash].js',
-      path: path.resolve(__dirname, 'app/assets')
+      path: path.resolve(__dirname, 'public/assets')
     },
     plugins: [
       new VueLoaderPlugin(),
@@ -33,7 +38,17 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    ie: 11
+                  },
+                  useBuiltIns: 'usage'
+                }
+              ]
+            ]
           }
         },
         {
@@ -52,7 +67,7 @@ module.exports = (env, argv) => {
               options: {
                 publicPath: path.resolve(
                   __dirname,
-                  'app/assets/stylesheets/bundle'
+                  'public/assets/stylesheets/bundle'
                 )
               }
             },
@@ -94,8 +109,8 @@ module.exports = (env, argv) => {
     devServer: {
       host: 'localhost',
       port: 3035,
-      publicPath: 'http://localhost:3035/app/assets/',
-      contentBase: path.resolve(__dirname, 'app/assets'),
+      publicPath: 'http://localhost:3035/public/assets/',
+      contentBase: path.resolve(__dirname, 'public/assets'),
       hot: true,
       disableHostCheck: true,
       historyApiFallback: true
