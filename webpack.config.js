@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
       ],
       ...entries
     },
-    devtool: IS_DEV ? 'source-map' : 'none',
+    // devtool: IS_DEV ? 'source-map' : 'none',
     output: {
       filename: 'javascripts/[name]-[hash].js',
       path: path.resolve(__dirname, 'public/assets/')
