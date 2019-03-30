@@ -8,11 +8,12 @@
 ## Tool
 
 - rbenv 1.1.1
-- ruby 2.5.1
-- yarn 1.10.1
+- Ruby 2.5.1
+- Rails 5.2.2
+- yarn 1.15.2
 - bundler 1.17.2
 - git
-- mysql 8.0.12
+- mysql 5.7.25
 - VSCode 拡張機能
   - rufo
   - eslint
