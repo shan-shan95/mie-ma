@@ -22,7 +22,5 @@
 	"javascript.validate.enable": false,
 	"prettier.semi": false,
 	"editor.formatOnSave": true,
-	"editor.insertSpaces": false,
-	"editor.detectIndentation": false,
-	"vetur.validation.template": false
+	"vetur.format.defaultFormatter.html": "prettier"
 }

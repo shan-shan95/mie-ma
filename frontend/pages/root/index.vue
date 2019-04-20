@@ -1,28 +1,24 @@
 <template lang="pug">
 #index
-  App
-  p Index page
-  img(src='../../images/image.jpg')
-  a.button.is-primary.fas.fa-igloo Button
-  i.fas.fa-igloo Item
-  p.fas.fa-ad こんばんは
-  p.fas.fa-ad こんにちは
+  Header
+  .columns
+    section.hero.column.is-two-third
+      h1.title.is-3 新着アイテム
+      hr
+    section.hero.column.is-one-third
+      h3.title.is-5 Twitter
 </template>
 
 <style lang="scss">
 @import '../../init/_variables';
-
-p {
-  color: $base-color;
-}
 </style>
 
 <script>
-import App from '../../components/app'
+import Header from '../../components/header'
 
 export default {
   components: {
-    App
+    Header
   }
 }
 </script>
