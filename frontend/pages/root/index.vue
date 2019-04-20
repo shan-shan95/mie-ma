@@ -11,6 +11,7 @@
       .hero-body
         h3.title.is-5 Twitter
         Timeline(:id="twitterId" :source-type="'profile'" :options="{ 'height': twitterHeight }")
+  Footer
 </template>
 
 <style lang="scss">
@@ -19,11 +20,13 @@
 
 <script>
 import Header from '../../components/header'
+import Footer from '../../components/footer'
 import { Timeline } from 'vue-tweet-embed'
 
 export default {
   components: {
     Header,
+    Footer,
     Timeline
   },
   data() {
