@@ -4,9 +4,10 @@
 		%meta{ charset: "utf-8" }
 		%meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
 		%title
-			MieMa
+			ミエマ！
 		= csrf_meta_tags
 		= csp_meta_tag
+		= Gon::Base.render_data
 		= javascript_bundle_tag 'application'
 		= stylesheet_bundle_tag 'style'
 		= javascript_bundle_tag "#{params[:controller]}#{params[:action].capitalize}"

@@ -3,10 +3,14 @@
   Header
   .columns
     section.hero.column.is-two-third
-      h1.title.is-3 新着アイテム
-      hr
+      .hero-body
+        h1.title.is-3 新着アイテム
+        hr
+        p {{ message }}
     section.hero.column.is-one-third
-      h3.title.is-5 Twitter
+      .hero-body
+        h3.title.is-5 Twitter
+        Timeline(:id="twitterId" :source-type="'profile'" :options="{ 'height': twitterHeight }")
 </template>
 
 <style lang="scss">
@@ -15,10 +19,19 @@
 
 <script>
 import Header from '../../components/header'
+import { Timeline } from 'vue-tweet-embed'
 
 export default {
   components: {
-    Header
+    Header,
+    Timeline
+  },
+  data() {
+    return {
+      twitterId: 'miecoop',
+      twitterHeight: '400',
+      message: gon.test
+    }
   }
 }
 </script>
