@@ -6,7 +6,7 @@
       .hero-body
         h1.title.is-3 新着アイテム
         hr
-        p {{ message }}
+        p 説明
     section.hero.column.is-one-third
       .hero-body
         h3.title.is-5 Twitter
@@ -32,8 +32,7 @@ export default {
   data() {
     return {
       twitterId: 'miecoop',
-      twitterHeight: '400',
-      message: gon.test
+      twitterHeight: '400'
     }
   }
 }

@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import RootShow from './show'
+import ItemIndex from './index'
 
 new Vue({
   el: '#app',
   components: {
-    RootShow
+    ItemIndex
   }
 })
