@@ -3,7 +3,11 @@
     .navbar-brand
       a.navbar-item(href='/')
         img(src='../images/image.jpg' alt='top-banner' width='112' height='28')
-    #navbarBasicExample.navbar-menu
+      a.navbar-burger.burger(role='button', aria-label='menu', aria-expanded='false' data-target='navbarBasicExample', @click="toggleIsActive()", v-bind:class="{ 'is-active': this.isActive }")
+        span(aria-hidden='true')
+        span(aria-hidden='true')
+        span(aria-hidden='true')
+    #navbarBasicExample.navbar-menu(@click="toggleIsActive()", v-bind:class="{ 'is-active': this.isActive }")
       .navbar-start
         a.navbar-item ホーム
         a.navbar-item 出品一覧
@@ -15,15 +19,27 @@
             a.navbar-item Contact
             hr.navbar-divider
             a.navbar-item Report an issue
-    .navbar-end
-      .navbar-item
-        .buttons
-          a.button.is-primary
-            strong 会員登録
-          a.button.is-light ログイン
+      .navbar-end
+        .navbar-item
+          .buttons
+            a.button.is-primary
+              strong 会員登録
+            a.button.is-light ログイン
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    toggleIsActive() {
+      this.isActive = !this.isActive
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
