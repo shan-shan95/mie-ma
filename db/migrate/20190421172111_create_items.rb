@@ -14,5 +14,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :view, default: 0
       t.timestamps
     end
+
+    add_index :items, :id, unique: true
   end
 end

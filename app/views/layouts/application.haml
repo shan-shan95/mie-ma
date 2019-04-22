@@ -14,4 +14,8 @@
 		= stylesheet_bundle_tag "#{params[:controller]}#{params[:action].capitalize}"
 	%body
 		#app
+			%p.notice
+				= notice
+			%p.alert
+				= alert
 			= yield
