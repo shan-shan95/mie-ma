@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     confirmations: 'users/confirmations'
   }
-  root controller: 'item', action: 'index'
+  root controller: 'items', action: 'index'
 end

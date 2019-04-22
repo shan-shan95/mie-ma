@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import ItemIndex from './index'
+import ItemsIndex from './index'
 
 new Vue({
   el: '#app',
   components: {
-    ItemIndex
+    ItemsIndex
   }
 })
