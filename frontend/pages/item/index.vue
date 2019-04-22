@@ -10,7 +10,11 @@
     section.hero.column.is-one-third
       .hero-body
         h3.title.is-5 Twitter
-        Timeline(:id="twitterId" :source-type="'profile'" :options="{ 'height': twitterHeight }")
+        Timeline(
+          :id="twitterId",
+          :source-type="'profile'",
+          :options="{ 'height': twitterHeight }"
+        )
   Footer
 </template>
 
