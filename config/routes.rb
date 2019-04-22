@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
   root controller: 'items', action: 'index'
+
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end
