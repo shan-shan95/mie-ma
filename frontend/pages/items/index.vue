@@ -20,6 +20,9 @@
 
 <style lang="scss">
 @import '../../init/_variables';
+p {
+  color: $base-color;
+}
 </style>
 
 <script>

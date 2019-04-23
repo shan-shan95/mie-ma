@@ -16,16 +16,17 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
-      application: [
-        './frontend/init/application.js',
-        './frontend/init/application.scss'
-      ],
+      application: './frontend/init/application.js',
+      style: './frontend/init/application.scss',
       ...entries
     },
     // devtool: IS_DEV ? 'source-map' : 'none',
     output: {
       filename: 'javascripts/[name]-[hash].js',
-      path: path.resolve(__dirname, 'public/assets/')
+      path: path.resolve(__dirname, 'public/assets/'),
+      publicPath: '/',
+      hotUpdateChunkFilename: '[hash].hot-update.js',
+      hotUpdateMainFilename: '[hash].hot-update.json'
     },
     plugins: [
       new VueLoaderPlugin(),

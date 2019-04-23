@@ -22,16 +22,24 @@
       .navbar-end
         .navbar-item
           .buttons
-            a.button.is-primary
-              strong 会員登録
-            a.button.is-light ログイン
+            div(v-if="this.isSignedIn")
+              a.button.is-light(
+                href="/users/sign_out",
+                data-method="delete"
+                )
+                | ログアウト
+            div(v-else)
+              a.button.is-primary
+                strong 会員登録
+              a.button.is-light(href="/users/sign_in") ログイン
 </template>
 
 <script>
 export default {
   data() {
     return {
-      isActive: false
+      isActive: false,
+      isSignedIn: gon.is_signed_in
     }
   },
   methods: {

@@ -24,6 +24,7 @@ group :development do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'foreman'
   gem 'letter_opener'
+  gem 'letter_opener_web'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry-rails'
   gem 'rufo'
