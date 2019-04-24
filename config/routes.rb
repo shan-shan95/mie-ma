@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
+
   root controller: 'items', action: 'index'
+
+  resources :items, only: %i[show new create edit update destroy]
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

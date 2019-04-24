@@ -6,7 +6,12 @@
       .hero-body
         h1.title.is-3 新着アイテム
         hr
-        p アイテム
+        .columns.is-multiline.is-mobile
+          .column.card.is-4(
+            v-for="item in items"
+          )
+            a.has-text-centered(:href="'/items/' + item.id") {{ item.name }}
+            p.has-text-centered {{ item.description }}
     aside.hero.column.is-one-third
       .hero-body
         h3.title.is-5 Twitter
@@ -36,7 +41,7 @@
         span ・
         a(href='http://syllabus.mie-u.ac.jp/') WEBシラバス
         br
-    a.footer-sell-button(href="/")
+    a.footer-sell-button(href="/items/new")
       div 出品
       i.fa.fa-camera
   Footer
@@ -86,7 +91,8 @@ export default {
   data() {
     return {
       twitterId: 'miecoop',
-      twitterHeight: '450'
+      twitterHeight: '450',
+      items: gon.items
     }
   }
 }
