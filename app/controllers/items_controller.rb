@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
+
   def index
     gon.items = Item.all
   end
@@ -20,7 +22,10 @@ class ItemsController < ApplicationController
   end
 
   def show
-    gon.item = Item.find(params[:id])
+    item = Item.joins(:buyer).find(params[:id])
+    item.update(view: item.view + 1)
+    gon.item = item
+    gon.buyer_name = item.buyer.name
   end
 
   private
