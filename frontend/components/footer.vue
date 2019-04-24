@@ -1,16 +1,22 @@
 <template lang="pug">
   footer.footer
-    .content.has-text-centered
-      .columns
-        a.column 出品ガイド
-        a.column 購入ガイド
-        a.column お問い合わせ
-        a.column プライバシーポリシー
-        a.column 利用規約
+    .content
+      a 出品ガイド
+      br
+      a 購入ガイド
+      br
+      a お問い合わせ
+      br
+      a プライバシーポリシー
+      br
+      a 利用規約
 </template>
 
 <script>
 </script>
 
 <style lang="scss" scoped>
+.footer {
+  padding: 2rem 2rem;
+}
 </style>

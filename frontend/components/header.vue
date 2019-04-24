@@ -2,23 +2,12 @@
   nav.navbar(role='navigation' aria-label='main navigation')
     .navbar-brand
       a.navbar-item(href='/')
-        img(src='../images/image.jpg' alt='top-banner' width='112' height='28')
-      a.navbar-burger.burger(role='button', aria-label='menu', aria-expanded='false' data-target='navbarBasicExample', @click="toggleIsActive()", v-bind:class="{ 'is-active': this.isActive }")
+        img(src='../images/logo.png' alt='top-banner' width='240' height='192')
+      a.navbar-burger.burger(role='button', aria-label='menu', aria-expanded='false' data-target='navbarBasicExample', @click="toggleIsActive()", v-bind:class="{ 'is-active': this.isActive, 'top': !this.isActive }")
         span(aria-hidden='true')
         span(aria-hidden='true')
         span(aria-hidden='true')
     #navbarBasicExample.navbar-menu(@click="toggleIsActive()", v-bind:class="{ 'is-active': this.isActive }")
-      .navbar-start
-        a.navbar-item ホーム
-        a.navbar-item 出品一覧
-        .navbar-item.has-dropdown.is-hoverable
-          a.navbar-link More
-          .navbar-dropdown
-            a.navbar-item About
-            a.navbar-item Jobs
-            a.navbar-item Contact
-            hr.navbar-divider
-            a.navbar-item Report an issue
       .navbar-end
         .navbar-item
           .buttons
@@ -29,7 +18,7 @@
                 )
                 | ログアウト
             div(v-else)
-              a.button.is-primary
+              a.button.is-primary(href="/users/sign_up")
                 strong 会員登録
               a.button.is-light(href="/users/sign_in") ログイン
 </template>
@@ -51,4 +40,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.navbar-item img {
+  max-height: 10rem;
+}
+.navbar-burger {
+  height: 5rem;
+  width: 5rem;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  span {
+    left: calc(50% - 10px);
+    height: 2px;
+    width: 24px;
+    border-radius: 4px;
+  }
+}
+.top {
+  span {
+    &:nth-child(1) {
+      top: calc(50% - 9px);
+    }
+    &:nth-child(3) {
+      top: calc(50% + 7px);
+    }
+  }
+}
 </style>

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :buy_items, foreign_key: 'buyer_id', class_name: 'Item'
   has_many :sell_items, foreign_key: 'seller_id', class_name: 'Item'
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :email, presence: true
   validates :encrypted_password, presence: true
 end
