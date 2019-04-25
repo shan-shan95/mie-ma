@@ -25,7 +25,7 @@
           autocomplete="off",
           type="text",
           name="item[name]",
-          v-model="this.item.name"
+          v-model="item.name"
         )
       .field
         label(for="item_description") 説明
@@ -35,15 +35,16 @@
           autocomplete="off",
           cols="24",
           rows="12",
-          v-model="this.item.description"
+          v-model="item.description"
         )
       .field
         label(for="item_status") 状態
         br
         select#item_status(
           name="item[status]",
-          v-model="this.item.status"
+          v-model="item.status"
         )
+          option(value="null" disabled) 選択して下さい
           option(value="0") 新品
           option(value="1") 良品
           option(value="2") 傷あり
@@ -55,12 +56,12 @@
           autocomplete="off",
           type="number",
           name="item[price]",
-          v-model="this.item.price"
+          v-model="item.price"
         )
-      input#item_seller_id(
+      input(
         type="hidden",
         name="item[seller_id]",
-        v-model="this.item.seller_id"
+        v-model="item.seller_id"
       )
       .submit
         button(

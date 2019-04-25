@@ -8,7 +8,7 @@
           .info-content
             h1.title.is-3.has-text-centered {{ item.name }}
             .dummy
-            strong.price ¥2,700円
+            strong.price ¥{{ item.price.toLocaleString() }}
             p.view {{ item.view }} views
             button.button.is-success.purchase 購入する
             table.table.is-fullwidth
@@ -70,7 +70,7 @@ export default {
   text-align: center;
   font-weight: bold;
   font-size: 2.5rem;
-  color: #ea323d;
+  color: #48bedb;
 }
 .description {
   margin-top: 3rem;
