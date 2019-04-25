@@ -10,7 +10,10 @@
             .dummy
             strong.price ¥{{ item.price.toLocaleString() }}
             p.view {{ item.view }} views
-            button.button.is-success.purchase 購入する
+            button.button.is-success.purchase(v-if="!isSeller") 購入する
+            button.button.is-success.purchase(v-else, disabled) 購入する
+            button.button.is-link.secret-chat(v-if="!isSeller") 非公開チャットする
+            button.button.is-link.secret-chat(v-else, disabled) 非公開チャットする
             table.table.is-fullwidth
               tbody
                 tr
@@ -39,7 +42,8 @@ export default {
   data() {
     return {
       item: gon.item,
-      sellerName: gon.seller_name
+      sellerName: gon.seller_name,
+      isSeller: gon.is_seller
     }
   }
 }
@@ -81,5 +85,12 @@ export default {
   min-width: 10rem;
   display: block;
   font-size: 1.5rem;
+}
+.secret-chat {
+  margin: 2rem auto 1rem;
+  height: 3rem;
+  min-width: 10rem;
+  display: block;
+  font-size: 1rem;
 }
 </style>
