@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   root controller: 'items', action: 'index'
 
-  resources :items, only: %i[show new create edit update destroy]
+  resources :items, only: %i[show new create edit update destroy] do
+    member do
+      patch :purchase
+    end
+  end
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end
