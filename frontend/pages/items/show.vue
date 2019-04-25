@@ -10,10 +10,17 @@
             .dummy
             strong.price ¥{{ item.price.toLocaleString() }}
             p.view {{ item.view }} views
-            button.button.is-success.purchase(v-if="!isSeller") 購入する
-            button.button.is-success.purchase(v-else, disabled) 購入する
-            button.button.is-link.secret-chat(v-if="!isSeller") 非公開チャットする
-            button.button.is-link.secret-chat(v-else, disabled) 非公開チャットする
+            a.button.is-success.purchase(
+              :disabled="isSeller",
+              v-if="nowOnSale()",
+              :href="purchasePath()",
+              data-method="patch"
+            ) 購入する
+            a.button.is-success.purchase(
+              disabled,
+              v-else
+            ) 売り切れ
+            button.button.is-link.secret-chat(:disabled="isSeller || !isSignedIn") 非公開チャットする
             table.table.is-fullwidth
               tbody
                 tr
@@ -43,7 +50,16 @@ export default {
     return {
       item: gon.item,
       sellerName: gon.seller_name,
-      isSeller: gon.is_seller
+      isSeller: gon.is_seller,
+      isSignedIn: gon.is_signed_in
+    }
+  },
+  methods: {
+    purchasePath: () => {
+      return '/items/' + gon.item.id + '/purchase'
+    },
+    nowOnSale: () => {
+      return gon.item.trading_status === 'now_on_sale'
     }
   }
 }
@@ -80,17 +96,17 @@ export default {
   margin-top: 3rem;
 }
 .purchase {
-  margin: 1rem auto;
-  height: 4rem;
-  min-width: 10rem;
   display: block;
-  font-size: 1.5rem;
+  margin: 2rem auto 0;
+  height: 3rem;
+  width: 10rem;
+  font-size: 1.2rem;
 }
 .secret-chat {
   margin: 2rem auto 1rem;
   height: 3rem;
-  min-width: 10rem;
+  width: 10rem;
   display: block;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 </style>

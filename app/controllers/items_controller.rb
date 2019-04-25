@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 
   def purchase
     item = Item.joins(:seller).find(params[:id])
-    redirect_to item_path(item.id), alert: '出品者は自分の品物を購入できません' if visited_user_is_seller?(item)
+    return redirect_to item_path(item.id), alert: '購入できませんでした' if visited_user_is_seller?(item) || item.buyer_id.present?
     item.update(buyer: current_user, trading_status: :trading)
     redirect_to item_path(item.id), notice: '購入できました'
   end
