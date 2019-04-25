@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    gon.items = Item.all
+    gon.items = Item.all.order(created_at: :desc)
   end
 
   def new
