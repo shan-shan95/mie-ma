@@ -70,6 +70,7 @@ export default {
   text-align: center;
   font-weight: bold;
   font-size: 2.5rem;
+  color: #ea323d;
 }
 .description {
   margin-top: 3rem;
