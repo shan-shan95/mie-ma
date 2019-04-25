@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_04_25_161012) do
     t.integer "view", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "trading_status"
+    t.integer "trading_status", default: 0, null: false
     t.integer "price", null: false
     t.index ["id"], name: "index_items_on_id", unique: true
   end
