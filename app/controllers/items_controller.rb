@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
 
   def new
     gon.item = Item.new
-    gon.item.buyer_id = current_user.id
+    gon.item.seller_id = current_user.id
   end
 
   def create
@@ -22,16 +22,16 @@ class ItemsController < ApplicationController
   end
 
   def show
-    item = Item.joins(:buyer).find(params[:id])
+    item = Item.joins(:seller).find(params[:id])
     item.update(view: item.view + 1)
     gon.item = item
-    gon.buyer_name = item.buyer.name
+    gon.seller_name = item.seller.name
   end
 
   private
 
   def item_params
     params[:item][:status] = params[:item][:status].to_i
-    params.require(:item).permit(:name, :description, :status, :buyer_id)
+    params.require(:item).permit(:name, :description, :status, :seller_id)
   end
 end

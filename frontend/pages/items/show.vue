@@ -16,7 +16,7 @@
                 tr
                   td
                     strong 出品者
-                  td {{ buyerName }}
+                  td {{ sellerName }}
                 tr
                   td
                     strong 商品状態
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       item: gon.item,
-      buyerName: gon.buyer_name
+      sellerName: gon.seller_name
     }
   }
 }

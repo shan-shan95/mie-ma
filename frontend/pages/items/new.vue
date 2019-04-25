@@ -48,10 +48,10 @@
           option(value="1") 良品
           option(value="2") 傷あり
           option(value="3") ジャンク品
-      input#item_buyer_id(
+      input#item_seller_id(
         type="hidden",
-        name="item[buyer_id]",
-        v-model="this.item.buyer_id"
+        name="item[seller_id]",
+        v-model="this.item.seller_id"
       )
       .submit
         button(
