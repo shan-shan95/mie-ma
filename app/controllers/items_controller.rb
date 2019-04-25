@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     if item.save
       redirect_to root_path, notice: '作成しました'
     else
-      render :new, flash.now[:alert] = @item.errors.full_messages
+      render :new, flash.now[:alert] = item.errors.full_messages
     end
   end
 
@@ -32,6 +32,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params[:item][:status] = params[:item][:status].to_i
-    params.require(:item).permit(:name, :description, :status, :seller_id)
+    params.require(:item).permit(:name, :description, :status, :seller_id, :price)
   end
 end

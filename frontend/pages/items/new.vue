@@ -48,6 +48,15 @@
           option(value="1") 良品
           option(value="2") 傷あり
           option(value="3") ジャンク品
+      .field
+        label(for="item_price") 値段
+        br
+        input(
+          autocomplete="off",
+          type="number",
+          name="item[price]",
+          v-model="this.item.price"
+        )
       input#item_seller_id(
         type="hidden",
         name="item[seller_id]",
