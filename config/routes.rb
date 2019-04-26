@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   root controller: 'items', action: 'index'
 
-  resources :items, only: %i[show new create edit update destroy] do
+  resources :items, except: :index do
     member do
       patch :purchase
     end

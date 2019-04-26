@@ -11,13 +11,13 @@
             strong.price ¥{{ item.price.toLocaleString() }}
             p.view {{ item.view }} views
             a.button.is-success.purchase(
-              :disabled="isSeller",
-              v-if="nowOnSale()",
-              :href="purchasePath()",
+              :disabled="isSeller"
+              v-if="nowOnSale()"
+              :href="purchasePath()"
               data-method="patch"
             ) 購入する
             a.button.is-success.purchase(
-              disabled,
+              disabled
               v-else
             ) 売り切れ
             button.button.is-link.secret-chat(:disabled="isSeller || !isSignedIn") 非公開チャットする
@@ -91,9 +91,6 @@ export default {
   font-weight: bold;
   font-size: 2.5rem;
   color: #48bedb;
-}
-.description {
-  margin-top: 3rem;
 }
 .purchase {
   display: block;

@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   def create
     item = Item.new(item_params)
     if item.save
-      redirect_to root_path, notice: '品物を作成しました'
+      redirect_to root_path, notice: "品物を作成しました"
     else
       redirect_to new_item_path, alert: item.errors.full_messages
     end
@@ -32,9 +32,12 @@ class ItemsController < ApplicationController
 
   def purchase
     item = Item.joins(:seller).find(params[:id])
-    return redirect_to item_path(item.id), alert: '購入できませんでした' if visited_user_is_seller?(item) || item.buyer_id.present?
+    if visited_user_is_seller?(item) || item.buyer_id.present?
+      return redirect_to item_path(item.id), alert: "購入できませんでした"
+    end
+
     item.update(buyer: current_user, trading_status: :trading)
-    redirect_to item_path(item.id), notice: '購入できました'
+    redirect_to item_path(item.id), notice: "購入できました"
   end
 
   private
