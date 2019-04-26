@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_25_170925) do
+ActiveRecord::Schema.define(version: 2019_04_25_235753) do
 
   create_table "items", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 2019_04_25_170925) do
     t.integer "trading_status", default: 0, null: false
     t.integer "price", null: false
     t.index ["id"], name: "index_items_on_id", unique: true
+  end
+
+  create_table "trading_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "buyer_id"
+    t.string "seller_id"
+    t.string "item_id", null: false
+    t.text "content", limit: 255
+    t.integer "open_range", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_trading_messages_on_item_id"
   end
 
   create_table "users", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
