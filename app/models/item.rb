@@ -5,14 +5,14 @@ class Item < ApplicationRecord
 
   belongs_to :buyer, class_name: "User", optional: true
   belongs_to :seller, class_name: "User"
+  has_many :trading_messages
 
   before_save :set_start_on
 
   validates :name, presence: true
   validates :description, presence: true
   validates :status, presence: true
-  validates :buyer_id, presence: true
-  validates :start_on, presence: true
+  validates :seller_id, presence: true
   validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
   enum status: %i[brand_new excellent poor junk] # 新品 良品 傷あり ジャンク

@@ -3,24 +3,25 @@
   Header
   main
     article.hero
-      .hero-body
+      .hero-body.page-contents
         .item-info
           .info-content
             h1.title.is-3.has-text-centered {{ item.name }}
             .dummy
             strong.price ¥{{ item.price.toLocaleString() }}
             p.view {{ item.view }} views
-            a.button.is-success.purchase(
-              :disabled="isSeller"
-              v-if="nowOnSale()"
-              :href="purchasePath()"
-              data-method="patch"
-            ) 購入する
-            a.button.is-success.purchase(
-              disabled
-              v-else
-            ) 売り切れ
-            button.button.is-link.secret-chat(:disabled="isSeller || !isSignedIn") 非公開チャットする
+            .purchase
+              a.button.is-success(
+                :class="{'disabled': isSeller}"
+                :disabled="isSeller"
+                v-if="nowOnSale()"
+                :href="purchasePath()"
+                data-method="patch"
+              ) 購入する
+              a.button.is-success.disabled(
+                disabled
+                v-else
+              ) 売り切れ
             table.table.is-fullwidth
               tbody
                 tr
@@ -32,6 +33,7 @@
                     strong 商品状態
                   td {{ item.status }}
             .description {{ item.description }}
+        PublicMessagesChat
   Footer
 </template>
 
@@ -39,12 +41,14 @@
 import Header from '../../components/header'
 import Footer from '../../components/footer'
 import SideBar from '../../components/sidebar'
+import PublicMessagesChat from '../../components/publicMessagesChat'
 
 export default {
   components: {
     Header,
     Footer,
-    SideBar
+    SideBar,
+    PublicMessagesChat
   },
   data() {
     return {
@@ -66,8 +70,8 @@ export default {
 </script>
 
 <style lang="scss">
-.hero-body {
-  padding: 3rem 10rem;
+.page-contents {
+  padding: 3rem 6rem;
 }
 .dummy {
   height: 16rem;
@@ -79,7 +83,7 @@ export default {
   background-color: white;
 }
 .info-content {
-  margin: 0rem 6rem;
+  margin: 0rem 3rem;
   padding: 2rem 0rem;
 }
 .view {
@@ -94,10 +98,15 @@ export default {
 }
 .purchase {
   display: block;
-  margin: 2rem auto 0;
+  margin: 1rem auto;
   height: 3rem;
   width: 10rem;
-  font-size: 1.2rem;
+
+  a {
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+  }
 }
 .secret-chat {
   margin: 2rem auto 1rem;
@@ -105,5 +114,8 @@ export default {
   width: 10rem;
   display: block;
   font-size: 0.8rem;
+}
+.disabled {
+  pointer-events: none;
 }
 </style>

@@ -42,7 +42,7 @@
         br
         select#item_status(
           name="item[status]"
-          v-model="item.status"
+          v-model.number="item.status"
         )
           option(value="null" disabled) 選択して下さい
           option(value="0") 新品
