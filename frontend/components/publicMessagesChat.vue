@@ -3,60 +3,65 @@
   .chat-section
     .chat-content
       .chat-background
+        .message-box(v-for="trading_message in trading_messages")
+          .message
+            p {{ trading_message.content }}
       .note
         p 購入前に商品の状態を出品者に聞くことができます。相手のことを考え丁寧なコメントを心がけましょう。
-      form(
-        action="/items"
-        accept-charset="UTF-8"
-        method="post"
-      )
-        input(
-          name="utf8"
-          type="hidden"
-          value="✓"
-        )
-        input(
-          name="authenticity_token"
-          type="hidden"
-          value="csrf_token"
-        )
-        .field
-          textarea.textarea.is-primary.chat-textarea(
-            name="trading_message[content]"
-            autocomplete="off"
-            rows="4"
-            )
-        input(
-          type="hidden"
-          name="trading_message[buyer_id]"
-        )
-        input(
-          type="hidden"
-          name="trading_message[seller_id]"
-        )
-        input(
-          type="hidden"
-          name="trading_message[item_id]"
-        )
-        input.none(
-          type="number"
-          name="trading_message[open_range]"
-          value="0"
-        )
+      form
+        textarea.textarea.is-primary.chat-textarea(
+          v-model="postMessage.content"
+          autocomplete="off"
+          rows="4"
+          )
         button.button.is-info.submit(
-          type="submit"
-          data-disable-with="送信中..."
-          @click="onSubmit()"
+          @click.prevent="onSubmit(postMessage, item, userId)"
         ) コメントする
 </template>
 
 <script>
 import axios from 'axios'
+axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute('content')
+}
 
 export default {
-  method: {
-    onSubmit: () => {
-      axios.post('/items', {})
+  data() {
+    return {
+      postMessage: this.message,
+      errorMessage: ''
+    }
+  },
+  methods: {
+    onSubmit: (postMessage, item, userId) => {
+      postMessage.buyer_id = item.buyer_id
+      postMessage.seller_id = userId
+      postMessage.item_id = item.id
+      postMessage.open_range = 0
+      axios.post('/trading_messages', {
+        trading_message: postMessage
+      })
+    }
+  },
+  props: {
+    message: {
+      type: Object,
+      required: true
+    },
+    item: {
+      type: Object,
+      required: true
+    },
+    userId: {
+      type: String,
+      required: true
+    },
+    trading_messages: {
+      type: Array,
+      required: true
     }
   }
 }
@@ -64,11 +69,25 @@ export default {
 
 <style lang="scss">
 .chat-background {
-  background-color: aquamarine;
-  opacity: 0.2;
+  background-color: rgba(120, 255, 200, 0.35);
   width: 100%;
   margin: 1rem 0;
-  min-height: 10rem;
+  padding: 0.5rem 0;
+
+  .message-box {
+    margin: 0.5rem 0;
+
+    .message {
+      background-color: transparent;
+      display: inline-block;
+      position: relative;
+      margin: 0 0 0 1rem;
+      padding: 10px;
+      max-width: 250px;
+      border-radius: 12px;
+      background: #eff0f4;
+    }
+  }
 }
 .chat-section {
   background-color: white;
@@ -80,6 +99,7 @@ export default {
 }
 .chat-textarea {
   width: 100%;
+  margin: 0.5rem 0;
 }
 .note {
   background-color: rgba(255, 255, 110, 0.4);

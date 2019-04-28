@@ -90,7 +90,7 @@ export default {
       item: gon.item
     }
   },
-  method: {
+  methods: {
     onSubmit: () => {
       axios.post('/items', {
         params: this.item

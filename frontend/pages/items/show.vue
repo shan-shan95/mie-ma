@@ -33,7 +33,12 @@
                     strong 商品状態
                   td {{ item.status }}
             .description {{ item.description }}
-        PublicMessagesChat
+        PublicMessagesChat(
+          :message="message"
+          :item="item"
+          :userId="userId"
+          :trading_messages="trading_messages"
+        )
   Footer
 </template>
 
@@ -53,9 +58,12 @@ export default {
   data() {
     return {
       item: gon.item,
+      message: gon.message,
       sellerName: gon.seller_name,
       isSeller: gon.is_seller,
-      isSignedIn: gon.is_signed_in
+      isSignedIn: gon.is_signed_in,
+      userId: gon.user_id,
+      trading_messages: gon.trading_messages
     }
   },
   methods: {
