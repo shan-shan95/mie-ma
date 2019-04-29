@@ -3,9 +3,14 @@
   .chat-section
     .chat-content
       .chat-background
-        .message-box(v-for="(publicMessage, index) in publicMessages")
-          .message
-            p(:key="index") {{ publicMessage.content }}
+        .message-column.columns(v-for="(publicMessage, index) in publicMessages")
+          .user-name.column.is-4
+            p user_name
+          .message.column.is-8
+            .message-content
+              p(:key="index") {{ publicMessage.content }}
+            .send-time
+              small 9日前
       .note
         p 購入前に商品の状態を出品者に聞くことができます。相手のことを考え丁寧なコメントを心がけましょう。
       form
@@ -74,12 +79,12 @@ export default {
 
 <style lang="scss">
 .chat-background {
-  background-color: rgba(120, 255, 200, 0.35);
+  background-color: rgba(120, 255, 200, 0.3);
   width: 100%;
   margin: 1rem 0;
   padding: 0.5rem 0;
 
-  .message-box {
+  .message-column {
     margin: 0.5rem 0;
 
     .message {
@@ -91,6 +96,7 @@ export default {
       max-width: 250px;
       border-radius: 12px;
       background: #eff0f4;
+      border: 1px solid #9c9c9c;
     }
   }
 }
