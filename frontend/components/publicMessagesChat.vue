@@ -18,9 +18,17 @@
           v-model="postMessage.content"
           autocomplete="off"
           rows="4"
-          )
+        )
+        .notification.is-danger(
+          v-if="checkMessageLength()"
+        ) {{ checkMessageLength() }}
         button.button.is-info.submit(
           @click.prevent="onSubmit()"
+          v-if="!checkMessageLength()"
+        ) コメントする
+        button.button.is-info.submit(
+          v-else
+          disabled
         ) コメントする
 </template>
 
@@ -54,6 +62,16 @@ export default {
           })
           .catch(err => {})
       }
+    },
+    checkMessageLength() {
+      if (
+        this.postMessage.content !== null &&
+        this.postMessage.content.length > 255
+      ) {
+        return '文字数が多すぎます'
+      } else {
+        return ''
+      }
     }
   },
   props: {
@@ -81,11 +99,10 @@ export default {
 .chat-background {
   background-color: rgba(120, 255, 200, 0.3);
   width: 100%;
-  margin: 1rem 0;
-  padding: 0.5rem 0;
 
   .message-column {
     margin: 0.5rem 0;
+    padding: 0.5rem 0;
 
     .message {
       background-color: transparent;

@@ -15,8 +15,7 @@
                 :class="{'disabled': isSeller}"
                 :disabled="isSeller"
                 v-if="nowOnSale()"
-                :href="purchasePath()"
-                data-method="patch"
+                @click="toggleIsModalActive()"
               ) 購入する
               a.button.is-success.disabled(
                 disabled
@@ -41,6 +40,26 @@
           @success="getPublicMessages()"
         )
   Footer
+  .modal(:class="{'is-active': isModalActive}")
+    .modal-background(
+      @click="toggleIsModalActive()"
+    )
+    .modal-content
+      header.modal-card-head
+        p.modal-card-title Modal title
+      section.modal-card-body
+      footer.modal-card-foot
+        a.button.is-success(
+          :href="purchasePath()"
+          data-method="patch"
+        ) 購入
+        button.button(
+          @click="toggleIsModalActive()"
+        ) キャンセル
+    button.modal-close.is-large(
+      aria-label="close"
+      @click="toggleIsModalActive()"
+      )
 </template>
 
 <script>
@@ -71,7 +90,8 @@ export default {
       isSeller: gon.is_seller,
       isSignedIn: gon.is_signed_in,
       userId: gon.user_id,
-      publicMessages: gon.public_messages
+      publicMessages: gon.public_messages,
+      isModalActive: false
     }
   },
   methods: {
@@ -91,6 +111,9 @@ export default {
           this.publicMessages = res.data
         })
         .catch(err => {})
+    },
+    toggleIsModalActive() {
+      this.isModalActive = !this.isModalActive
     }
   }
 }

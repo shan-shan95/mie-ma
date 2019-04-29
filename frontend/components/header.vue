@@ -3,11 +3,11 @@ nav.navbar(role='navigation' aria-label='main navigation')
   .navbar-brand
     a.navbar-item.logo(href='/')
       img(src='../images/logo.png' alt='top-banner' width='240' height='192')
-    a.navbar-burger.burger(role='button', aria-label='menu', aria-expanded='false' data-target='navbarBasicExample', @click="toggleIsActive()", v-bind:class="{ 'is-active': this.isActive, 'top': !this.isActive }")
+    a.navbar-burger.burger(role='button', aria-label='menu', aria-expanded='false' data-target='navbarBasicExample', @click="toggleIsActive()", :class="{ 'is-active': this.isActive, 'top': !this.isActive }")
       span(aria-hidden='true')
       span(aria-hidden='true')
       span(aria-hidden='true')
-  #navbarBasicExample.navbar-menu(@click="toggleIsActive()", v-bind:class="{ 'is-active': this.isActive }")
+  #navbarBasicExample.navbar-menu(@click="toggleIsActive()", :class="{ 'is-active': this.isActive }")
     .navbar-end
       .navbar-item.button-item
         .buttons
