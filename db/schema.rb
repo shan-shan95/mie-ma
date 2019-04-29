@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_25_235753) do
+ActiveRecord::Schema.define(version: 2019_04_29_180323) do
 
   create_table "items", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -28,15 +28,22 @@ ActiveRecord::Schema.define(version: 2019_04_25_235753) do
     t.index ["id"], name: "index_items_on_id", unique: true
   end
 
-  create_table "trading_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "buyer_id"
-    t.string "seller_id"
+  create_table "private_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "sender_id", null: false
     t.string "item_id", null: false
-    t.text "content", limit: 255
-    t.integer "open_range", null: false
+    t.text "content", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_trading_messages_on_item_id"
+    t.index ["item_id", "created_at"], name: "index_private_messages_on_item_id_and_created_at"
+  end
+
+  create_table "public_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "sender_id", null: false
+    t.string "item_id", null: false
+    t.text "content", limit: 255, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id", "created_at"], name: "index_public_messages_on_item_id_and_created_at"
   end
 
   create_table "users", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
