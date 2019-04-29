@@ -23,19 +23,19 @@ class ItemsController < ApplicationController
 
   def show
     item = Item.joins(:seller).find(params[:id])
-    item.update(view: item.view + 1) unless visited_user_is_seller?(item)
+    item.update(view: item.view + 1) unless item.seller_visited?(current_user)
 
     gon.item = item
     gon.message = PublicMessage.new
     gon.seller_name = item.seller.name
-    gon.is_seller = visited_user_is_seller?(item)
+    gon.is_seller = item.seller_visited?(current_user)
     gon.user_id = current_user.id
     gon.public_messages = item.public_messages
   end
 
   def purchase
     item = Item.joins(:seller).find(params[:id])
-    if visited_user_is_seller?(item) || item.buyer_id.present?
+    if item.seller_visited?(current_user) || item.buyer_id.present?
       return redirect_to item_path(item.id), alert: "購入できませんでした"
     end
 
@@ -55,9 +55,5 @@ class ItemsController < ApplicationController
   def item_params
     params[:item][:status] = params[:item][:status].to_i
     params.require(:item).permit(:name, :description, :status, :seller_id, :price)
-  end
-
-  def visited_user_is_seller?(item)
-    item.seller == current_user
   end
 end
