@@ -49,10 +49,8 @@ module.exports = (env, argv) => {
               [
                 '@babel/preset-env',
                 {
-                  targets: {
-                    ie: 11
-                  },
-                  useBuiltIns: 'usage'
+                  targets: ['>0.25% in JP', 'not ie <= 10', 'not op_mini all'],
+                  useBuiltIns: 'entry'
                 }
               ]
             ]
