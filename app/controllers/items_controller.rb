@@ -22,15 +22,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    item = Item.joins(:seller, :trading_messages).find(params[:id])
+    item = Item.joins(:seller).find(params[:id])
     item.update(view: item.view + 1) unless visited_user_is_seller?(item)
 
     gon.item = item
-    gon.message = TradingMessage.new
+    gon.message = PublicMessage.new
     gon.seller_name = item.seller.name
     gon.is_seller = visited_user_is_seller?(item)
     gon.user_id = current_user.id
-    gon.trading_messages = item.trading_messages.order(:created_at)
+    gon.public_messages = item.public_messages
   end
 
   def purchase
@@ -43,7 +43,10 @@ class ItemsController < ApplicationController
     redirect_to item_path(item.id), notice: "購入できました"
   end
 
-  def public_messages; end
+  def public_messages
+    messages = Item.find(params[:id]).public_messages.to_json
+    render status: 200, json: messages
+  end
 
   def private_messages; end
 

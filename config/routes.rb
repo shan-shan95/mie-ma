@@ -2,11 +2,11 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-            confirmations: "users/confirmations",
-            registrations: "users/registrations",
-            sessions: "users/sessions",
-            passwords: "users/passwords",
-          }
+                       confirmations: "users/confirmations",
+                       registrations: "users/registrations",
+                       sessions: "users/sessions",
+                       passwords: "users/passwords",
+                     }
 
   root controller: "items", action: "index"
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :trading_messages, only: :create
+  resources :public_messages, only: :create
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

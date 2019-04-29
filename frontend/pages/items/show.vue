@@ -37,7 +37,8 @@
           :message="message"
           :item="item"
           :userId="userId"
-          :trading_messages="trading_messages"
+          :publicMessages="publicMessages"
+          @success="getPublicMessages()"
         )
   Footer
 </template>
@@ -47,6 +48,13 @@ import Header from '../../components/header'
 import Footer from '../../components/footer'
 import SideBar from '../../components/sidebar'
 import PublicMessagesChat from '../../components/publicMessagesChat'
+import axios from 'axios'
+axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute('content')
+}
 
 export default {
   components: {
@@ -63,15 +71,26 @@ export default {
       isSeller: gon.is_seller,
       isSignedIn: gon.is_signed_in,
       userId: gon.user_id,
-      trading_messages: gon.trading_messages
+      publicMessages: gon.public_messages
     }
   },
   methods: {
-    purchasePath: () => {
-      return '/items/' + gon.item.id + '/purchase'
+    purchasePath() {
+      return '/items/' + this.item.id + '/purchase'
     },
-    nowOnSale: () => {
-      return gon.item.trading_status === 'now_on_sale'
+    publicMessagesPath() {
+      return '/items/' + this.item.id + '/public_messages'
+    },
+    nowOnSale() {
+      return this.item.trading_status === 'now_on_sale'
+    },
+    getPublicMessages() {
+      axios
+        .get(this.publicMessagesPath())
+        .then(res => {
+          this.publicMessages = res.data
+        })
+        .catch(err => {})
     }
   }
 }

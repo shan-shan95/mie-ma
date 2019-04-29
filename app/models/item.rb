@@ -5,7 +5,8 @@ class Item < ApplicationRecord
 
   belongs_to :buyer, class_name: "User", optional: true
   belongs_to :seller, class_name: "User"
-  has_many :trading_messages
+  has_many :public_messages
+  has_many :private_messages
 
   before_save :set_start_on
 

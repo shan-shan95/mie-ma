@@ -3,9 +3,9 @@
   .chat-section
     .chat-content
       .chat-background
-        .message-box(v-for="trading_message in trading_messages")
+        .message-box(v-for="(publicMessage, index) in publicMessages")
           .message
-            p {{ trading_message.content }}
+            p(:key="index") {{ publicMessage.content }}
       .note
         p 購入前に商品の状態を出品者に聞くことができます。相手のことを考え丁寧なコメントを心がけましょう。
       form
@@ -15,7 +15,7 @@
           rows="4"
           )
         button.button.is-info.submit(
-          @click.prevent="onSubmit(postMessage, item, userId)"
+          @click.prevent="onSubmit()"
         ) コメントする
 </template>
 
@@ -31,19 +31,24 @@ axios.defaults.headers.common = {
 export default {
   data() {
     return {
-      postMessage: this.message,
-      errorMessage: ''
+      postMessage: this.message
     }
   },
   methods: {
-    onSubmit: (postMessage, item, userId) => {
-      postMessage.buyer_id = item.buyer_id
-      postMessage.seller_id = userId
-      postMessage.item_id = item.id
-      postMessage.open_range = 0
-      axios.post('/trading_messages', {
-        trading_message: postMessage
-      })
+    onSubmit() {
+      this.postMessage.sender_id = this.userId
+      this.postMessage.item_id = this.item.id
+      if (this.postMessage.content) {
+        axios
+          .post('/public_messages', {
+            public_message: this.postMessage
+          })
+          .then(res => {
+            this.postMessage.content = null
+            this.$emit('success')
+          })
+          .catch(err => {})
+      }
     }
   },
   props: {
@@ -59,9 +64,9 @@ export default {
       type: String,
       required: true
     },
-    trading_messages: {
+    publicMessages: {
       type: Array,
-      required: true
+      required: false
     }
   }
 }

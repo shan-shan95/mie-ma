@@ -91,7 +91,7 @@ export default {
     }
   },
   methods: {
-    onSubmit: () => {
+    onSubmit() {
       axios.post('/items', {
         params: this.item
       })

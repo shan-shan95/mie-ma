@@ -9,8 +9,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  has_many :buy_items, foreign_key: 'buyer_id', class_name: 'Item'
-  has_many :sell_items, foreign_key: 'seller_id', class_name: 'Item'
+  has_many :buy_items, foreign_key: "buyer_id", class_name: "Item"
+  has_many :sell_items, foreign_key: "seller_id", class_name: "Item"
 
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true
