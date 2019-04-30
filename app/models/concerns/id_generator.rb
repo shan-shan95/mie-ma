@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module IdGenerator
   def self.included(klass)
     klass.before_create :fill_id

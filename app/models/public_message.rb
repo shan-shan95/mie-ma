@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PublicMessage < ApplicationRecord
   belongs_to :sender, class_name: "User"
   belongs_to :item

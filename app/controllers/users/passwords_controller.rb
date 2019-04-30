@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Users::PasswordsController < Devise::PasswordsController
   # GET /users/password/new
   def new
