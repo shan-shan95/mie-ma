@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   devise_for :users, controllers: {
                        confirmations: "users/confirmations",
@@ -15,10 +13,13 @@ Rails.application.routes.draw do
       patch :purchase
       get :public_messages
       get :private_messages
+      get :trading
     end
   end
 
   resources :public_messages, only: :create
+
+  resources :private_messages, only: :create
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

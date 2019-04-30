@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  include ResponseStatus
+
+  before_action :authenticate_user!, except: %i[index show public_messages]
 
   def index
     gon.items = Item.all.order(created_at: :desc)
@@ -21,19 +23,21 @@ class ItemsController < ApplicationController
 
   def show
     item = Item.joins(:seller).find(params[:id])
-    item.update(view: item.view + 1) unless item.seller_visited?(current_user)
+
+    redirect_to trading_item_path(params[:id]) if item.visitor_is_trader?(current_user)
+    item.update(view: item.view + 1) unless item.visitor_is_seller?(current_user)
 
     gon.item = item
     gon.message = PublicMessage.new
     gon.seller_name = item.seller.name
-    gon.is_seller = item.seller_visited?(current_user)
+    gon.is_seller = item.visitor_is_seller?(current_user)
     gon.user_id = current_user.id
     gon.public_messages = item.public_messages
   end
 
   def purchase
     item = Item.joins(:seller).find(params[:id])
-    if item.seller_visited?(current_user) || item.buyer_id.present?
+    if item.visitor_is_seller?(current_user) || item.buyer_id.present?
       return redirect_to item_path(item.id), alert: "購入できませんでした"
     end
 
@@ -42,11 +46,36 @@ class ItemsController < ApplicationController
   end
 
   def public_messages
-    messages = Item.find(params[:id]).public_messages.to_json
-    render status: 200, json: messages
+    messages = Item.find(params[:id]).public_messages
+    if messages
+      render status: 200, json: messages.to_json
+    else
+      response_internal_server_error
+    end
   end
 
-  def private_messages; end
+  def private_messages
+    item = Item.find(params[:id])
+    return response_unauthorized until item.visitor_is_trader?(current_user)
+
+    messages = item.private_messages
+    if messages
+      render status: 200, json: messages.to_json
+    else
+      response_internal_server_error
+    end
+  end
+
+  def trading
+    item = Item.find(params[:id])
+    redirect_to item_path(params[:id]) unless item.visitor_is_trader?(current_user)
+
+    gon.item = item
+    gon.message = PrivateMessage.new
+    gon.seller_name = item.seller.name
+    gon.user_id = current_user.id
+    gon.private_messages = item.private_messages
+  end
 
   private
 
