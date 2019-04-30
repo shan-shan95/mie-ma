@@ -14,7 +14,7 @@
               a.button.is-success(
                 :class="{'disabled': isSeller}"
                 :disabled="isSeller"
-                v-if="nowOnSale()"
+                v-if="isNowOnSale()"
                 @click="toggleIsModalActive()"
               ) 購入する
               a.button.is-success.disabled(
@@ -37,7 +37,8 @@
           :item="item"
           :userId="userId"
           :publicMessages="publicMessages"
-          @success="getPublicMessages()"
+          @postSuccess="getPublicMessages()"
+          v-if="isNowOnSale()"
         )
   Footer
   .modal(:class="{'is-active': isModalActive}")
@@ -101,7 +102,7 @@ export default {
     publicMessagesPath() {
       return '/items/' + this.item.id + '/public_messages'
     },
-    nowOnSale() {
+    isNowOnSale() {
       return this.item.trading_status === 'now_on_sale'
     },
     getPublicMessages() {
@@ -164,8 +165,5 @@ export default {
   width: 10rem;
   display: block;
   font-size: 0.8rem;
-}
-.disabled {
-  pointer-events: none;
 }
 </style>

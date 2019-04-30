@@ -26,7 +26,7 @@
           @click.prevent="onSubmit()"
           v-if="!checkMessageLength()"
         ) コメントする
-        button.button.is-info.submit(
+        button.button.is-info.submit.disabled(
           v-else
           disabled
         ) コメントする
@@ -58,7 +58,7 @@ export default {
           })
           .then(res => {
             this.postMessage.content = null
-            this.$emit('success')
+            this.$emit('postSuccess')
           })
           .catch(err => {})
       }
@@ -143,5 +143,8 @@ export default {
 .submit {
   display: block;
   margin: 0 auto;
+}
+.disabled {
+  pointer-events: none;
 }
 </style>
