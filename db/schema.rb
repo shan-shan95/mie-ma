@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_29_180323) do
+ActiveRecord::Schema.define(version: 2019_04_30_120443) do
 
   create_table "items", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2019_04_29_180323) do
     t.text "content", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "receiver_id", null: false
+    t.boolean "is_already_read", default: false, null: false
     t.index ["item_id", "created_at"], name: "index_private_messages_on_item_id_and_created_at"
   end
 
