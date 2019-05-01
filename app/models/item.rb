@@ -15,15 +15,7 @@ class Item < ApplicationRecord
   validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
   enum status: %i[brand_new excellent poor junk] # 新品 良品 傷あり ジャンク
-  enum trading_status: %i[now_on_sale trading completed] # 販売中 取引中 取引完了
-
-  def visitor_is_seller?(user)
-    seller == user
-  end
-
-  def visitor_is_trader?(user)
-    seller == user || buyer == user
-  end
+  enum trading_status: %i[now_on_sale trading seller_eval_completed completed] # 販売中 取引中 出品者の評価のみ完了 購入者の評価のみ完了 取引完了
 
   private
 

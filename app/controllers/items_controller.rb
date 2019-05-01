@@ -24,25 +24,25 @@ class ItemsController < ApplicationController
   def show
     item = Item.joins(:seller).find(params[:id])
 
-    redirect_to trading_item_path(params[:id]) if item.visitor_is_trader?(current_user)
-    item.update(view: item.view + 1) unless item.visitor_is_seller?(current_user)
+    return redirect_to trading_item_path(params[:id]) if current_user.is_trading?(item)
+    item.update(view: item.view + 1) unless current_user.is_seller?(item)
 
     gon.item = item
     gon.message = PublicMessage.new
     gon.seller_name = item.seller.name
-    gon.is_seller = item.visitor_is_seller?(current_user)
+    gon.is_seller = current_user.is_seller?(item)
     gon.user_id = current_user.id
     gon.public_messages = item.public_messages
   end
 
   def purchase
     item = Item.joins(:seller).find(params[:id])
-    if item.visitor_is_seller?(current_user) || item.buyer_id.present?
+    if current_user.is_trading?(item)
       return redirect_to item_path(item.id), alert: "購入できませんでした"
     end
 
     item.update(buyer: current_user, trading_status: :trading)
-    redirect_to item_path(item.id), notice: "購入できました"
+    redirect_to trading_item_path(item.id), notice: "購入できました"
   end
 
   def public_messages
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
 
   def private_messages
     item = Item.find(params[:id])
-    return response_unauthorized until item.visitor_is_trader?(current_user)
+    return response_unauthorized until current_user.is_trader?(item)
 
     messages = item.private_messages
     if messages
@@ -68,7 +68,7 @@ class ItemsController < ApplicationController
 
   def trading
     item = Item.find(params[:id])
-    redirect_to item_path(params[:id]) unless item.visitor_is_trader?(current_user)
+    return redirect_to item_path(params[:id]) unless current_user.is_trading?(item)
 
     gon.item = item
     gon.message = PrivateMessage.new

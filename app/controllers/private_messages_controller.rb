@@ -5,7 +5,7 @@ class PrivateMessagesController < ApplicationController
 
   def create
     item = Item.find(params[:item][:id])
-    return response_unauthorized until item.visitor_is_trader?(current_user)
+    return response_unauthorized until current_user.is_trader?(item)
 
     message = PrivateMessage.new(message_params)
     if message.save
