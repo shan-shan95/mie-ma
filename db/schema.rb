@@ -13,22 +13,12 @@
 ActiveRecord::Schema.define(version: 2019_05_01_042924) do
 
   create_table "evaluation_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "evaluation_id", null: false
+    t.string "user_id", null: false
     t.integer "status", null: false
     t.text "comment", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["evaluation_id"], name: "index_evaluation_comments_on_evaluation_id"
-  end
-
-  create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "user_id", null: false
-    t.integer "good", default: 0, null: false
-    t.integer "normal", default: 0, null: false
-    t.integer "bad", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_evaluations_on_user_id"
+    t.index ["user_id"], name: "index_evaluation_comments_on_user_id"
   end
 
   create_table "items", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -87,6 +77,9 @@ ActiveRecord::Schema.define(version: 2019_05_01_042924) do
     t.string "unconfirmed_email"
     t.string "name", null: false
     t.text "profile"
+    t.integer "good", default: 0, null: false
+    t.integer "normal", default: 0, null: false
+    t.integer "bad", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -95,8 +88,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_042924) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "evaluation_comments", "evaluations"
-  add_foreign_key "evaluations", "users"
+  add_foreign_key "evaluation_comments", "users"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"
   add_foreign_key "private_messages", "items"
