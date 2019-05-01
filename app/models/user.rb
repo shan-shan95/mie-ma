@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :sell_items, foreign_key: "seller_id", class_name: "Item", dependent: :destroy
   has_many :public_messages, foreign_key: "sender_id", dependent: :destroy
   has_many :private_messages, foreign_key: "sender_id", dependent: :destroy
+  has_many :evaluation_comments, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@m.mie-u.ac.jp\z/
 
