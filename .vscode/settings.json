@@ -23,7 +23,5 @@
 	"prettier.semi": false,
 	"editor.formatOnSave": true,
 	"vetur.format.defaultFormatter.html": "prettier",
-	"ruby.format": "rufo",
-	"ruby.useBundler": true,
 	"ruby.rubocop.onSave": false
 }
