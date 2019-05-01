@@ -10,8 +10,10 @@ class User < ApplicationRecord
   has_many :public_messages, foreign_key: "sender_id", dependent: :destroy
   has_many :private_messages, foreign_key: "sender_id", dependent: :destroy
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@m.mie-u.ac.jp\z/
+
   validates :name, presence: true, uniqueness: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true, format: {with: VALID_EMAIL_REGEX}
   validates :encrypted_password, presence: true
 
   def is_trading?(item)
