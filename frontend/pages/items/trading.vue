@@ -11,6 +11,14 @@
           :privateMessages="privateMessages"
           @postSuccess="getPrivateMessages()"
         )
+        .trading-completed-section
+          .trading-completed-content
+            .note
+              p 商品の取引きが完了したら以下のボタンを押してください。
+            .trading-completed-button
+              button.button.is-success.submit(
+                @click="toggleIsModalActive()"
+              ) 取引完了
         .item-info
           .info-content
             h1.title.is-3.has-text-centered {{ item.name }}
@@ -28,6 +36,32 @@
                   td {{ item.status }}
             .description {{ item.description }}
   Footer
+  .modal(:class="{'is-active': isModalActive}")
+    .modal-background(
+      @click="toggleIsModalActive()"
+    )
+    .modal-content
+      header.modal-card-head
+        p.modal-card-title 評価
+      section.modal-card-body
+        .evaluations.columns.is-centered
+          .good
+            i.far.fa-laugh
+          .normal
+            i.far.fa-meh
+          .bad
+            i.far.fa-frown
+      footer.modal-card-foot
+        button.button.is-success(
+          @click="postEvaluationComments()"
+        ) 評価する
+        button.button(
+          @click="toggleIsModalActive()"
+        ) キャンセル
+    button.modal-close.is-large(
+      aria-label="close"
+      @click="toggleIsModalActive()"
+      )
 </template>
 
 <script>
@@ -54,19 +88,32 @@ export default {
       message: gon.message,
       sellerName: gon.seller_name,
       userId: gon.user_id,
-      privateMessages: gon.private_messages
+      privateMessages: gon.private_messages,
+      isModalActive: false
     }
   },
   methods: {
-    privateMessagesPath() {
-      return '/items/' + this.item.id + '/private_messages'
-    },
     getPrivateMessages() {
       axios
-        .get(this.privateMessagesPath())
+        .get('/private_messages', {
+          params: {
+            item_id: this.item.id
+          }
+        })
         .then(res => {
           this.privateMessages = res.data
         })
+        .catch(err => {})
+    },
+    toggleIsModalActive() {
+      this.isModalActive = !this.isModalActive
+    },
+    postEvaluationComments() {
+      axios
+        .post('evaluation_messages', {
+          user_id: this.userId
+        })
+        .then(res => {})
         .catch(err => {})
     }
   }
@@ -99,5 +146,24 @@ export default {
   font-weight: bold;
   font-size: 2.5rem;
   color: #48bedb;
+}
+.trading-completed-section {
+  background-color: white;
+  margin-bottom: 1rem;
+}
+.trading-completed-content {
+  margin: 0rem 3rem;
+  padding: 1rem 0rem;
+}
+.note {
+  background-color: rgba(255, 255, 110, 0.4);
+  width: 100%;
+  margin: 1rem 0 0.5rem;
+  padding: 0.5rem 0;
+
+  p {
+    color: black;
+    font-size: 0.8rem;
+  }
 }
 </style>

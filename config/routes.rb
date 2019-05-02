@@ -11,15 +11,15 @@ Rails.application.routes.draw do
   resources :items, except: :index do
     member do
       patch :purchase
-      get :public_messages
-      get :private_messages
       get :trading
     end
   end
 
-  resources :public_messages, only: :create
+  resources :public_messages, only: %i[index create]
 
-  resources :private_messages, only: :create
+  resources :private_messages, only: %i[index create]
+
+  resources :evaluation_comments, only: :create
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

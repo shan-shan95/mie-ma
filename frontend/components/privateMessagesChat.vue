@@ -50,7 +50,7 @@ export default {
   methods: {
     onSubmit() {
       this.postMessage.sender_id = this.userId
-      this.postMessage.receiver_id = this.item.seller_id
+      this.postMessage.recepient_id = this.item.seller_id
       this.postMessage.item_id = this.item.id
       if (this.postMessage.content) {
         axios

@@ -85,7 +85,7 @@ export default {
     },
     userId: {
       type: String,
-      required: true
+      required: false
     },
     publicMessages: {
       type: Array,

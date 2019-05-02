@@ -99,15 +99,16 @@ export default {
     purchasePath() {
       return '/items/' + this.item.id + '/purchase'
     },
-    publicMessagesPath() {
-      return '/items/' + this.item.id + '/public_messages'
-    },
     isNowOnSale() {
       return this.item.trading_status === 'now_on_sale'
     },
     getPublicMessages() {
       axios
-        .get(this.publicMessagesPath())
+        .get('/public_messages', {
+          params: {
+            item_id: this.item.id
+          }
+        })
         .then(res => {
           this.publicMessages = res.data
         })

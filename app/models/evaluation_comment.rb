@@ -3,5 +3,5 @@ class EvaluationComment < ApplicationRecord
 
   validates :comment, length: {maximum: 255}
 
-  enum status: %i[:good :normal :bad]
+  enum status: %i[good normal bad]
 end

@@ -3,12 +3,21 @@ class PublicMessagesController < ApplicationController
 
   before_action :authenticate_user!
 
+  def index
+    messages = Item.find(params[:item_id]).public_messages
+    if messages
+      return render status: 200, json: messages.to_json
+    else
+      return response_internal_server_error
+    end
+  end
+
   def create
     message = PublicMessage.new(message_params)
     if message.save
-      render status: 200, json: message.to_json
+      return render status: 200, json: message.to_json
     else
-      response_internal_server_error
+      return response_internal_server_error
     end
   end
 
