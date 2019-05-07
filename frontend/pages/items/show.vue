@@ -41,26 +41,11 @@
           v-if="isNowOnSale()"
         )
   Footer
-  .modal(:class="{'is-active': isModalActive}")
-    .modal-background(
-      @click="toggleIsModalActive()"
-    )
-    .modal-content
-      header.modal-card-head
-        p.modal-card-title Modal title
-      section.modal-card-body
-      footer.modal-card-foot
-        a.button.is-success(
-          :href="purchasePath()"
-          data-method="patch"
-        ) 購入
-        button.button(
-          @click="toggleIsModalActive()"
-        ) キャンセル
-    button.modal-close.is-large(
-      aria-label="close"
-      @click="toggleIsModalActive()"
-      )
+  Modal(
+    :isModalActive="isModalActive",
+    @toggle="toggleIsModalActive()",
+    :item="item"
+  )
 </template>
 
 <script>
@@ -68,6 +53,7 @@ import Header from '../../components/header'
 import Footer from '../../components/footer'
 import SideBar from '../../components/sidebar'
 import PublicMessagesChat from '../../components/publicMessagesChat'
+import Modal from '../../components/ShowPurchaseModal'
 import axios from 'axios'
 axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -81,7 +67,8 @@ export default {
     Header,
     Footer,
     SideBar,
-    PublicMessagesChat
+    PublicMessagesChat,
+    Modal
   },
   data() {
     return {
@@ -96,9 +83,6 @@ export default {
     }
   },
   methods: {
-    purchasePath() {
-      return '/items/' + this.item.id + '/purchase'
-    },
     isNowOnSale() {
       return this.item.trading_status === 'now_on_sale'
     },
