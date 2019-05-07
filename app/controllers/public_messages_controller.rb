@@ -1,8 +1,6 @@
 class PublicMessagesController < ApplicationController
   include ResponseStatus
 
-  before_action :authenticate_user!
-
   def index
     messages = Item.find(params[:item_id]).public_messages
     if messages

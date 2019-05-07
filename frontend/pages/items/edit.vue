@@ -1,10 +1,10 @@
 <template lang="pug">
-#new
+#edit
   Header
   Form(
     :formItem="formItem"
-    :actionPath="createItemPath()"
-    httpMethod="post"
+    :actionPath="updateItemPath()"
+    httpMethod="patch"
   )
   Footer
 </template>
@@ -29,8 +29,8 @@ export default {
     }
   },
   methods: {
-    createItemPath() {
-      return '/items'
+    updateItemPath() {
+      return '/items/' + this.formItem.id
     }
   }
 }

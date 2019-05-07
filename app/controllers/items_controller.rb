@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   include ResponseStatus
 
-  before_action :authenticate_user!, except: %i[index show public_messages]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     gon.items = Item.all.order(created_at: :desc)
@@ -15,9 +15,9 @@ class ItemsController < ApplicationController
   def create
     item = Item.new(item_params)
     if item.save
-      return redirect_to root_path, notice: "品物を作成しました"
+      return redirect_to root_path, notice: "出品しました"
     else
-      return redirect_to new_item_path, alert: item.errors.full_messages
+      return redirect_to new_item_path, alert: "出品に失敗しました"
     end
   end
 
@@ -33,6 +33,21 @@ class ItemsController < ApplicationController
     gon.is_seller = user_signed_in? && current_user.is_seller?(item)
     gon.user_id = current_user.id if user_signed_in?
     gon.public_messages = item.public_messages
+  end
+
+  def edit
+    item = Item.find(params[:id])
+    return redirect_to item_path(item.id), alert: "あなたには編集権限がありません" unless user_signed_in? && current_user.is_seller?(item)
+    gon.item = item
+  end
+
+  def update
+    item = Item.find(params[:id])
+    if item.update(item_params)
+      return redirect_to root_path, notice: "編集しました"
+    else
+      return redirect_to edit_item_path(item), alert: "編集に失敗しました"
+    end
   end
 
   def purchase
@@ -60,7 +75,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params[:item][:status] = params[:item][:status].to_i
     params.require(:item).permit(:name, :description, :status, :seller_id, :price)
   end
 end

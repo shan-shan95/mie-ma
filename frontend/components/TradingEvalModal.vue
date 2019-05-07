@@ -50,7 +50,6 @@ form(
             :value="userId"
           )
           input.none(
-            type="number"
             name="evaluation_comment[status]"
             :value="evalStatus"
           )
@@ -103,19 +102,19 @@ export default {
       this.isGood = true
       this.isNormal = false
       this.isBad = false
-      this.evalStatus = 0
+      this.evalStatus = 'good'
     },
     toggleIsNormal() {
       this.isNormal = true
       this.isGood = false
       this.isBad = false
-      this.evalStatus = 1
+      this.evalStatus = 'normal'
     },
     toggleIsBad() {
       this.isBad = true
       this.isGood = false
       this.isNormal = false
-      this.evalStatus = 2
+      this.evalStatus = 'bad'
     },
     checkMessageLength() {
       if (this.evalComment.length > 255) {

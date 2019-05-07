@@ -6,6 +6,13 @@
       .hero-body.page-contents
         .item-info
           .info-content
+            .is-clearfix
+              .is-pulled-right
+                a(
+                  :href="editItemPath()"
+                )
+                  i.fas.fa-edit
+                  span  編集する
             h1.title.is-3.has-text-centered {{ item.name }}
             .dummy
             strong.price ¥{{ item.price.toLocaleString() }}
@@ -100,6 +107,9 @@ export default {
     },
     toggleIsModalActive() {
       this.isModalActive = !this.isModalActive
+    },
+    editItemPath() {
+      return '/items/' + this.item.id + '/edit'
     }
   }
 }

@@ -1,7 +1,7 @@
 <template lang="pug">
 .form
   form(
-    action="/items"
+    :action="actionPath"
     accept-charset="UTF-8"
     method="post"
   )
@@ -9,6 +9,11 @@
       name="utf8"
       type="hidden"
       value="✓"
+    )
+    input(
+      name="_method"
+      type="hidden"
+      :value="httpMethod"
     )
     input(
       name="authenticity_token"
@@ -46,13 +51,13 @@
             .select
               select#item_status(
                 name="item[status]"
-                v-model.number="item.status"
+                v-model="item.status"
               )
                 option(value="null" disabled) 選択して下さい
-                option(value="0") 新品
-                option(value="1") 良品
-                option(value="2") 傷あり
-                option(value="3") ジャンク品
+                option(value="brand_new") 新品
+                option(value="excellent") 良品
+                option(value="poor") 傷あり
+                option(value="junk") ジャンク品
     .field.is-horizontal
       .field-label.is-normal
         label.label(for="item_price") 値段
@@ -84,12 +89,20 @@
 export default {
   data() {
     return {
-      item: this.newItem
+      item: this.formItem
     }
   },
   props: {
-    newItem: {
+    formItem: {
       type: Object,
+      required: true
+    },
+    actionPath: {
+      type: String,
+      required: true
+    },
+    httpMethod: {
+      type: String,
       required: true
     }
   }
