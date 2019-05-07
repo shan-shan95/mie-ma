@@ -28,4 +28,8 @@ class User < ApplicationRecord
   def is_seller?(item)
     self == item.seller
   end
+
+  def is_buyer?(item)
+    self == item.buyer
+  end
 end
