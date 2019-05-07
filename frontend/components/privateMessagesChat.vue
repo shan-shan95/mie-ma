@@ -12,7 +12,8 @@
             .send-time
               small 9日前
       .note
-        p 購入前に商品の状態を出品者に聞くことができます。相手のことを考え丁寧なコメントを心がけましょう。
+        p 商品の受け渡しをする場所と日時を決めましょう。相手のことを考え丁寧なコメントを心がけましょう。
+        p 購入者は受け取り後に速やかに評価をしてください。
       form
         textarea.textarea.is-primary.chat-textarea(
           v-model="postMessage.content"
@@ -135,11 +136,11 @@ export default {
   background-color: rgba(255, 255, 110, 0.4);
   width: 100%;
   margin: 1rem 0 0.5rem;
-  padding: 0.5rem 0;
 
   p {
     color: black;
     font-size: 0.8rem;
+    padding: 0.75rem;
   }
 }
 .submit {
