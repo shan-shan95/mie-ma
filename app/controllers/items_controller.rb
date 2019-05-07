@@ -52,6 +52,7 @@ class ItemsController < ApplicationController
     gon.item = item
     gon.message = PrivateMessage.new
     gon.seller_name = item.seller.name
+    gon.is_buyer = current_user.is_buyer?(item)
     gon.user_id = current_user.id
     gon.private_messages = item.private_messages
   end
