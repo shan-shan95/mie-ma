@@ -3,12 +3,12 @@
   .chat-section
     .chat-content
       .chat-background
-        .message-column.columns(v-for="(publicMessage, index) in publicMessages")
-          .user-name.column.is-4
-            p {{ userNickName() }}さん
-          .message.column.is-8
-            .message-content
-              p(:key="index") {{ publicMessage.content }}
+        .message-column.is-clearfix(v-for="(publicMessage, index) in publicMessages")
+          .user-info.is-pulled-left
+            .user-name
+              p {{ userNickName() }}さん
+          .message.is-pulled-left
+            p(:key="index") {{ publicMessage.content }}
             .send-time
               small {{ postedDateOrTime(publicMessage) }}
       .note
@@ -77,7 +77,7 @@ export default {
       if (this.userName) {
         return this.userName
       } else {
-        return '名無しさん'
+        return '名無し'
       }
     },
     postedDateOrTime(message) {
@@ -137,12 +137,14 @@ export default {
       background-color: transparent;
       display: inline-block;
       position: relative;
-      margin: 0 0 0 1rem;
+      margin: 0 0 0 4rem;
       padding: 10px;
-      max-width: 250px;
       border-radius: 12px;
       background: #eff0f4;
       border: 1px solid #9c9c9c;
+      max-width: 75%;
+      min-width: 40%;
+      word-wrap: break-word;
     }
   }
 }
@@ -175,5 +177,8 @@ export default {
 }
 .disabled {
   pointer-events: none;
+}
+.user-info {
+  padding: 10px;
 }
 </style>
