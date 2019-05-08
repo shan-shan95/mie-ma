@@ -6,8 +6,8 @@
 </style>
 
 <script>
-import Header from '../../components/header'
-import Footer from '../../components/footer'
+import Header from '../../components/AppHeader'
+import Footer from '../../components/AppFooter'
 
 export default {
   components: {

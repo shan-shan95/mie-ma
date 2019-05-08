@@ -1,13 +1,14 @@
 <template lang="pug">
 #trading
   Header
-  main.columns
-    article.hero.column.is-two-third
-      .hero-body
-        PrivateMessagesChat(
+  main
+    article.hero
+      .hero-body.page-contents
+        Chat(
           :message="message"
           :item="item"
           :userId="userId"
+          :userName="userName"
           :privateMessages="privateMessages"
           @postSuccess="getPrivateMessages()"
         )
@@ -16,22 +17,12 @@
           :isModalActive="isModalActive"
           @toggle="toggleIsModalActive()"
         )
-        .item-info
-          .info-content
-            h1.title.is-3.has-text-centered {{ item.name }}
-            .dummy
-            strong.price ¥{{ item.price.toLocaleString() }}
-            table.table.is-fullwidth
-              tbody
-                tr
-                  td
-                    strong 出品者
-                  td {{ sellerName }}
-                tr
-                  td
-                    strong 商品状態
-                  td {{ item.status }}
-            .description {{ item.description }}
+        ItemInfo(
+          :item="item"
+          :isSeller="isSeller"
+          :sellerName="sellerName"
+          :isAblePurchase="false"
+        )
   Footer
   Modal(
     :isModalActive="isModalActive"
@@ -42,11 +33,12 @@
 </template>
 
 <script>
-import Header from '../../components/header'
-import Footer from '../../components/footer'
-import PrivateMessagesChat from '../../components/privateMessagesChat'
+import Header from '../../components/AppHeader'
+import Footer from '../../components/AppFooter'
+import Chat from '../../components/PrivateMessagesChat'
 import Modal from '../../components/TradingEvalModal'
 import EvalSection from '../../components/TradingEvalSection'
+import ItemInfo from '../../components/ItemInfo'
 import axios from 'axios'
 axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -59,17 +51,20 @@ export default {
   components: {
     Header,
     Footer,
-    PrivateMessagesChat,
+    Chat,
     Modal,
-    EvalSection
+    EvalSection,
+    ItemInfo
   },
   data() {
     return {
       item: gon.item,
       message: gon.message,
       sellerName: gon.seller_name,
+      isSeller: gon.is_seller,
       isBuyer: gon.is_buyer,
       userId: gon.user_id,
+      userName: gon.user_name,
       privateMessages: gon.private_messages,
       isModalActive: false
     }
@@ -89,6 +84,18 @@ export default {
           this.privateMessages = res.data
         })
         .catch(err => {})
+    },
+    itemStatus() {
+      switch (this.item.status) {
+        case 'brand_new':
+          return '新品'
+        case 'excellent':
+          return '良品'
+        case 'poor':
+          return '傷あり'
+        case 'junk':
+          return 'ジャンク'
+      }
     }
   }
 }

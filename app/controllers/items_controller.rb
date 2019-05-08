@@ -32,12 +32,14 @@ class ItemsController < ApplicationController
     gon.seller_name = item.seller.name
     gon.is_seller = user_signed_in? && current_user.is_seller?(item)
     gon.user_id = current_user.id if user_signed_in?
+    gon.user_name = current_user.name if user_signed_in?
     gon.public_messages = item.public_messages
   end
 
   def edit
     item = Item.find(params[:id])
     return redirect_to item_path(item.id), alert: "あなたには編集権限がありません" unless user_signed_in? && current_user.is_seller?(item) && item.now_on_sale?
+
     gon.item = item
   end
 
@@ -78,8 +80,10 @@ class ItemsController < ApplicationController
     gon.item = item
     gon.message = PrivateMessage.new
     gon.seller_name = item.seller.name
+    gon.is_seller = user_signed_in? && current_user.is_seller?(item)
     gon.is_buyer = current_user.is_buyer?(item)
     gon.user_id = current_user.id
+    gon.user_name = current_user.name if user_signed_in?
     gon.private_messages = item.private_messages
   end
 

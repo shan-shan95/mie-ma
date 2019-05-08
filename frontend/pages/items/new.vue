@@ -13,8 +13,8 @@
 </style>
 
 <script>
-import Header from '../../components/header'
-import Footer from '../../components/footer'
+import Header from '../../components/AppHeader'
+import Footer from '../../components/AppFooter'
 import Form from '../../components/ItemForm'
 
 export default {

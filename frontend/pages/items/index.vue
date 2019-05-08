@@ -57,9 +57,9 @@
 </style>
 
 <script>
-import Header from '../../components/header'
-import Footer from '../../components/footer'
-import SideBar from '../../components/sidebar'
+import Header from '../../components/AppHeader'
+import Footer from '../../components/AppFooter'
+import SideBar from '../../components/AppSidebar'
 
 export default {
   components: {

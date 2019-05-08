@@ -5,12 +5,12 @@
       .chat-background
         .message-column.columns(v-for="(privateMessage, index) in privateMessages")
           .user-name.column.is-4
-            p user_name
+            p {{ userName }}さん
           .message.column.is-8
             .message-content
               p(:key="index") {{ privateMessage.content }}
             .send-time
-              small 9日前
+              small {{ postedDateOrTime(privateMessage) }}
       .note
         p 商品の受け渡しをする場所と日時を決めましょう。相手のことを考え丁寧なコメントを心がけましょう。
         p 購入者は受け取り後に速やかに評価をしてください。
@@ -24,7 +24,7 @@
           v-if="checkMessageLength()"
         ) {{ checkMessageLength() }}
         button.button.is-info.submit(
-          @click.prevent="onSubmit()"
+          @click.prevent="postPrivateMessage()"
           v-if="!checkMessageLength()"
         ) コメントする
         button.button.is-info.submit.disabled(
@@ -49,7 +49,7 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
+    postPrivateMessage() {
       this.postMessage.sender_id = this.userId
       this.postMessage.recepient_id = this.item.seller_id
       this.postMessage.item_id = this.item.id
@@ -75,6 +75,24 @@ export default {
       } else {
         return ''
       }
+    },
+    postedDateOrTime(message) {
+      let diff = new Date(
+        new Date().getTime() - new Date(message.created_at).getTime()
+      )
+      if (diff.getUTCFullYear() - 1970) {
+        return diff.getUTCFullYear() - 1970 + '年前'
+      } else if (diff.getUTCMonth()) {
+        return diff.getUTCMonth() + 'ヶ月前'
+      } else if (diff.getUTCDate() - 1) {
+        return diff.getUTCDate() - 1 + '日前'
+      } else if (diff.getUTCHours()) {
+        return diff.getUTCHours() + '時間前'
+      } else if (diff.getUTCMinutes()) {
+        return diff.getUTCMinutes() + '分前'
+      } else {
+        return 'たった今'
+      }
     }
   },
   props: {
@@ -87,6 +105,10 @@ export default {
       required: true
     },
     userId: {
+      type: String,
+      required: true
+    },
+    userName: {
       type: String,
       required: true
     },

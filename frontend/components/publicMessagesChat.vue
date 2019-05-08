@@ -5,12 +5,12 @@
       .chat-background
         .message-column.columns(v-for="(publicMessage, index) in publicMessages")
           .user-name.column.is-4
-            p user_name
+            p {{ userNickName() }}さん
           .message.column.is-8
             .message-content
               p(:key="index") {{ publicMessage.content }}
             .send-time
-              small 9日前
+              small {{ postedDateOrTime(publicMessage) }}
       .note
         p 購入前に商品の状態を出品者に聞くことができます。相手のことを考え丁寧なコメントを心がけましょう。
       form
@@ -23,7 +23,7 @@
           v-if="checkMessageLength()"
         ) {{ checkMessageLength() }}
         button.button.is-info.submit(
-          @click.prevent="onSubmit()"
+          @click.prevent="postPublicMessage()"
           v-if="!checkMessageLength()"
         ) コメントする
         button.button.is-info.submit.disabled(
@@ -48,7 +48,7 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
+    postPublicMessage() {
       this.postMessage.sender_id = this.userId
       this.postMessage.item_id = this.item.id
       if (this.postMessage.content) {
@@ -72,6 +72,31 @@ export default {
       } else {
         return ''
       }
+    },
+    userNickName() {
+      if (this.userName) {
+        return this.userName
+      } else {
+        return '名無しさん'
+      }
+    },
+    postedDateOrTime(message) {
+      let diff = new Date(
+        new Date().getTime() - new Date(message.created_at).getTime()
+      )
+      if (diff.getUTCFullYear() - 1970) {
+        return diff.getUTCFullYear() - 1970 + '年前'
+      } else if (diff.getUTCMonth()) {
+        return diff.getUTCMonth() + 'ヶ月前'
+      } else if (diff.getUTCDate() - 1) {
+        return diff.getUTCDate() - 1 + '日前'
+      } else if (diff.getUTCHours()) {
+        return diff.getUTCHours() + '時間前'
+      } else if (diff.getUTCMinutes()) {
+        return diff.getUTCMinutes() + '分前'
+      } else {
+        return 'たった今'
+      }
     }
   },
   props: {
@@ -84,6 +109,10 @@ export default {
       required: true
     },
     userId: {
+      type: String,
+      required: false
+    },
+    userName: {
       type: String,
       required: false
     },
