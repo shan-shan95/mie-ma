@@ -10,9 +10,19 @@
               .is-pulled-right
                 a(
                   :href="editItemPath()"
+                  v-show="isSeller && isNowOnSale()"
                 )
                   i.fas.fa-edit
                   span  編集する
+            .is-clearfix
+              .is-pulled-right
+                a(
+                  :href="destroyItemPath()"
+                  method="delete"
+                  v-show="isSeller && isNowOnSale()"
+                )
+                  i.fas.fa-trash
+                  span  削除する
             h1.title.is-3.has-text-centered {{ item.name }}
             .dummy
             strong.price ¥{{ item.price.toLocaleString() }}
@@ -110,6 +120,9 @@ export default {
     },
     editItemPath() {
       return '/items/' + this.item.id + '/edit'
+    },
+    destroyItemPath() {
+      return '/items/' + this.item.id
     }
   }
 }

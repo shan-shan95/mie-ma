@@ -37,22 +37,33 @@ class ItemsController < ApplicationController
 
   def edit
     item = Item.find(params[:id])
-    return redirect_to item_path(item.id), alert: "あなたには編集権限がありません" unless user_signed_in? && current_user.is_seller?(item)
+    return redirect_to item_path(item.id), alert: "あなたには編集権限がありません" unless user_signed_in? && current_user.is_seller?(item) && item.now_on_sale?
     gon.item = item
   end
 
   def update
     item = Item.find(params[:id])
+    return redirect_to item_path(item.id), alert: "あなたには編集権限がありません" unless user_signed_in? && current_user.is_seller?(item) && item.now_on_sale?
     if item.update(item_params)
-      return redirect_to root_path, notice: "編集しました"
+      return redirect_to item_path(item), notice: "編集しました"
     else
       return redirect_to edit_item_path(item), alert: "編集に失敗しました"
     end
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    return redirect_to item_path(item.id), alert: "あなたには削除権限がありません" unless user_signed_in? && current_user.is_seller?(item) && item.now_on_sale?
+    if item.destroy
+      return redirect_to root_path, notice: "削除しました"
+    else
+      return redirect_to item_path(item), alert: "削除に失敗しました"
+    end
+  end
+
   def purchase
     item = Item.joins(:seller).find(params[:id])
-    if current_user.is_trading?(item)
+    if current_user.is_trading?(item) || !item.now_on_sale?
       return redirect_to item_path(item.id), alert: "購入できませんでした"
     end
 
