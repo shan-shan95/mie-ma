@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import PasswordsUpdate from './update'
+import PasswordsUpdate from './Update'
 
 new Vue({
   el: '#app',

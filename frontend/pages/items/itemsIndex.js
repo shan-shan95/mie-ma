@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ItemsIndex from './index'
+import ItemsIndex from './Index'
 
 new Vue({
   el: '#app',

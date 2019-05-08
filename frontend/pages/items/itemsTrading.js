@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ItemsTrading from './trading'
+import ItemsTrading from './Trading'
 
 new Vue({
   el: '#app',

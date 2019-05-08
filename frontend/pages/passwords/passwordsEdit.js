@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import PasswordsEdit from './edit'
+import PasswordsEdit from './Edit'
 
 new Vue({
   el: '#app',

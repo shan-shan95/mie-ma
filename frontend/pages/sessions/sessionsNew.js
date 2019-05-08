@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import SessionsNew from './new'
+import SessionsNew from './New'
 
 new Vue({
   el: '#app',

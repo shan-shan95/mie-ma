@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ConfirmationsCreate from './create'
+import ConfirmationsCreate from './Create'
 
 new Vue({
   el: '#app',

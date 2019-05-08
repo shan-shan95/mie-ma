@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ItemsNew from './new'
+import ItemsNew from './New'
 
 new Vue({
   el: '#app',

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ItemsShow from './show'
+import ItemsShow from './Show'
 
 new Vue({
   el: '#app',

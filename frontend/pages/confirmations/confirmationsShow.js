@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ConfirmationsShow from './show'
+import ConfirmationsShow from './Show'
 
 new Vue({
   el: '#app',

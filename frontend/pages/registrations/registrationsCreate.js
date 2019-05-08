@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import RegistrationsCreate from './create'
+import RegistrationsCreate from './Create'
 
 new Vue({
   el: '#app',

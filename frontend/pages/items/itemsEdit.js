@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ItemsEdit from './edit'
+import ItemsEdit from './Edit'
 
 new Vue({
   el: '#app',

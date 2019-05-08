@@ -10,8 +10,8 @@
 		= Gon::Base.render_data
 		= javascript_bundle_tag 'application'
 		= stylesheet_bundle_tag 'style'
-		= javascript_bundle_tag "#{params[:controller]}#{params[:action].capitalize}"
-		= stylesheet_bundle_tag "#{params[:controller]}#{params[:action].capitalize}"
+		= javascript_bundle_tag "#{params[:controller].camelize}#{params[:action].camelize}"
+		= stylesheet_bundle_tag "#{params[:controller].camelize}#{params[:action].camelize}"
 	%body
 		#app
 			%p.notice
