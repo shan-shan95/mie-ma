@@ -32,7 +32,7 @@ import Header from '../../components/AppHeader'
 import Footer from '../../components/AppFooter'
 import SideBar from '../../components/AppSidebar'
 import Chat from '../../components/PublicMessagesChat'
-import Modal from '../../components/ShowPurchaseModal'
+import Modal from '../../components/ItemPurchaseModal'
 import ItemInfo from '../../components/ItemInfo'
 import axios from 'axios'
 axios.defaults.headers.common = {
