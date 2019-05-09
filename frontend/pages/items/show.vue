@@ -9,6 +9,8 @@
           :isSeller="isSeller"
           :sellerName="sellerName"
           :isAblePurchase="true"
+          :isModalActive="isModalActive"
+          @toggle="toggleIsModalActive()"
         )
         Chat(
           :message="message"
@@ -21,8 +23,8 @@
         )
   Footer
   Modal(
-    :isModalActive="isModalActive",
-    @toggle="toggleIsModalActive()",
+    :isModalActive="isModalActive"
+    @toggle="toggleIsModalActive()"
     :item="item"
   )
 </template>

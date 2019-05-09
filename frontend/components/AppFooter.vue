@@ -5,8 +5,8 @@ footer.footer
     br
     a 購入ガイド
     br
-    a お問い合わせ
-    br
+    //- a お問い合わせ
+    //- br
     a(
       href="/privacy_policy"
     ) プライバシーポリシー

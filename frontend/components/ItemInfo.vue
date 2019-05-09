@@ -48,12 +48,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isActive: this.isModalActive
+    }
+  },
   methods: {
     isNowOnSale() {
       return this.item.trading_status === 'now_on_sale'
     },
     toggleIsModalActive() {
-      this.isModalActive = !this.isModalActive
+      this.isActive = !this.isActive
+      this.$emit('toggle')
     },
     editItemPath() {
       return '/items/' + this.item.id + '/edit'
@@ -88,6 +94,10 @@ export default {
       required: true
     },
     isAblePurchase: {
+      type: Boolean,
+      required: true
+    },
+    isModalActive: {
       type: Boolean,
       required: true
     }
