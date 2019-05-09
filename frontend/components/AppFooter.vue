@@ -7,9 +7,13 @@ footer.footer
     br
     a お問い合わせ
     br
-    a プライバシーポリシー
+    a(
+      href="/privacy_policy"
+    ) プライバシーポリシー
     br
-    a 利用規約
+    a(
+      href="/terms_of_service"
+    ) 利用規約
 </template>
 
 <script>
