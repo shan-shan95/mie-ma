@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :seller, class_name: "User"
   has_many :public_messages, dependent: :destroy
   has_many :private_messages, dependent: :destroy
+  has_many_attached :images
 
   before_save :set_start_on
 

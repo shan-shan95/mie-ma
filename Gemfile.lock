@@ -45,6 +45,22 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
+    aws-eventstream (1.0.3)
+    aws-partitions (1.160.0)
+    aws-sdk-core (3.50.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.18.0)
+      aws-sdk-core (~> 3, >= 3.48.2)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.36.1)
+      aws-sdk-core (~> 3, >= 3.48.2)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.0)
+    aws-sigv4 (1.1.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.12)
     better_errors (2.5.0)
       coderay (>= 1.0.0)
@@ -57,7 +73,6 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
-    cancancan (2.3.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
@@ -99,6 +114,7 @@ GEM
       ruby_parser (~> 3.5)
     i18n (1.5.1)
       concurrent-ruby (~> 1.0)
+    jmespath (1.4.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.7.0)
@@ -213,12 +229,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk-s3
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
   byebug
-  cancancan
   devise (>= 4.6.0)
   dotenv-rails
   foreman
