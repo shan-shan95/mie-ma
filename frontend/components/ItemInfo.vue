@@ -19,7 +19,10 @@
           i.fas.fa-trash
           span  削除する
     h1.title.is-3.has-text-centered {{ item.name }}
-    .dummy
+    .images(v-for="image in itemImages")
+      img(
+        :src="image"
+      )
     strong.price ¥{{ item.price.toLocaleString() }}
     p.view {{ item.view }} views
     .purchase(v-if="isAblePurchase")
@@ -50,7 +53,8 @@
 export default {
   data() {
     return {
-      isActive: this.isModalActive
+      isActive: this.isModalActive,
+      images: this.itemImages
     }
   },
   methods: {
@@ -100,6 +104,10 @@ export default {
     isModalActive: {
       type: Boolean,
       required: true
+    },
+    itemImages: {
+      type: Array,
+      required: true
     }
   }
 }
@@ -143,5 +151,10 @@ export default {
     height: 100%;
     font-size: 1.2rem;
   }
+}
+.images img {
+  height: 16rem;
+  width: 100%;
+  margin-bottom: 2rem;
 }
 </style>

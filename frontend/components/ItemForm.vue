@@ -4,6 +4,7 @@
     :action="actionPath"
     accept-charset="UTF-8"
     method="post"
+    enctype="multipart/form-data"
   )
     input(
       name="utf8"
@@ -30,6 +31,15 @@
           type="text"
           name="item[name]"
           v-model="item.name"
+        )
+    .field.is-horizontal
+      .field-label.is-normal
+        label.label(for="item_image") 商品画像
+      .field-body
+        input.input#item_image(
+          type="file"
+          name="item[images][]"
+          multiple="multiple"
         )
     .field.is-horizontal
       .field-label.is-normal

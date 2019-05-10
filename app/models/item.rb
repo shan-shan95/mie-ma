@@ -14,13 +14,32 @@ class Item < ApplicationRecord
   validates :status, presence: true
   validates :seller_id, presence: true
   validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+  validates :images, length: {maximum: 4}
+  validate :validate_images
 
   enum status: %i[brand_new excellent poor junk] # 新品 良品 傷あり ジャンク
-  enum trading_status: %i[now_on_sale trading completed] # 販売中 取引中 出品者の評価のみ完了 購入者の評価のみ完了 取引完了
+  enum trading_status: %i[now_on_sale trading completed] # 販売中 取引中 取引完了
 
   private
 
   def set_start_on
     self.start_on = Date.today
+  end
+
+  def validate_images
+    return unless images.attached?
+    images.each_with_index { |image, i|
+      if image.blob.byte_size > 10.megabytes
+        images.purge
+        errors.add(:images, "#{i + 1}番目のファイルのサイズが大きすぎます。10MB以下にしてください。")
+      elsif !image?(image)
+        image.purge
+        errors.add(:images, "#{i + 1}番目のファイルの拡張子に対応していません。jpg, jpeg, png, gifをアップロードしてください。")
+      end
+    }
+  end
+
+  def image?(file)
+    %w[image/jpg image/jpeg image/gif image/png].include?(file.blob.content_type)
   end
 end

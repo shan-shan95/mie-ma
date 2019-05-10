@@ -28,6 +28,7 @@ class ItemsController < ApplicationController
     item.update(view: item.view + 1) unless user_signed_in? && current_user.is_seller?(item)
 
     gon.item = item
+    gon.item_images = item.images.map(&:service_url)
     gon.message = PublicMessage.new
     gon.seller_name = item.seller.name
     gon.is_seller = user_signed_in? && current_user.is_seller?(item)
@@ -90,6 +91,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :status, :seller_id, :price)
+    params.require(:item).permit(:name, :description, :status, :seller_id, :price, images: [])
   end
 end
