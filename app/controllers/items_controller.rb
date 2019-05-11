@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    gon.items = Item.all.order(created_at: :desc)
+    items = Item.all.order(created_at: :desc)
+    gon.items = items.map(&:with_sumbnail)
   end
 
   def new

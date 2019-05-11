@@ -10,17 +10,41 @@
             hr
             .items
               .columns.is-multiline.is-mobile
-                .column.card.is-4(
+                .column.is-4(
                   v-for="item in items"
                 )
-                  a.has-text-centered(:href="'/items/' + item.id") {{ item.name }}
-                  p.has-text-centered {{ item.description }}
+                  a(:href="itemShowPath(item)")
+                    img.sumbnail(:src="item.sumbnail")
       SideBar
     a.sell-button(href="/items/new")
       div 出品
       i.fa.fa-camera
   Footer
 </template>
+
+<script>
+import Header from '../../components/AppHeader'
+import Footer from '../../components/AppFooter'
+import SideBar from '../../components/AppSidebar'
+
+export default {
+  components: {
+    Header,
+    Footer,
+    SideBar
+  },
+  data() {
+    return {
+      items: gon.items
+    }
+  },
+  methods: {
+    itemShowPath(item) {
+      return '/items/' + item.id
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 .hero-body {
@@ -54,23 +78,8 @@
     font-size: 2rem;
   }
 }
-</style>
-
-<script>
-import Header from '../../components/AppHeader'
-import Footer from '../../components/AppFooter'
-import SideBar from '../../components/AppSidebar'
-
-export default {
-  components: {
-    Header,
-    Footer,
-    SideBar
-  },
-  data() {
-    return {
-      items: gon.items
-    }
-  }
+.sumbnail {
+  width: 100%;
+  height: 100%;
 }
-</script>
+</style>
