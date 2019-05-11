@@ -19,7 +19,7 @@
           i.fas.fa-trash
           span  削除する
     h1.title.is-3.has-text-centered {{ item.name }}
-    Carousel(:itemImages="itemImages")
+    Carousel(:item="item")
     strong.price ¥{{ item.price.toLocaleString() }}
     p.view {{ item.view }} views
     .purchase(v-if="isAblePurchase")
@@ -52,8 +52,7 @@ import Carousel from '../components/ItemImagesCarousel'
 export default {
   data() {
     return {
-      isActive: this.isModalActive,
-      images: this.itemImages
+      isActive: this.isModalActive
     }
   },
   methods: {
@@ -106,10 +105,6 @@ export default {
     },
     isModalActive: {
       type: Boolean,
-      required: true
-    },
-    itemImages: {
-      type: Array,
       required: true
     }
   },

@@ -20,9 +20,18 @@ class Item < ApplicationRecord
   enum status: %i[brand_new excellent poor junk] # 新品 良品 傷あり ジャンク
   enum trading_status: %i[now_on_sale trading completed] # 販売中 取引中 取引完了
 
-  def with_sumbnail
+  def with_sumbnail_url
     if images.present?
-      attributes.merge(sumbnail: images.first.service_url)
+      attributes.merge(sumbnail_url: images.first.service_url)
+    else
+      self
+    end
+  end
+
+  def with_images_url
+    if images.present?
+      images_url = images.map(&:service_url)
+      attributes.merge(images_url: images_url)
     else
       self
     end

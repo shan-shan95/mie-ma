@@ -10,7 +10,6 @@
           :sellerName="sellerName"
           :isAblePurchase="true"
           :isModalActive="isModalActive"
-          :itemImages="itemImages"
           @toggle="toggleIsModalActive()"
         )
         Chat(
@@ -57,7 +56,6 @@ export default {
   data() {
     return {
       item: gon.item,
-      itemImages: gon.item_images,
       message: gon.message,
       sellerName: gon.seller_name,
       isSeller: gon.is_seller,

@@ -8,10 +8,10 @@
       span.arrow-icon <
     transition(:name="transitionName")
       img.image(
-        :src="image"
+        :src="url"
         :key="index"
         v-if="visibleImage === index"
-        v-for="(image, index) in itemImages"
+        v-for="(url, index) in item.images_url"
       )
     a.control-next(
       @click="next()"
@@ -20,7 +20,7 @@
       span.arrow-icon >
   .dots
     .dot(
-      v-for="(image, index) in itemImages"
+      v-for="(url, index) in item.images_url"
       :class="{'is-visible' : visibleImage === index}"
     )
 </template>
@@ -54,12 +54,12 @@ export default {
       return this.visibleImage === 0
     },
     isLastImage() {
-      return this.visibleImage === this.itemImages.length - 1
+      return this.visibleImage === this.item.images_url.length - 1
     }
   },
   props: {
-    itemImages: {
-      type: Array,
+    item: {
+      type: Object,
       required: true
     }
   }

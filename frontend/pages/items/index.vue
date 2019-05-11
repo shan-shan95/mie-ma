@@ -14,7 +14,7 @@
                   v-for="item in items"
                 )
                   a(:href="itemShowPath(item)")
-                    img.sumbnail(:src="item.sumbnail")
+                    img.sumbnail(:src="item.sumbnail_url")
       SideBar
     a.sell-button(href="/items/new")
       div 出品

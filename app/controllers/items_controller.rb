@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     items = Item.all.order(created_at: :desc)
-    gon.items = items.map(&:with_sumbnail)
+    gon.items = items.map(&:with_sumbnail_url)
   end
 
   def new
@@ -28,8 +28,7 @@ class ItemsController < ApplicationController
     return redirect_to trading_item_path(params[:id]) if user_signed_in? && current_user.is_trading?(item)
     item.update(view: item.view + 1) unless user_signed_in? && current_user.is_seller?(item)
 
-    gon.item = item
-    gon.item_images = item.images.map(&:service_url)
+    gon.item = item.with_images_url
     gon.message = PublicMessage.new
     gon.seller_name = item.seller.name
     gon.is_seller = user_signed_in? && current_user.is_seller?(item)
