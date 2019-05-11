@@ -10,11 +10,11 @@
             hr
             .items
               .columns.is-multiline.is-mobile
-                .column.is-4(
+                .column.is-3(
                   v-for="item in items"
                 )
                   a(:href="itemShowPath(item)")
-                    img.sumbnail(:src="item.sumbnail_url")
+                    img.image.is-128x128(:src="item.sumbnail_url")
       SideBar
     a.sell-button(href="/items/new")
       div 出品
@@ -77,9 +77,5 @@ export default {
     top: 1.5rem;
     font-size: 2rem;
   }
-}
-.sumbnail {
-  width: 100%;
-  height: 100%;
 }
 </style>
