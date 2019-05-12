@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     return redirect_to item_path(item.id), alert: "あなたには編集権限がありません" unless user_signed_in? && current_user.is_seller?(item) && item.now_on_sale?
 
-    gon.item = item
+    gon.item = item.with_images_url
   end
 
   def update

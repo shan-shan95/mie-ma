@@ -34,13 +34,31 @@
         )
     .field.is-horizontal
       .field-label.is-normal
-        label.label(for="item_image") 商品画像
+        label.label(for="item_images") 商品画像
       .field-body
-        input.input#item_image(
-          type="file"
-          name="item[images][]"
-          multiple="multiple"
-        )
+        .field-block
+          .field-body.columns
+            .images.column(
+              v-for="(url, index) in item.images_url"
+            )
+              img.image.is-128x128(:src="url")
+            .selectedfiles.column(
+              v-for="(url, index) in sumbnailUrls"
+            )
+              img.image.is-128x128(:src="url")
+            .dummies(
+              v-for="num in dummyNum()"
+            )
+              .dummy
+          .field-body
+            input.input#item_images(
+              type="file"
+              name="item[images][]"
+              accept="image/*"
+              multiple
+              @change="onFileChange"
+              v-show="canUpload()"
+            )
     .field.is-horizontal
       .field-label.is-normal
         label.label(for="item_description") 説明
@@ -99,7 +117,50 @@
 export default {
   data() {
     return {
-      item: this.formItem
+      item: this.formItem,
+      sumbnailUrls: [],
+      errorMessage: ''
+    }
+  },
+  methods: {
+    dummyNum() {
+      if (this.item.images_url) {
+        return 4 - this.item.images_url.length - this.sumbnailUrls.length
+      } else {
+        return 4 - this.sumbnailUrls.length
+      }
+    },
+    onFileChange(e) {
+      this.sumbnailUrls = []
+
+      if (!e.target) {
+        this.errorMessage = ''
+        return
+      }
+
+      let filesNum = e.target.files.length || e.dataTransfer.files.length
+      if (filesNum > this.dummyNum()) {
+        this.errorMessage = '選択した画像が多すぎます'
+        return
+      } else {
+        this.errorMessage = ''
+      }
+
+      let files = e.target.files
+      for (let i = 0, file; (file = files[i]); i++) {
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = e => {
+          this.sumbnailUrls.push(e.target.result)
+        }
+      }
+    },
+    canUpload() {
+      if (this.item.images_url) {
+        return item.images_url.length < 4
+      } else {
+        return true
+      }
     }
   },
   props: {
@@ -122,5 +183,14 @@ export default {
 <style lang="scss" scoped>
 .form {
   margin: 2rem 5rem;
+}
+.dummy {
+  background-color: lightgray;
+  width: 128px;
+  height: 128px;
+  margin: 12px;
+}
+.field-block {
+  display: block;
 }
 </style>
