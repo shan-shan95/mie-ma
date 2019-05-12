@@ -13,8 +13,9 @@
                 .column.is-3(
                   v-for="item in items"
                 )
-                  a(:href="itemShowPath(item)")
-                    img.image.is-128x128(:src="item.sumbnail_url")
+                  .image-box
+                    a(:href="itemShowPath(item)")
+                      img.image.is-128x128(:src="item.sumbnail_url")
       SideBar
     a.sell-button(href="/items/new")
       div 出品
@@ -77,5 +78,8 @@ export default {
     top: 1.5rem;
     font-size: 2rem;
   }
+}
+.image-box {
+  box-shadow: 2px 2px 4px;
 }
 </style>
