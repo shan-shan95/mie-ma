@@ -3,19 +3,18 @@
   Header
   main
     .columns
-      article.column.is-two-third
+      article.column.is-8
         .hero
           .hero-body
             h1.title.is-3 新着アイテム
             hr
             .items
-              .columns.is-multiline.is-mobile
+              .columns.is-multiline
                 .column.is-3(
                   v-for="item in items"
                 )
-                  .image-box
-                    a(:href="itemShowPath(item)")
-                      img.image.is-128x128(:src="item.sumbnail_url")
+                  a(:href="itemShowPath(item)")
+                    img.image.is-128x128.image-box(:src="item.sumbnail_url")
       SideBar
     a.sell-button(href="/items/new")
       div 出品
@@ -80,6 +79,6 @@ export default {
   }
 }
 .image-box {
-  box-shadow: 2px 2px 4px;
+  box-shadow: 2px 2px 4px gray;
 }
 </style>
