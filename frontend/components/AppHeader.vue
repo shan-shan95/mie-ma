@@ -3,20 +3,34 @@ nav.navbar(role='navigation' aria-label='main navigation')
   .navbar-brand
     a.navbar-item.logo(href='/')
       img.logo(src='../images/logo.png' alt='top-banner')
-    a.navbar-burger.burger(role='button', aria-label='menu', aria-expanded='false' data-target='navbarBasicExample', @click="toggleIsActive()", :class="{ 'is-active': this.isActive, 'top': !this.isActive }")
+    a.navbar-burger.burger(
+      role='button'
+      aria-label='menu'
+      aria-expanded='false'
+      data-target='navbarMenu'
+      @click="toggleIsActive()"
+      :class="{ 'is-active': this.isActive, 'top': !this.isActive }"
+    )
       span(aria-hidden='true')
       span(aria-hidden='true')
       span(aria-hidden='true')
-  #navbarBasicExample.navbar-menu(@click="toggleIsActive()", :class="{ 'is-active': this.isActive }")
+  #navbarMenu.navbar-menu(
+    @click="toggleIsActive()"
+    :class="{ 'is-active': this.isActive }"
+  )
+    .navbar-start
+      a.navbar-item(href="/news") お知らせ
+      a.navbar-item マイページ
+      a.navbar-item 出品した商品
+      a.navbar-item 購入した商品
     .navbar-end
       .navbar-item.button-item
         .buttons
           div(v-if="this.isSignedIn")
             a.button.is-light(
-              href="/users/sign_out",
+              href="/users/sign_out"
               data-method="delete"
-              )
-              | ログアウト
+            ) ログアウト
           div(v-else)
             a.button.is-primary(href="/users/sign_up")
               strong 会員登録
