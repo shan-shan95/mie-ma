@@ -22,7 +22,15 @@ class Item < ApplicationRecord
 
   def with_sumbnail_url
     if images.present?
-      attributes.merge(sumbnail_url: images.first.service_url)
+      attributes.merge(
+        sumbnail_url: images.first.variant(
+          combine_options: {
+            resize: "128x128^",
+            crop: "128x128+0+0",
+            gravity: :center,
+          },
+        ).processed.service_url,
+      )
     else
       self
     end
@@ -30,7 +38,11 @@ class Item < ApplicationRecord
 
   def with_images_url
     if images.present?
-      images_url = images.map(&:service_url)
+      images_url = images.map { |image|
+        image.variant(
+          resize: "400x300^",
+        ).processed.service_url
+      }
       attributes.merge(images_url: images_url)
     else
       self
