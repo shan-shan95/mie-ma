@@ -21,6 +21,12 @@ Rails.application.routes.draw do
 
   resources :evaluation_comments, only: :create
 
+  resources :users, except: %i[index show new create edit update destroy] do
+    collection do
+      get :mypage
+    end
+  end
+
   get "sell_guide", to: "static_pages#sell_guide" # 出品ガイド
   get "buy_guide", to: "static_pages#buy_guide" # 購入ガイド
   get "contact", to: "static_pages#contact" # 問い合わせ

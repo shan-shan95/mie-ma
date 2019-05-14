@@ -4,9 +4,13 @@ main {
 }
 hr {
   background-color: #cccccc;
+  margin: 1rem 0;
 }
 .columns:not(:last-child) {
   margin: 0;
+}
+.title:not(:last-child) {
+  margin-bottom: 1rem;
 }
 .none {
   display: none;

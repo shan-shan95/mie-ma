@@ -20,9 +20,7 @@ nav.navbar(role='navigation' aria-label='main navigation')
   )
     .navbar-start
       a.navbar-item(href="/news") お知らせ
-      a.navbar-item マイページ
-      a.navbar-item 出品した商品
-      a.navbar-item 購入した商品
+      a.navbar-item(href="/users/mypage") マイページ
     .navbar-end
       .navbar-item.button-item
         .buttons
