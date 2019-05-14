@@ -7,6 +7,7 @@
       href="/users/mypage"
     ) マイページトップ
     a.menu-item DM
+    a.menu-item 評価
     a.menu-item 出品中商品
     a.menu-item 取引中商品
     a.menu-item 購入済み商品

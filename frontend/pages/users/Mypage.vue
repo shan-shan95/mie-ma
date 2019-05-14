@@ -10,7 +10,11 @@
           .hero-body
             h1.title.is-3 マイページ
             hr
-            strong ミエマ！開設しました🎉
+            .is-clearfix
+              .is-pulled-right
+                a(href="/users/edit") 編集する
+            h2.is-size-5.has-text-black 自己紹介
+            p {{ user.profile }}
   Footer
 </template>
 
@@ -20,6 +24,11 @@ import Footer from '../../components/AppFooter'
 import Menu from '../../components/MypageMenu'
 
 export default {
+  data() {
+    return {
+      user: gon.user
+    }
+  },
   components: {
     Header,
     Footer,
