@@ -1,5 +1,5 @@
 <template lang="pug">
-#news
+#mypage
   Header
   main
     .columns
