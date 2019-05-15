@@ -157,7 +157,7 @@ export default {
     },
     canUpload() {
       if (this.item.images_url) {
-        return item.images_url.length < 4
+        return this.item.images_url.length < 4
       } else {
         return true
       }
