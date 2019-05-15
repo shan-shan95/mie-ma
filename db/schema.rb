@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_095324) do
+ActiveRecord::Schema.define(version: 2019_05_15_170046) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 2019_05_09_095324) do
   end
 
   create_table "evaluation_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "user_id", null: false
+    t.string "seller_id", null: false
+    t.string "buyer_id", null: false
     t.integer "status", null: false
     t.text "comment", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "created_at"], name: "index_evaluation_comments_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_evaluation_comments_on_user_id"
+    t.index ["buyer_id"], name: "fk_rails_587966a8ad"
+    t.index ["seller_id", "created_at"], name: "index_evaluation_comments_on_seller_id_and_created_at"
+    t.index ["seller_id"], name: "index_evaluation_comments_on_seller_id"
   end
 
   create_table "items", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -87,6 +89,14 @@ ActiveRecord::Schema.define(version: 2019_05_09_095324) do
     t.index ["sender_id"], name: "fk_rails_2764a73ff0"
   end
 
+  create_table "user_evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.integer "good", default: 0, null: false
+    t.integer "normal", default: 0, null: false
+    t.integer "bad", default: 0, null: false
+    t.index ["user_id"], name: "index_user_evaluations_on_user_id"
+  end
+
   create_table "users", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", null: false
@@ -97,11 +107,8 @@ ActiveRecord::Schema.define(version: 2019_05_09_095324) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name", null: false
+    t.string "nickname", null: false
     t.text "profile"
-    t.integer "good", default: 0, null: false
-    t.integer "normal", default: 0, null: false
-    t.integer "bad", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -111,7 +118,8 @@ ActiveRecord::Schema.define(version: 2019_05_09_095324) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "evaluation_comments", "users"
+  add_foreign_key "evaluation_comments", "users", column: "buyer_id"
+  add_foreign_key "evaluation_comments", "users", column: "seller_id"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"
   add_foreign_key "private_messages", "items"
@@ -119,4 +127,5 @@ ActiveRecord::Schema.define(version: 2019_05_09_095324) do
   add_foreign_key "private_messages", "users", column: "sender_id"
   add_foreign_key "public_messages", "items"
   add_foreign_key "public_messages", "users", column: "sender_id"
+  add_foreign_key "user_evaluations", "users"
 end

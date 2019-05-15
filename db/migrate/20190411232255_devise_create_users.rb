@@ -34,11 +34,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       ## Add
       t.string :id, limit: 36, null: false, primary_key: true
-      t.string :name, null: false
+      t.string :nickname, null: false
       t.text :profile
-      t.integer :good, null: false, default: 0
-      t.integer :normal, null: false, default: 0
-      t.integer :bad, null: false, default: 0
       t.timestamps null: false
     end
 
