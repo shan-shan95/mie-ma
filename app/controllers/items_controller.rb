@@ -30,10 +30,10 @@ class ItemsController < ApplicationController
 
     gon.item = item.with_images_url
     gon.message = PublicMessage.new
-    gon.seller_name = item.seller.name
+    gon.seller_name = item.seller.nickname
     gon.is_seller = user_signed_in? && current_user.is_seller?(item)
     gon.user_id = current_user.id if user_signed_in?
-    gon.user_name = current_user.name if user_signed_in?
+    gon.user_name = current_user.nickname if user_signed_in?
     gon.public_messages = item.public_messages
   end
 
@@ -80,11 +80,11 @@ class ItemsController < ApplicationController
 
     gon.item = item
     gon.message = PrivateMessage.new
-    gon.seller_name = item.seller.name
+    gon.seller_name = item.seller.nickname
     gon.is_seller = user_signed_in? && current_user.is_seller?(item)
     gon.is_buyer = current_user.is_buyer?(item)
     gon.user_id = current_user.id
-    gon.user_name = current_user.name if user_signed_in?
+    gon.user_name = current_user.nickname if user_signed_in?
     gon.private_messages = item.private_messages
   end
 

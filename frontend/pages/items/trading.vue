@@ -28,7 +28,8 @@
   Modal(
     :isModalActive="isModalActive"
     @toggle="toggleIsModalActive()"
-    :userId="userId"
+    :sellerId="item.seller_id"
+    :buyerId="userId"
     :item="item"
   )
 </template>

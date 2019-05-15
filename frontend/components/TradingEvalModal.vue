@@ -55,8 +55,12 @@ form(
             :value="item.id"
           )
           input.none(
-            name="evaluation_comment[user_id]"
-            :value="userId"
+            name="evaluation_comment[seller_id]"
+            :value="sellerId"
+          )
+          input.none(
+            name="evaluation_comment[buyer_id]"
+            :value="buyerId"
           )
           input.none(
             name="evaluation_comment[status]"
@@ -137,7 +141,11 @@ export default {
       type: Boolean,
       required: true
     },
-    userId: {
+    sellerId: {
+      type: String,
+      required: true
+    },
+    buyerId: {
       type: String,
       required: true
     },

@@ -119,7 +119,7 @@ export default {
   height: 50px;
   width: 20%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   align-items: center;
   margin: 0 auto;
