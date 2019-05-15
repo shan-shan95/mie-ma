@@ -1,3 +1,6 @@
+#app {
+  background-color: #eeeeee;
+}
 main {
   background-color: #eeeeee;
   padding: 0rem 4rem;
@@ -15,8 +18,22 @@ hr {
 .none {
   display: none;
 }
-.notification {
-  padding: 1rem;
+.notice,
+.alert {
+  border-radius: 4px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  position: relative;
+
+  .is-primary {
+    background-color: #00d1b2;
+    color: #fff;
+  }
+
+  .is-danger {
+    background-color: #ff3860;
+    color: #fff;
+  }
 }
 .disabled {
   pointer-events: none;

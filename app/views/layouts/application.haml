@@ -14,8 +14,4 @@
 		= stylesheet_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].camelize}"
 	%body
 		#app
-			%p.notice
-				= notice
-			%p.alert
-				= alert
 			= yield
