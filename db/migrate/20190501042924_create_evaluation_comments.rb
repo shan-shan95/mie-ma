@@ -6,5 +6,6 @@ class CreateEvaluationComments < ActiveRecord::Migration[5.2]
       t.text :comment, limit: 255
       t.timestamps
     end
+    add_index :evaluation_comments, [:user_id, :created_at]
   end
 end

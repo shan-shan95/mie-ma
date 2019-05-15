@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_095324) do
     t.text "comment", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_evaluation_comments_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_evaluation_comments_on_user_id"
   end
 
