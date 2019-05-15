@@ -22,6 +22,7 @@
           :isSeller="isSeller"
           :sellerName="sellerName"
           :isAblePurchase="false"
+          :isModalActive="isModalActive"
         )
   Footer
   Modal(

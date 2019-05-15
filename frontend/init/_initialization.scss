@@ -38,3 +38,18 @@ hr {
 .disabled {
   pointer-events: none;
 }
+.notification {
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+.note {
+  background-color: rgba(255, 255, 110, 0.4);
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+
+  p {
+    color: black;
+    font-size: 0.8rem;
+  }
+}

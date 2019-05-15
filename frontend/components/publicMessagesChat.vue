@@ -160,17 +160,6 @@ export default {
   width: 100%;
   margin: 0.5rem 0;
 }
-.note {
-  background-color: rgba(255, 255, 110, 0.4);
-  width: 100%;
-  margin: 1rem 0 0.5rem;
-  padding: 0.5rem 0;
-
-  p {
-    color: black;
-    font-size: 0.8rem;
-  }
-}
 .submit {
   display: block;
   margin: 0 auto;

@@ -44,15 +44,4 @@ export default {
   margin: 0rem 3rem;
   padding: 1rem 0rem;
 }
-.note {
-  background-color: rgba(255, 255, 110, 0.4);
-  width: 100%;
-  margin: 1rem 0 0.5rem;
-
-  p {
-    color: black;
-    font-size: 0.8rem;
-    padding: 0.75rem;
-  }
-}
 </style>

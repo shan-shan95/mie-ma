@@ -22,25 +22,34 @@ form(
       header.modal-card-head
         p.modal-card-title 評価
       section.modal-card-body
+        .note
+          p 出品者の取引までのやり取り、取引時の対応はどうでしたか？
+          p 3つのうちから1つを選び、コメントがあれば入力してください。
         .evaluations.columns.is-centered
           .column
             .good(
-                @click="toggleIsGood()"
-                :class="{'selected-good': isGood}"
-              )
-              i.far.fa-laugh.fa-4x.i-center
+              @click="toggleIsGood()"
+              :class="{'selected-good': isGood}"
+            )
+              .eval-content
+                p Good
+                i.far.fa-laugh.fa-4x.i-center
           .column
             .normal(
-                @click="toggleIsNormal()"
-                :class="{'selected-normal': isNormal}"
-              )
-              i.far.fa-meh.fa-4x.i-center
+              @click="toggleIsNormal()"
+              :class="{'selected-normal': isNormal}"
+            )
+              .eval-content
+                p Normal
+                i.far.fa-meh.fa-4x.i-center
           .column
             .bad(
-                @click="toggleIsBad()"
-                :class="{'selected-bad': isBad}"
-              )
-              i.far.fa-frown.fa-4x.i-center
+              @click="toggleIsBad()"
+              :class="{'selected-bad': isBad}"
+            )
+              .eval-content
+                p Bad
+                i.far.fa-frown.fa-4x.i-center
           input.none(
             name="item_id"
             :value="item.id"
@@ -61,12 +70,12 @@ form(
             v-model="evalComment"
           )
         .notification.is-danger(
-          v-if="checkMessageLength()"
-        ) {{ checkMessageLength() }}
+          v-if="isMessageTooLong()"
+        ) 文字数が長すぎます
       footer.modal-card-foot
         button.button.is-success(
           type="submit"
-          v-if="!checkMessageLength()"
+          v-if="!isMessageTooLong() && isSelectedStatus()"
         ) 評価する
         button.button.is-success.disabled(
           v-else
@@ -77,7 +86,7 @@ form(
         ) キャンセル
     button.modal-close.is-large(
       aria-label="close"
-      @click="toggleIsModalActive()"
+      @click.prevent="toggleIsModalActive()"
       )
 </template>
 
@@ -116,12 +125,11 @@ export default {
       this.isNormal = false
       this.evalStatus = 'bad'
     },
-    checkMessageLength() {
-      if (this.evalComment.length > 255) {
-        return '文字数が多すぎます'
-      } else {
-        return ''
-      }
+    isMessageTooLong() {
+      return this.evalComment.length > 255
+    },
+    isSelectedStatus() {
+      return this.evalStatus
     }
   },
   props: {
@@ -148,21 +156,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 6rem;
+  min-height: 20vh;
 }
 .good:hover,
 .selected-good {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: rgb(221, 126, 221);
 }
 .normal:hover,
 .selected-normal {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: rgb(219, 219, 98);
 }
 .bad:hover,
 .selected-bad {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: rgb(113, 172, 226);
 }
 .eval-comment {
@@ -171,5 +179,16 @@ export default {
 }
 .notification {
   margin-top: 1.5rem;
+}
+.eval-content {
+  display: block;
+  text-align: center;
+}
+.modal-card-body {
+  padding-top: 0;
+}
+.note {
+  margin: 1rem auto 0rem;
+  max-width: 80%;
 }
 </style>
