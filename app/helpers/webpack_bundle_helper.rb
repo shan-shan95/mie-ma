@@ -1,44 +1,48 @@
 # frozen_string_literal: true
 
-require 'open-uri'
+require "open-uri"
 
 module WebpackBundleHelper
   class BundleNotFound < StandardError; end
 
   def javascript_bundle_tag(entry, **options)
-    path = asset_bundle_path("#{entry.split('/').last}.js")
+    if valid_entry?("#{entry.split("/").last}.js")
+      path = asset_bundle_path("#{entry.split("/").last}.js")
 
-    options = {
-      src: path,
-      defer: true
-    }.merge(options)
+      options = {
+        src: path,
+        defer: true,
+      }.merge(options)
 
-    # async と defer を両方指定した場合、ふつうは async が優先されるが、
-    # defer しか対応してない古いブラウザの挙動を考えるのが面倒なので、両方指定は防いでおく
-    options.delete(:defer) if options[:async]
+      # async と defer を両方指定した場合、ふつうは async が優先されるが、
+      # defer しか対応してない古いブラウザの挙動を考えるのが面倒なので、両方指定は防いでおく
+      options.delete(:defer) if options[:async]
+    end
 
-    javascript_include_tag '', **options
+    javascript_include_tag "", **options
   end
 
   def stylesheet_bundle_tag(entry, **options)
-    path = asset_bundle_path("#{entry.split('/').last}.css")
+    if valid_entry?("#{entry.split("/").last}.css")
+      path = asset_bundle_path("#{entry.split("/").last}.css")
 
-    options = {
-      href: path
-    }.merge(options)
+      options = {
+        href: path,
+      }.merge(options)
+    end
 
-    stylesheet_link_tag '', **options
+    stylesheet_link_tag "", **options
   end
 
   private
 
   def asset_server
-    port = Rails.env === 'development' ? '3035' : '3000'
+    port = Rails.env === "development" ? "3035" : "3000"
     "http://#{request.host}:#{port}"
   end
 
   def pro_manifest
-    File.read('public/assets/manifest.json')
+    File.read("public/assets/manifest.json")
   end
 
   def dev_manifest
@@ -46,7 +50,7 @@ module WebpackBundleHelper
   end
 
   def test_manifest
-    File.read('public/assets-test/manifest.json')
+    File.read("public/assets-test/manifest.json")
   end
 
   def manifest
@@ -57,7 +61,7 @@ module WebpackBundleHelper
   end
 
   def valid_entry?(entry)
-    return true if manifest.key?(entry)
+    return manifest.key?(entry)
 
     raise BundleNotFound, "Could not find bundle with name #{entry}"
   end
