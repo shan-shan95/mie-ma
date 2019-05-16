@@ -5,6 +5,7 @@ class CreateUserEvaluations < ActiveRecord::Migration[5.2]
       t.integer :good, null: false, default: 0
       t.integer :normal, null: false, default: 0
       t.integer :bad, null: false, default: 0
+      t.timestamps
     end
   end
 end
