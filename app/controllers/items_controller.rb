@@ -71,7 +71,7 @@ class ItemsController < ApplicationController
     end
 
     item.update(buyer: current_user, trading_status: :trading)
-    return redirect_to trading_item_path(item.id), notice: "購入できました"
+    return redirect_to trading_item_path(item.id), notice: "購入しました"
   end
 
   def trading
