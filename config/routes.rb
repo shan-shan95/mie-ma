@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :users, except: %i[index show new create edit update destroy] do
     collection do
       get :mypage
+      get :evaluation_comments
     end
   end
 

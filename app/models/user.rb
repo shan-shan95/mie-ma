@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :private_messages, foreign_key: "sender_id", dependent: :destroy
   has_many :evaluation_comments, foreign_key: "seller_id", dependent: :destroy
 
+  after_create :create_user_eval
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@m.mie-u.ac.jp\z/
 
   validates :nickname, presence: true, uniqueness: true
@@ -32,5 +34,11 @@ class User < ApplicationRecord
 
   def is_buyer?(item)
     self == item.buyer
+  end
+
+  private
+
+  def create_user_eval
+    UserEvaluation.create(user_id: id)
   end
 end
