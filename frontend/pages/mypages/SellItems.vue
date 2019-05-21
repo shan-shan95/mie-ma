@@ -8,7 +8,7 @@
       .column.is-10
         .hero
           .hero-body
-            h1.title.is-3 評価
+            h1.title.is-3 出品した商品
             hr
             .content
               .statuses.columns.is-centered
