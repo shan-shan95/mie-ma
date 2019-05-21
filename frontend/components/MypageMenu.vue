@@ -17,7 +17,7 @@ export default {}
 
 <style lang="scss" scoped>
 .hero-body {
-  padding: 3rem 0.5rem;
+  padding: 3rem 0;
 }
 .menu-item {
   display: block;

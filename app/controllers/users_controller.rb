@@ -6,6 +6,6 @@ class UsersController < ApplicationController
   end
 
   def evaluation_comments
-    gon.eval_comments = current_user.evaluation_comments
+    gon.eval_comments = current_user.evaluation_comments.map(&:merged_attr)
   end
 end

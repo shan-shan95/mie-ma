@@ -30,7 +30,15 @@
                 i.far.fa-frown.icon.is-medium.fa-lg
                 span.is-size-5 Bad
             hr.evals-hr
-            p(v-for="comment in evalComments" :key="comment.id")
+            .comment-background
+              .comment-column(
+                v-for="evaluation in selectedEvalComments(selectedEval)"
+                :key="evaluation.id"
+              )
+                .user-info
+                  p.user-name {{ evaluation.buyer_name }}
+                .comment
+                  p.comment-content {{ evaluation.comment }}
   Footer
 </template>
 
@@ -57,6 +65,9 @@ export default {
     },
     selectEval(evaluation) {
       this.selectedEval = evaluation
+    },
+    selectedEvalComments(evaluation) {
+      return this.evalComments.filter(x => x.status === evaluation)
     }
   }
 }
@@ -85,12 +96,42 @@ export default {
   }
 }
 .evals-hr {
-  margin: 0.3rem auto;
+  margin: 0.5rem auto;
   width: 90%;
   background-color: #aaaaaa;
 }
 .selected {
   box-shadow: 0px 0px 6px 1px rgba(113, 172, 226, 0.8);
   border-radius: 10px;
+}
+.comment-background {
+  background-color: rgba(120, 255, 200, 0.3);
+  width: 100%;
+  border-radius: 10px;
+
+  .comment-column {
+    display: flex;
+    max-width: 90%;
+    margin: 0.5rem auto;
+    padding: 0.5rem 0;
+
+    .user-info {
+      padding: 10px;
+    }
+
+    .comment {
+      background-color: transparent;
+      display: inline-block;
+      position: relative;
+      margin: 0 0 0 4rem;
+      padding: 10px;
+      max-width: 75%;
+      min-width: 40%;
+      border-radius: 12px;
+      background: #eff0f4;
+      border: 1px solid #9c9c9c;
+      word-wrap: break-word;
+    }
+  }
 }
 </style>
