@@ -10,35 +10,37 @@
           .hero-body
             h1.title.is-3 評価
             hr
-            .columns.evaluations.is-centered
-              .eval-column.is-4.good(
-                :class="{'selected': isSelectedEval('good')}"
-                @click="selectEval('good')"
-              )
-                i.far.fa-laugh.icon.is-medium.fa-lg.i-center
-                span.is-size-5 Good
-              .eval-column.is-4.normal(
-                :class="{'selected': isSelectedEval('normal')}"
-                @click="selectEval('normal')"
-              )
-                i.far.fa-meh.icon.is-medium.fa-lg.i-center
-                span.is-size-5 Normal
-              .eval-column.is-4.bad(
-                :class="{'selected': isSelectedEval('bad')}"
-                @click="selectEval('bad')"
-              )
-                i.far.fa-frown.icon.is-medium.fa-lg
-                span.is-size-5 Bad
-            hr.evals-hr
-            .comment-background
-              .comment-column(
-                v-for="evaluation in selectedEvalComments(selectedEval)"
-                :key="evaluation.id"
-              )
-                .user-info
-                  p.user-name {{ evaluation.buyer_name }}
-                .comment
-                  p.comment-content {{ evaluation.comment }}
+            .content
+              .evaluations.columns.is-centered
+                a.evaluation.good.has-text-centered(
+                  :class="{'selected': isSelectedEval('good')}"
+                  @click="selectEval('good')"
+                )
+                  i.far.fa-laugh.icon.is-medium.fa-lg.i-center
+                  span.is-size-5 Good
+                a.evaluation.normal.has-text-centered(
+                  :class="{'selected': isSelectedEval('normal')}"
+                  @click="selectEval('normal')"
+                )
+                  i.far.fa-meh.icon.is-medium.fa-lg.i-center
+                  span.is-size-5 Normal
+                a.evaluation.bad.has-text-centered(
+                  :class="{'selected': isSelectedEval('bad')}"
+                  @click="selectEval('bad')"
+                )
+                  i.far.fa-frown.icon.is-medium.fa-lg
+                  span.is-size-5 Bad
+              hr.hr
+              .message-background
+                .message-column(
+                  v-for="evaluation in selectedEvalComments(selectedEval)"
+                  :key="evaluation.id"
+                )
+                  .user-info
+                    p.user-name {{ evaluation.buyer_name }}
+                  .message
+                    p.message-content {{ evaluation.comment }}
+              p(v-if="selectedEvalComments(selectedEval).length === 0") この項目には表示できるメッセージがありません
   Footer
 </template>
 
@@ -67,71 +69,47 @@ export default {
       this.selectedEval = evaluation
     },
     selectedEvalComments(evaluation) {
-      return this.evalComments.filter(x => x.status === evaluation)
+      return this.evalComments.filter(
+        x => x.status === evaluation && x.comment !== ''
+      )
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.evaluations {
-  .eval-column {
-    display: flex;
-    width: 150px;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .good {
-    color: rgb(221, 126, 221);
-  }
-
-  .normal {
-    color: rgb(219, 219, 98);
-  }
-
-  .bad {
-    color: rgb(113, 172, 226);
-  }
-}
-.evals-hr {
-  margin: 0.5rem auto;
+.content {
   width: 90%;
-  background-color: #aaaaaa;
-}
-.selected {
-  box-shadow: 0px 0px 6px 1px rgba(113, 172, 226, 0.8);
-  border-radius: 10px;
-}
-.comment-background {
-  background-color: rgba(120, 255, 200, 0.3);
-  width: 100%;
-  border-radius: 12px;
 
-  .comment-column {
-    display: flex;
-    max-width: 90%;
+  .evaluations {
+    justify-content: space-around;
+
+    .evaluation {
+      width: 33%;
+      color: #4a4a4a;
+    }
+
+    .good {
+      color: rgb(221, 126, 221);
+    }
+
+    .normal {
+      color: rgb(219, 219, 98);
+    }
+
+    .bad {
+      color: rgb(113, 172, 226);
+    }
+
+    .selected {
+      box-shadow: 0px 6px 4px -4px lightblue;
+    }
+  }
+
+  .hr {
     margin: 0.5rem auto;
-    padding: 0.5rem 0;
-
-    .user-info {
-      padding: 10px;
-    }
-
-    .comment {
-      background-color: transparent;
-      display: inline-block;
-      position: relative;
-      margin: 0 0 0 4rem;
-      padding: 10px;
-      max-width: 75%;
-      min-width: 40%;
-      border-radius: 12px;
-      background: #eff0f4;
-      border: 1px solid #9c9c9c;
-      word-wrap: break-word;
-    }
+    margin-bottom: 1rem;
+    background-color: #aaaaaa;
   }
 }
 </style>

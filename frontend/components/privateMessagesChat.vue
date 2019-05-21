@@ -1,8 +1,8 @@
 <template lang="pug">
 #private-messages-chat
-  .chat-section
-    .chat-content
-      .chat-background
+  .message-section
+    .message-content
+      .message-background
         .message-column.is-clearfix(v-for="(privateMessage, index) in privateMessages")
           .user-info.is-pulled-left
             .user-name
@@ -15,7 +15,7 @@
         p 商品の受け渡しをする場所と日時を決めましょう。相手のことを考え丁寧なコメントを心がけましょう。
         p 購入者は受け取り後に速やかに評価をしてください。
       form
-        textarea.textarea.is-primary.chat-textarea(
+        textarea.textarea.is-primary.message-textarea(
           v-model="postMessage.content"
           autocomplete="off"
           rows="4"
@@ -121,49 +121,31 @@ export default {
 </script>
 
 <style lang="scss">
-.chat-background {
-  background-color: rgba(120, 255, 200, 0.3);
-  width: 100%;
-
-  .message-column {
-    margin: 0.5rem 0;
-    padding: 0.5rem 0;
-
-    .message {
-      background-color: transparent;
-      display: inline-block;
-      position: relative;
-      margin: 0 0 0 4rem;
-      padding: 10px;
-      max-width: 75%;
-      min-width: 40%;
-      border-radius: 12px;
-      background: #eff0f4;
-      border: 1px solid #9c9c9c;
-      word-wrap: break-word;
-    }
-  }
-}
-.chat-section {
+.message-section {
   background-color: white;
   margin-bottom: 1rem;
-}
-.chat-content {
-  margin: 0rem 3rem;
-  padding: 2rem 0rem;
-}
-.chat-textarea {
-  width: 100%;
-  margin: 0.5rem 0;
-}
-.submit {
-  display: block;
-  margin: 0 auto;
-}
-.disabled {
-  pointer-events: none;
-}
-.user-info {
-  padding: 10px;
+
+  .message-content {
+    margin: 0rem 3rem;
+    padding: 2rem 0rem;
+
+    .message-textarea {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+
+    .submit {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .disabled {
+      pointer-events: none;
+    }
+
+    .user-info {
+      padding: 10px;
+    }
+  }
 }
 </style>
