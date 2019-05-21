@@ -40,7 +40,7 @@
                     p.user-name {{ evaluation.buyer_name }}
                   .message
                     p.message-content {{ evaluation.comment }}
-              p(v-if="selectedEvalComments(selectedEval).length === 0") この項目には表示できるメッセージがありません
+              p(v-if="selectedEvalComments(selectedEval).length === 0") この項目には表示できるコメントがありません
   Footer
 </template>
 

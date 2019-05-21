@@ -10,8 +10,8 @@
     = Gon::Base.render_data
     = javascript_bundle_tag 'application'
     = stylesheet_bundle_tag 'style'
-    = javascript_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].camelize}"
-    = stylesheet_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].camelize}"
+    = javascript_bundle_tag "#{params[:controller].split('/').last.camelize}"
+    = stylesheet_bundle_tag "#{params[:controller].split('/').last.camelize}"
   %body
     #app
       = yield
