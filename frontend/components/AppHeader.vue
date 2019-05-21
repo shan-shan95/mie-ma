@@ -21,7 +21,7 @@
     )
       .navbar-start
         a.navbar-item(href="/news") お知らせ
-        a.navbar-item(href="/users/mypage") マイページ
+        a.navbar-item(href="/mypage/profile") マイページ
       .navbar-end
         .navbar-item.button-item
           .buttons

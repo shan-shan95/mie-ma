@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import Mypage from './Mypage'
+import SellItems from './SellItems'
 
 new Vue({
   el: '#app',
   components: {
-    Mypage
+    SellItems
   }
 })

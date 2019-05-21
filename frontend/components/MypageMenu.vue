@@ -3,12 +3,11 @@
   .hero-body
     h3 メニュー
     hr
-    a.menu-item(href="/users/mypage") マイページトップ
+    a.menu-item(href="/mypage/profile") プロフィール
     a.menu-item DM
-    a.menu-item(href="/users/evaluation_comments") 評価
-    a.menu-item 出品中商品
-    a.menu-item 取引中商品
-    a.menu-item 購入済み商品
+    a.menu-item(href="/mypage/evaluation_comments") 評価
+    a.menu-item(href="/mypage/sell_items") 出品した商品
+    a.menu-item(href="/mypage/buy_items") 購入した商品
 </template>
 
 <script>
@@ -22,5 +21,6 @@ export default {}
 .menu-item {
   display: block;
   margin-bottom: 0.3rem;
+  color: #4a4a4a;
 }
 </style>

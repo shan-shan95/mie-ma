@@ -8,7 +8,7 @@
       .column.is-10
         .hero
           .hero-body
-            h1.title.is-3 マイページ
+            h1.title.is-3 プロフィール
             hr
             .is-clearfix
               .is-pulled-right

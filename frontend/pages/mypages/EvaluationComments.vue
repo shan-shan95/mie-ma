@@ -10,7 +10,7 @@
           .hero-body
             h1.title.is-3 評価
             hr
-            .columns.evaluations.is-half.is-centered
+            .columns.evaluations.is-centered
               .eval-column.is-4.good(
                 :class="{'selected': isSelectedEval('good')}"
                 @click="selectEval('good')"
@@ -107,7 +107,7 @@ export default {
 .comment-background {
   background-color: rgba(120, 255, 200, 0.3);
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
 
   .comment-column {
     display: flex;

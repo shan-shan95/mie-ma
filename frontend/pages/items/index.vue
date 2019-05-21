@@ -13,7 +13,10 @@
                 .column.is-3(
                   v-for="item in items"
                 )
-                  a(:href="itemShowPath(item)")
+                  a(
+                    :href="itemShowPath(item)"
+                    target="_blank"
+                  )
                     img.image.is-128x128.image-box(:src="item.sumbnail_url")
       SideBar
     a.sell-button(href="/items/new")

@@ -21,10 +21,12 @@ Rails.application.routes.draw do
 
   resources :evaluation_comments, only: :create
 
-  resources :users, except: %i[index show new create edit update destroy] do
+  resource :mypage, except: %i[index show new create edit update destroy] do
     collection do
-      get :mypage
+      get :profile
       get :evaluation_comments
+      get :sell_items
+      get :buy_items
     end
   end
 
