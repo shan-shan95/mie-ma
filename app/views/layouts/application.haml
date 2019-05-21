@@ -1,17 +1,17 @@
 !!!
 %html
-	%head
-		%meta{ charset: "utf-8" }
-		%meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
-		%title
-			ミエマ！ | 三重大生限定のフリマサイト
-		= csrf_meta_tags
-		= csp_meta_tag
-		= Gon::Base.render_data
-		= javascript_bundle_tag 'application'
-		= stylesheet_bundle_tag 'style'
-		= javascript_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].camelize}"
-		= stylesheet_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].camelize}"
-	%body
-		#app
-			= yield
+  %head
+    %meta{ charset: "utf-8" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
+    %title
+      ミエマ！ | 三重大生限定のフリマサイト
+    = csrf_meta_tags
+    = csp_meta_tag
+    = Gon::Base.render_data
+    = javascript_bundle_tag 'application'
+    = stylesheet_bundle_tag 'style'
+    = javascript_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].camelize}"
+    = stylesheet_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].camelize}"
+  %body
+    #app
+      = yield

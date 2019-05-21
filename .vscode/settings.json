@@ -1,27 +1,27 @@
 {
-	"git.ignoreLimitWarning": true,
-	"files.insertFinalNewline": true,
-	"eslint.autoFixOnSave": true,
-	"prettier.eslintIntegration": true,
-	"prettier.jsxSingleQuote": true,
-	"prettier.singleQuote": true,
-	"eslint.run": "onSave",
-	"eslint.packageManager": "yarn",
-	"eslint.validate": [
-		"javascript",
-		"javascriptreact",
-		{
-			"language": "vue",
-			"autoFix": true
-		}
-	],
-	"eslint.options": {
-		"configFile": ".eslintrc.js"
-	},
-	"editor.tabSize": 2,
-	"javascript.validate.enable": false,
-	"prettier.semi": false,
-	"editor.formatOnSave": true,
-	"vetur.format.defaultFormatter.html": "prettier",
-	"ruby.rubocop.onSave": false
+  "git.ignoreLimitWarning": true,
+  "files.insertFinalNewline": true,
+  "eslint.autoFixOnSave": true,
+  "prettier.eslintIntegration": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "eslint.run": "onSave",
+  "eslint.packageManager": "yarn",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "eslint.options": {
+    "configFile": ".eslintrc.js"
+  },
+  "editor.tabSize": 2,
+  "javascript.validate.enable": false,
+  "prettier.semi": false,
+  "editor.formatOnSave": true,
+  "vetur.format.defaultFormatter.html": "prettier",
+  "editor.detectIndentation": false
 }
