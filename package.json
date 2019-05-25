@@ -5,6 +5,9 @@
   "private": true,
   "author": "shang-shang95",
   "license": "MIT",
+  "engines": {
+    "yarn": "1.x"
+  },
   "scripts": {
     "start": "webpack-dev-server --color --hot --inline --config webpack.dev.js --mode development",
     "build": "webpack --progress --config webpack.prod.js --mode production"
