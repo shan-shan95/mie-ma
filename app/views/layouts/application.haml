@@ -3,12 +3,14 @@
   %head
     %meta{ charset: "utf-8" }
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
-    %link{ rel: "shortcut icon", href: "https://s3-ap-northeast-1.amazonaws.com/miema-assets-bucket/assets/images/favicon.ico", type: "image/vnd.microsoft.icon", defer: true}
+    %link{ rel: "shortcut icon", href: "https://s3-ap-northeast-1.amazonaws.com/miema-assets-bucket/assets/images/favicon.ico", type: "image/vnd.microsoft.icon"}
     %title
       ミエマ！ | 三重大生限定のフリマサイト
     = csrf_meta_tags
     = csp_meta_tag
     = Gon::Base.render_data
+    = javascript_bundle_tag 'bundle_script', defer: true if Rails.env.development?
+    = stylesheet_bundle_tag 'bundle_style' if Rails.env.development?
     = javascript_bundle_tag 'application', defer: true
     = stylesheet_bundle_tag 'style'
     = javascript_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].split('/').last.camelize}", defer: true
