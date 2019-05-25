@@ -9,8 +9,7 @@
     "start": "webpack-dev-server --color --hot --inline --config webpack.dev.js --mode development",
     "build": "webpack --progress --config webpack.prod.js --mode production"
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.2.2",
     "@babel/polyfill": "^7.2.5",
     "@fortawesome/fontawesome-free": "^5.6.3",
@@ -40,8 +39,10 @@
     "vue-tweet-embed": "^2.2.1",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.0",
-    "webpack-dev-server": "^3.1.14",
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.2.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.1.14"
   }
 }
