@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
     item = Item.joins(:seller).find(params[:id])
 
     return redirect_to trading_item_path(params[:id]) if user_signed_in? && current_user.is_trading?(item)
-    item.update(view: item.view + 1) unless user_signed_in? && current_user.is_seller?(item)
+    item.update(view: item.view + 1) unless user_signed_in? && current_user.is_trader?(item)
 
     gon.item = item.with_images_url
     gon.message = PublicMessage.new
