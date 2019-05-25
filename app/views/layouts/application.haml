@@ -9,9 +9,9 @@
     = csrf_meta_tags
     = csp_meta_tag
     = Gon::Base.render_data
+    = javascript_bundle_tag 'application', defer: true
     = stylesheet_bundle_tag 'style'
-    = javascript_bundle_tag 'application'
-    = javascript_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].split('/').last.camelize}"
+    = javascript_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].split('/').last.camelize}", defer: true
     = stylesheet_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].split('/').last.camelize}"
   %body
     #app
