@@ -17,7 +17,10 @@
                     :href="itemShowPath(item)"
                     target="_blank"
                   )
-                    img.image.is-128x128.image-box(:src="item.sumbnail_url")
+                    img.image.is-128x128.image-box(
+                      :src="item.sumbnail_url"
+                      decoding="async"
+                    )
       SideBar
     a.sell-button(href="/items/new")
       div 出品

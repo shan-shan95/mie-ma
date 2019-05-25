@@ -31,6 +31,7 @@
                   img.image.is-96x96.item-img(
                     :src="item.sumbnail_url"
                     alt="販売商品のサムネイル"
+                    decoding="async"
                   )
                   p.item-name {{ item.name }}
                 p(v-if="selectedItems(selectedItemStatus).length === 0") この項目には表示できる商品がありません

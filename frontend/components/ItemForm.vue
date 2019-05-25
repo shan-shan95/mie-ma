@@ -41,11 +41,17 @@
             .images.column(
               v-for="(url, index) in item.images_url"
             )
-              img.image.is-128x128(:src="url")
+              img.image.is-128x128(
+                :src="url"
+                decoding="async"
+              )
             .selectedfiles.column(
               v-for="(url, index) in sumbnailUrls"
             )
-              img.image.is-128x128(:src="url")
+              img.image.is-128x128(
+                :src="url"
+                decoding="async"
+              )
             .dummies(
               v-for="num in dummyNum()"
             )

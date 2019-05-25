@@ -9,6 +9,7 @@
         img.logo(
           src="https://s3-ap-northeast-1.amazonaws.com/miema-assets-bucket/assets/images/logo.png"
           alt="top-banner"
+          decoding="async"
         )
       a.navbar-burger.burger(
         role="button?"

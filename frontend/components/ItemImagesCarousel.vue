@@ -12,6 +12,7 @@
         :key="index"
         v-if="visibleImage === index"
         v-for="(url, index) in item.images_url"
+        decoding="async"
       )
     a.control-next(
       @click="next()"
