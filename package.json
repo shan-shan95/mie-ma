@@ -6,6 +6,7 @@
   "author": "shang-shang95",
   "license": "MIT",
   "engines": {
+    "node": "11.x.x",
     "yarn": "1.x"
   },
   "scripts": {
