@@ -37,8 +37,7 @@ module WebpackBundleHelper
   private
 
   def asset_server
-    port = Rails.env === "development" ? "3035" : "3000"
-    "http://#{request.host}:#{port}"
+    Rails.env === "development" ? "http://#{request.host}:3035" : "https://s3-ap-northeast-1.amazonaws.com/miema-assets-bucket"
   end
 
   def pro_manifest
@@ -50,7 +49,7 @@ module WebpackBundleHelper
   end
 
   def test_manifest
-    File.read("public/assets-test/manifest.json")
+    File.read("public/assets/manifest.json")
   end
 
   def manifest
@@ -68,6 +67,10 @@ module WebpackBundleHelper
 
   def asset_bundle_path(entry, **options)
     valid_entry?(entry)
-    asset_path("#{asset_server}/public/assets" + manifest.fetch(entry), **options)
+    if Rails.env.development?
+      asset_path("#{asset_server}/public/assets" + manifest.fetch(entry), **options)
+    else
+      asset_path("#{asset_server}/assets" + manifest.fetch(entry), **options)
+    end
   end
 end

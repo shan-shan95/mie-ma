@@ -1,20 +1,26 @@
 <template lang="pug">
 #header
-  nav.navbar(role='navigation' aria-label='main navigation')
+  nav.navbar(
+    role="navigation"
+    aria-label="main navigation"
+  )
     .navbar-brand
-      a.navbar-item.logo(href='/')
-        img.logo(src='../images/logo.png' alt='top-banner')
+      a.navbar-item.logo(href="/")
+        img.logo(
+          src="https://s3-ap-northeast-1.amazonaws.com/miema-assets-bucket/assets/images/logo.png"
+          alt="top-banner"
+        )
       a.navbar-burger.burger(
-        role='button'
-        aria-label='menu'
-        aria-expanded='false'
-        data-target='navbarMenu'
+        role="button?"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarMenu"
         @click="toggleIsActive()"
         :class="{ 'is-active': this.isActive, 'top': !this.isActive }"
       )
-        span(aria-hidden='true')
-        span(aria-hidden='true')
-        span(aria-hidden='true')
+        span(aria-hidden="true")
+        span(aria-hidden="true")
+        span(aria-hidden="true")
     #navbarMenu.navbar-menu(
       @click="toggleIsActive()"
       :class="{ 'is-active': this.isActive }"
