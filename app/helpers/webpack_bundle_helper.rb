@@ -28,7 +28,10 @@ module WebpackBundleHelper
 
       options = {
         href: path,
+        defer: true,
       }.merge(options)
+
+      options.delete(:defer) if options[:async]
     end
 
     stylesheet_link_tag "", **options
