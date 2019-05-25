@@ -19,11 +19,6 @@ gem 'rack-proxy'
 gem 'rails', '~> 5.2.2'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-group :production do
-  gem 'asset_sync'
-  gem 'fog-aws'
-end
-
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -37,4 +32,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+  gem 'asset_sync'
+  gem 'fog-aws'
 end
