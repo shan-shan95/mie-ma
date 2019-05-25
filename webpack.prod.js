@@ -118,24 +118,5 @@ module.exports = merge(common, {
       '.eot',
       ' '
     ]
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        bundleStyle: {
-          test: /.(c|sa)ss$/,
-          name: 'bundle_style',
-          chunks: 'initial',
-          enforce: true
-        },
-        bundleScript: {
-          test: /.js$/,
-          name: 'bundle_script',
-          chunks: 'initial',
-          enforce: true
-        }
-      }
-    },
-    minimize: true
   }
 })
