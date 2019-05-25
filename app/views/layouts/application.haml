@@ -9,8 +9,7 @@
     = csrf_meta_tags
     = csp_meta_tag
     = Gon::Base.render_data
-    = stylesheet_bundle_tag 'bundle_style'
-    = javascript_bundle_tag 'bundle_script'
+    = stylesheet_bundle_tag 'style'
     = javascript_bundle_tag 'application'
     = javascript_bundle_tag "#{params[:controller].split('/').last.camelize}"
     = stylesheet_bundle_tag "#{params[:controller].split('/').last.camelize}"
