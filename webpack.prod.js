@@ -6,6 +6,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+const PATHS = {
+  src: path.join(__dirname, 'frontend')
+}
 
 let entries = {}
 glob.sync('./frontend/pages/**/*.js').map(file => {
@@ -32,6 +36,9 @@ module.exports = merge(common, {
     }),
     new ManifestPlugin({
       writeToFileEmit: true
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     })
   ],
   module: {

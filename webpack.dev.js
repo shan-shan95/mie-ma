@@ -126,13 +126,13 @@ module.exports = merge(common, {
         bundleStyle: {
           test: /.(c|sa)ss$/,
           name: 'bundle_style',
-          chunks: 'initial',
+          chunks: 'all',
           enforce: true
         },
         bundleScript: {
           test: /.js$/,
           name: 'bundle_script',
-          chunks: 'initial',
+          chunks: 'all',
           enforce: true
         }
       }
