@@ -133,6 +133,48 @@ export default {
     margin: 0rem 3rem;
     padding: 2rem 0rem;
 
+    .message-background {
+      background-color: rgba(120, 255, 200, 0.3);
+      width: 100%;
+      border-radius: 3px;
+
+      .message-column {
+        display: flex;
+        margin: 0.5rem auto;
+        padding: 0.5rem 0;
+
+        .user-info {
+          padding: 10px;
+        }
+
+        .message {
+          background-color: transparent;
+          display: inline-block;
+          position: relative;
+          margin: 0 0 0 4rem;
+          padding: 10px;
+          max-width: 75%;
+          min-width: 40%;
+          border-radius: 12px;
+          background: #eff0f4;
+          border: 1px solid #9c9c9c;
+          word-wrap: break-word;
+        }
+      }
+    }
+
+    .note {
+      background-color: rgba(255, 255, 110, 0.4);
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+
+      p {
+        color: black;
+        font-size: 0.8rem;
+      }
+    }
+
     .message-textarea {
       width: 100%;
       margin: 0.5rem 0;

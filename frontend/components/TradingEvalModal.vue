@@ -194,9 +194,14 @@ export default {
 }
 .modal-card-body {
   padding-top: 0;
-}
-.note {
-  margin: 1rem auto 0rem;
-  max-width: 80%;
+
+  .note {
+    margin: 1rem auto 0rem;
+    max-width: 80%;
+  }
+
+  .none {
+    display: none;
+  }
 }
 </style>

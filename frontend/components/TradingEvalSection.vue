@@ -39,9 +39,22 @@ export default {
 .trading-eval-section {
   background-color: white;
   margin-bottom: 1rem;
-}
-.trading-eval-content {
-  margin: 0rem 3rem;
-  padding: 1rem 0rem;
+
+  .trading-eval-content {
+    margin: 0rem 3rem;
+    padding: 1rem 0rem;
+
+    .note {
+      background-color: rgba(255, 255, 110, 0.4);
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+
+      p {
+        color: black;
+        font-size: 0.8rem;
+      }
+    }
+  }
 }
 </style>

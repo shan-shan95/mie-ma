@@ -152,5 +152,9 @@ export default {
     height: 100%;
     font-size: 1.2rem;
   }
+
+  .disabled {
+    pointer-events: none;
+  }
 }
 </style>

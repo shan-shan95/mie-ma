@@ -17,8 +17,19 @@ export default {}
 <style lang="scss" scoped>
 .hero-body {
   padding: 3rem 0;
-}
-.menu-item {
-  margin-bottom: 0.2rem;
+
+  .menu-item {
+    margin-bottom: 0.2rem;
+  }
+
+  .link-button {
+    display: block;
+    color: #4a4a4a;
+    padding: 0.5rem 0;
+    border: solid thin gray;
+    border-radius: 3px;
+    background-color: white;
+    text-align: center;
+  }
 }
 </style>
