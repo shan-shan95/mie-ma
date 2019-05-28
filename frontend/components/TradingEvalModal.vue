@@ -23,7 +23,7 @@ form(
         p.modal-card-title 評価
       section.modal-card-body
         .note
-          p 出品者の取引までのやり取り、取引時の対応はどうでしたか？
+          p 相手の取引までのやり取り、取引時の対応はどうでしたか？
           p 3つのうちから1つを選び、コメントがあれば入力してください。
         .evaluations.columns.is-centered
           .column
@@ -32,7 +32,7 @@ form(
               :class="{'selected-good': isGood}"
             )
               .eval-content
-                p Good
+                p 良い
                 i.far.fa-laugh.fa-4x.i-center
           .column
             .normal(
@@ -40,7 +40,7 @@ form(
               :class="{'selected-normal': isNormal}"
             )
               .eval-content
-                p Normal
+                p 普通
                 i.far.fa-meh.fa-4x.i-center
           .column
             .bad(
@@ -48,7 +48,7 @@ form(
               :class="{'selected-bad': isBad}"
             )
               .eval-content
-                p Bad
+                p イマイチ
                 i.far.fa-frown.fa-4x.i-center
           input.none(
             name="item_id"

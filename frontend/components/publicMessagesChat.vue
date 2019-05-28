@@ -136,7 +136,7 @@ export default {
     .message-background {
       background-color: rgba(120, 255, 200, 0.3);
       width: 100%;
-      border-radius: 3px;
+      border-radius: 5px;
 
       .message-column {
         display: flex;

@@ -1,10 +1,10 @@
 <template lang="pug">
 .trading-eval-section
-  .trading-eval-content(v-if="isBuyer")
+  .trading-eval-content
     .note
       p 商品の取引きが完了したら以下のボタンを押してください。
     .trading-completed-button
-      button.button.is-success.submit(
+      button.button.is-success.trading-submit(
         @click="toggleIsModalActive()"
       ) 取引完了
 </template>
@@ -54,6 +54,11 @@ export default {
         color: black;
         font-size: 0.8rem;
       }
+    }
+
+    .trading-submit {
+      display: block;
+      margin: 0 auto;
     }
   }
 }
