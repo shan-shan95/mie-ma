@@ -23,5 +23,7 @@
   "prettier.semi": false,
   "editor.formatOnSave": true,
   "vetur.format.defaultFormatter.html": "prettier",
-  "editor.detectIndentation": false
+  "editor.detectIndentation": false,
+  "ruby.useBundler": true,
+  "ruby.format": "rufo"
 }
