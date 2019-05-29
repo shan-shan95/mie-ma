@@ -37,13 +37,12 @@ ActiveRecord::Schema.define(version: 2019_05_15_170046) do
     t.string "be_evaluated_id", null: false
     t.string "evaluator_id", null: false
     t.string "item_id", null: false
-    t.integer "evaluator_type", null: false
     t.integer "status", null: false
+    t.integer "evaluator_type", null: false
     t.text "comment", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["be_evaluated_id", "created_at"], name: "index_evaluation_comments_on_be_evaluated_id_and_created_at"
-    t.index ["be_evaluated_id"], name: "index_evaluation_comments_on_be_evaluated_id"
     t.index ["evaluator_id"], name: "fk_rails_07849153e8"
     t.index ["item_id"], name: "index_evaluation_comments_on_item_id"
   end
@@ -54,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_170046) do
     t.integer "price", null: false
     t.integer "status", null: false
     t.integer "trading_status", default: 0, null: false
+    t.integer "eval_status", default: 0, null: false
     t.string "buyer_id"
     t.string "seller_id", null: false
     t.date "start_on", null: false
