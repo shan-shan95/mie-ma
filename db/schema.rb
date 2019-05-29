@@ -34,15 +34,18 @@ ActiveRecord::Schema.define(version: 2019_05_15_170046) do
   end
 
   create_table "evaluation_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "seller_id", null: false
-    t.string "buyer_id", null: false
+    t.string "be_evaluated_id", null: false
+    t.string "evaluator_id", null: false
+    t.string "item_id", null: false
+    t.integer "evaluator_type", null: false
     t.integer "status", null: false
     t.text "comment", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["buyer_id"], name: "fk_rails_587966a8ad"
-    t.index ["seller_id", "created_at"], name: "index_evaluation_comments_on_seller_id_and_created_at"
-    t.index ["seller_id"], name: "index_evaluation_comments_on_seller_id"
+    t.index ["be_evaluated_id", "created_at"], name: "index_evaluation_comments_on_be_evaluated_id_and_created_at"
+    t.index ["be_evaluated_id"], name: "index_evaluation_comments_on_be_evaluated_id"
+    t.index ["evaluator_id"], name: "fk_rails_07849153e8"
+    t.index ["item_id"], name: "index_evaluation_comments_on_item_id"
   end
 
   create_table "items", id: :string, limit: 36, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -120,8 +123,8 @@ ActiveRecord::Schema.define(version: 2019_05_15_170046) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "evaluation_comments", "users", column: "buyer_id"
-  add_foreign_key "evaluation_comments", "users", column: "seller_id"
+  add_foreign_key "evaluation_comments", "users", column: "be_evaluated_id"
+  add_foreign_key "evaluation_comments", "users", column: "evaluator_id"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"
   add_foreign_key "private_messages", "items"
