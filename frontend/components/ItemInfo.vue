@@ -27,7 +27,7 @@
         :class="{'disabled': isSeller}"
         :disabled="isSeller"
         v-if="isNowOnSale()"
-        @click="toggleIsModalActive()"
+        @click="toggleModal()"
       ) 購入する
       a.button.is-success.disabled(
         disabled
@@ -50,17 +50,11 @@
 import Carousel from '../components/ItemImagesCarousel'
 
 export default {
-  data() {
-    return {
-      isActive: this.isModalActive
-    }
-  },
   methods: {
     isNowOnSale() {
       return this.item.trading_status === 'now_on_sale'
     },
-    toggleIsModalActive() {
-      this.isActive = !this.isActive
+    toggleModal() {
       this.$emit('toggle')
     },
     editItemPath() {
@@ -100,10 +94,6 @@ export default {
       required: true
     },
     isAblePurchase: {
-      type: Boolean,
-      required: true
-    },
-    isModalActive: {
       type: Boolean,
       required: true
     }

@@ -16,7 +16,7 @@ form(
   )
   .modal(:class="{'is-active': isModalActive}")
     .modal-background(
-      @click="toggleIsModalActive()"
+      @click="toggleModal()"
     )
     .modal-content
       header.modal-card-head
@@ -51,16 +51,20 @@ form(
                 p イマイチ
                 i.far.fa-frown.fa-4x.i-center
           input.none(
-            name="item_id"
+            name="evaluation_comment[evaluator_id]"
+            :value="evaluatorId"
+          )
+          input.none(
+            name="evaluation_comment[be_evaluated_id]"
+            :value="beEvaluatedId"
+          )
+          input.none(
+            name="evaluation_comment[evaluator_type]"
+            :value="evaluatorType"
+          )
+          input.none(
+            name="evaluation_comment[item_id]"
             :value="item.id"
-          )
-          input.none(
-            name="evaluation_comment[seller_id]"
-            :value="sellerId"
-          )
-          input.none(
-            name="evaluation_comment[buyer_id]"
-            :value="buyerId"
           )
           input.none(
             name="evaluation_comment[status]"
@@ -86,11 +90,11 @@ form(
           disabled
         ) 評価する
         button.button(
-          @click.prevent="toggleIsModalActive()"
+          @click.prevent="toggleModal()"
         ) キャンセル
     button.modal-close.is-large(
       aria-label="close"
-      @click.prevent="toggleIsModalActive()"
+      @click.prevent="toggleModal()"
       )
 </template>
 
@@ -98,7 +102,6 @@ form(
 export default {
   data() {
     return {
-      isActive: this.isModalActive,
       isGood: false,
       isNormal: false,
       isBad: false,
@@ -107,9 +110,8 @@ export default {
     }
   },
   methods: {
-    toggleIsModalActive() {
-      this.isActive = !this.isActive
-      this.$emit('toggle')
+    toggleModal() {
+      this.eventHub.$emit('toggle')
     },
     toggleIsGood() {
       this.isGood = true
@@ -137,19 +139,27 @@ export default {
     }
   },
   props: {
-    isModalActive: {
-      type: Boolean,
-      required: true
-    },
-    sellerId: {
+    evaluatorId: {
       type: String,
       required: true
     },
-    buyerId: {
+    beEvaluatedId: {
+      type: String,
+      required: true
+    },
+    evaluatorType: {
       type: String,
       required: true
     },
     item: {
+      type: Object,
+      required: true
+    },
+    isModalActive: {
+      type: Boolean,
+      required: true
+    },
+    eventHub: {
       type: Object,
       required: true
     }

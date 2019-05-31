@@ -6,8 +6,10 @@
     format('woff2');
   font-display: swap;
 }
-main {
+#app {
   background-color: #eeeeee;
+}
+main {
   padding: 0rem 4rem;
   min-height: 80vh;
 }

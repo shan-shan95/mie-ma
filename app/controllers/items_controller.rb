@@ -65,8 +65,8 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    item = Item.joins(:seller).find(params[:id])
-    if current_user.is_trading?(item) || !item.now_on_sale?
+    item = Item.find(params[:id])
+    if !item.now_on_sale?
       return redirect_to item_path(item.id), alert: "購入できませんでした"
     end
 
@@ -75,17 +75,17 @@ class ItemsController < ApplicationController
   end
 
   def trading
-    item = Item.find(params[:id])
-    return redirect_to item_path(params[:id]) unless current_user.is_trading?(item)
+    item = Item.joins(:seller).find(params[:id])
+    return redirect_to item_path(params[:id]), notice: "この商品は取引が完了しています" if item.completed?
+    return redirect_to item_path(params[:id]), notice: "このページは販売者または購入者しか見れません" unless user_signed_in? && current_user.is_trading?(item)
 
-    gon.item = item
-    gon.message = PrivateMessage.new
-    gon.seller_name = item.seller.nickname
-    gon.is_seller = user_signed_in? && current_user.is_seller?(item)
-    gon.is_buyer = current_user.is_buyer?(item)
-    gon.user_id = current_user.id
-    gon.user_name = current_user.nickname if user_signed_in?
+    gon.item = item.with_images_url
     gon.private_messages = item.private_messages
+    gon.message = PrivateMessage.new
+    gon.is_completed_evaluation = current_user.is_completed_evaluation?(item)
+    gon.be_evaluated_id = item.be_evaluated_id(current_user.id)
+    gon.seller_name = item.seller.nickname
+    gon.role = current_user.seller_or_buyer(item)
   end
 
   private

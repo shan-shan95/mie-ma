@@ -1,34 +1,32 @@
 <template lang="pug">
 .trading-eval-section
   .trading-eval-content
-    .note
-      p 商品の取引きが完了したら以下のボタンを押してください。
-    .trading-completed-button
-      button.button.is-success.trading-submit(
-        @click="toggleIsModalActive()"
-      ) 取引完了
+    template(v-if="!isCompletedEvaluation")
+      .note
+        p 商品の取引きが完了したら以下のボタンを押してください。
+      .trading-completed-button
+        button.button.is-success.trading-submit(
+          @click="toggleModal()"
+        ) 取引完了
+    template(v-else)
+      .note
+        p 現在、取引相手の評価を待っています。
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      isActive: this.isModalActive
-    }
-  },
   methods: {
-    toggleIsModalActive() {
-      this.isActive = !this.isActive
-      this.$emit('toggle')
+    toggleModal() {
+      this.eventHub.$emit('toggle')
     }
   },
   props: {
-    isBuyer: {
+    isCompletedEvaluation: {
       type: Boolean,
       required: true
     },
-    isModalActive: {
-      type: Boolean,
+    eventHub: {
+      type: Object,
       required: true
     }
   }

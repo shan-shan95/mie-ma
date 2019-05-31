@@ -6,7 +6,7 @@ class MypagesController < ApplicationController
   end
 
   def evaluation_comments
-    gon.eval_comments = current_user.evaluation_comments.map(&:merged_attr)
+    gon.eval_comments = current_user.evaluation_comments.map(&:evalator_name)
   end
 
   def sell_items

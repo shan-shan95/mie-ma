@@ -23,8 +23,8 @@
                     )
       SideBar
     a.sell-button(href="/items/new")
-      div 出品
-      i.fa.fa-camera
+      div.sell-button__content 出品
+      i.fa.fa-camera.sell-button__icon
   Footer
 </template>
 
@@ -55,9 +55,10 @@ export default {
 <style lang="scss">
 .hero-body {
   padding: 1.5rem 1.5rem;
-}
-.items {
-  padding: 1rem;
+
+  .items {
+    padding: 1rem;
+  }
 }
 .sell-button {
   bottom: 3rem;
@@ -72,13 +73,13 @@ export default {
   color: white;
   text-align: center;
 
-  div {
+  &__content {
     position: relative;
     top: 1rem;
     font-size: 1.5rem;
   }
 
-  i {
+  &__icon {
     position: relative;
     top: 1.5rem;
     font-size: 2rem;

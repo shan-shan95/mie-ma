@@ -6,14 +6,14 @@
         .message-column.is-clearfix(v-for="(privateMessage, index) in privateMessages")
           .user-info.is-pulled-left
             .user-name
-              p {{ userName }}さん
+              p {{ currentUserName }}さん
           .message.is-pulled-left
             p(:key="index") {{ privateMessage.content }}
             .send-time
               small {{ postedDateOrTime(privateMessage) }}
       .note
         p 商品の受け渡しをする場所と日時を決めましょう。相手のことを考え丁寧なコメントを心がけましょう。
-        p 購入者は受け取り後に速やかに評価をしてください。
+        p 取引後は速やかに評価をしてください。
       form
         textarea.textarea.is-primary.message-textarea(
           v-model="postMessage.content"
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     postPrivateMessage() {
-      this.postMessage.sender_id = this.userId
+      this.postMessage.sender_id = this.currentUserId
       this.postMessage.recepient_id = this.item.seller_id
       this.postMessage.item_id = this.item.id
       if (this.postMessage.content) {
@@ -104,11 +104,11 @@ export default {
       type: Object,
       required: true
     },
-    userId: {
+    currentUserId: {
       type: String,
       required: true
     },
-    userName: {
+    currentUserName: {
       type: String,
       required: true
     },

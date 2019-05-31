@@ -3,6 +3,7 @@ class Item < ApplicationRecord
 
   belongs_to :buyer, class_name: "User", optional: true
   belongs_to :seller, class_name: "User"
+  has_many :evaluation_comments, dependent: :destroy
   has_many :public_messages, dependent: :destroy
   has_many :private_messages, dependent: :destroy
   has_many_attached :images
@@ -13,12 +14,13 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :status, presence: true
   validates :seller_id, presence: true
-  validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 0}
-  validates :images, length: {maximum: 4}
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :images, length: { maximum: 4 }
   validate :validate_images
 
   enum status: %i[brand_new excellent poor junk] # 新品 良品 傷あり ジャンク
   enum trading_status: %i[now_on_sale trading completed] # 販売中 取引中 取引完了
+  enum eval_status: %i[wait_both wait_seller wait_buyer completed_both] # 両者待ち 販売者待ち 購入者待ち 完了
 
   def with_sumbnail_url
     if images.present?
@@ -49,6 +51,15 @@ class Item < ApplicationRecord
     end
   end
 
+  def be_evaluated_id(user_id)
+    return buyer_id if user_id == seller_id
+    return seller_id if user_id == buyer_id
+  end
+
+  def completed_evaluation?
+    return evaluation_comments&.length == 2
+  end
+
   private
 
   def set_start_on
@@ -69,6 +80,6 @@ class Item < ApplicationRecord
   end
 
   def image?(file)
-    %w[image/jpg image/jpeg image/gif image/png].include?(file.blob.content_type)
+    %w(image/jpg image/jpeg image/gif image/png).include?(file.blob.content_type)
   end
 end
