@@ -105,46 +105,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-contents {
-  padding: 3rem 6rem;
-}
-.dummy {
-  height: 16rem;
-  width: 100%;
-  background-color: grey;
-  margin-bottom: 2rem;
-}
 .item-info {
   background-color: white;
-}
-.info-content {
-  margin: 0rem 3rem;
-  padding: 2rem 0rem;
-}
-.view {
-  text-align: right;
-}
-.price {
-  display: block;
-  text-align: center;
-  font-weight: bold;
-  font-size: 2.5rem;
-  color: #48bedb;
-}
-.purchase {
-  display: block;
-  margin: 1rem auto;
-  height: 3rem;
-  width: 10rem;
 
-  a {
-    width: 100%;
-    height: 100%;
-    font-size: 1.2rem;
-  }
+  .info-content {
+    margin: 0rem 3rem;
+    padding: 2rem 0rem;
 
-  .disabled {
-    pointer-events: none;
+    .view {
+      text-align: right;
+    }
+    .price {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      font-size: 2.5rem;
+      color: #48bedb;
+    }
+    .purchase {
+      display: block;
+      margin: 1rem auto;
+      height: 3rem;
+      width: 10rem;
+
+      a {
+        width: 100%;
+        height: 100%;
+        font-size: 1.2rem;
+      }
+
+      .disabled {
+        pointer-events: none;
+      }
+    }
   }
 }
 </style>

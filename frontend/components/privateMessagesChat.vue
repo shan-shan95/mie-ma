@@ -3,7 +3,10 @@
   .message-section
     .message-content
       .message-background
-        .message-column.is-clearfix(v-for="(privateMessage, index) in privateMessages")
+        .message-column.is-clearfix(
+          v-for="(privateMessage, index) in privateMessages"
+          :key="index"
+        )
           .user-info.is-pulled-left
             .user-name
               p {{ currentUserName }}さん

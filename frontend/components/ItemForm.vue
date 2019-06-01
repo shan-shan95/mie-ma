@@ -40,6 +40,7 @@
           .field-body.columns
             .images.column(
               v-for="(url, index) in item.images_url"
+              :key="index"
             )
               img.image.is-128x128(
                 :src="url"
@@ -47,13 +48,15 @@
               )
             .selectedfiles.column(
               v-for="(url, index) in sumbnailUrls"
+              :key="index"
             )
               img.image.is-128x128(
                 :src="url"
                 decoding="async"
               )
             .dummies(
-              v-for="num in dummyNum()"
+              v-for="(num, index) in dummyNum()"
+              :key="index"
             )
               .dummy
           .field-body

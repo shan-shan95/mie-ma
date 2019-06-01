@@ -5,7 +5,7 @@
       @click="back()"
       :class="{ 'is-nonactive': isFirstImage() }"
     )
-      span.arrow-icon <
+      span.pagination-icon <
     transition(:name="transitionName")
       img.image(
         :src="url"
@@ -18,10 +18,11 @@
       @click="next()"
       :class="{ 'is-nonactive': isLastImage() }"
     )
-      span.arrow-icon >
+      span.pagination-icon >
   .dots
     .dot(
       v-for="(url, index) in item.images_url"
+      :key="index"
       :class="{'is-visible' : visibleImage === index}"
     )
 </template>
@@ -70,7 +71,7 @@ export default {
 <style lang="scss" scoped>
 .carousel {
   max-height: 300px;
-  width: 72%;
+  width: 60%;
   overflow: hidden;
   position: relative;
   background-color: lightgray;
@@ -108,11 +109,12 @@ export default {
   }
 
   .is-nonactive {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 
-  .arrow-icon {
+  .pagination-icon {
     font-size: 2.5rem;
+    font-weight: 600;
     -webkit-text-stroke: 1px black;
   }
 }
@@ -126,10 +128,10 @@ export default {
   margin: 0 auto;
 
   .dot {
-    background-color: lightgray;
+    background-color: #d1d1d1;
     border-radius: 50%;
-    height: 6px;
-    width: 6px;
+    height: 8px;
+    width: 8px;
   }
 
   .is-visible {

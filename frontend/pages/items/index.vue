@@ -11,7 +11,8 @@
             .items
               .columns.is-multiline
                 .column.is-3(
-                  v-for="item in items"
+                  v-for="(item, index) in items"
+                  :key="index"
                 )
                   a(
                     :href="itemShowPath(item)"
