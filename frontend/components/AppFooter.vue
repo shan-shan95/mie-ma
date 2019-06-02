@@ -1,12 +1,14 @@
 <template lang="pug">
 footer.footer
   .content
-    a 出品ガイド
-    br
-    a 購入ガイド
-    br
-    //- a お問い合わせ
+    //- a 出品ガイド
     //- br
+    //- a 購入ガイド
+    //- br
+    a(
+      href="/contact"
+    ) お問い合わせ
+    br
     a(
       href="/privacy_policy"
     ) プライバシーポリシー

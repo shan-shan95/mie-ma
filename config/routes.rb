@@ -30,12 +30,14 @@ Rails.application.routes.draw do
     end
   end
 
-  get "sell_guide", to: "static_pages#sell_guide" # 出品ガイド
-  get "buy_guide", to: "static_pages#buy_guide" # 購入ガイド
-  get "contact", to: "static_pages#contact" # 問い合わせ
-  get "privacy_policy", to: "static_pages#privacy_policy" # プライバシーポリシー
-  get "terms_of_service", to: "static_pages#terms_of_service"  # 利用規約
-  get "news", to: "static_pages#news" # お知らせ
+  controller :static_pages do
+    get :sell_guide # 出品ガイド
+    get :buy_guide # 購入ガイド
+    get :contact # 問い合わせ
+    get :privacy_policy # プライバシーポリシー
+    get :terms_of_service # 利用規約
+    get :news # お知らせ
+  end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
