@@ -29,7 +29,7 @@
                     i.far.fa-meh.icon.is-medium.fa-lg.i-center
                     span.is-size-5 普通
                   template
-                    p {{ selectedEvalComments('good').length }}
+                    p {{ selectedEvalComments('normal').length }}
                 a.evaluation.bad.has-text-centered(
                   :class="{'selected': isSelectedEval('bad')}"
                   @click="selectEval('bad')"
@@ -40,17 +40,25 @@
                   template
                     p {{ selectedEvalComments('bad').length }}
               hr.hr
-              .comments-background
-                .comment-column(
+              .evaluation-comments__background(v-if="isExistComments")
+                .evaluation-comment__column(
                   v-for="evaluation in selectedEvalComments(selectedEval)"
                   :key="evaluation.id"
                 )
-                  .user-info
-                    p.user-name {{ evaluation.buyer_name }}
-                    i.far.fa-laugh.i-center
-                  .comment
-                    p.comment-content {{ displayComment(evaluation.comment) }}
-              p(v-if="selectedEvalComments(selectedEval).length === 0") この項目には表示できるコメントがありません
+                  .profile
+                    img.profile__img.is-rounded(
+                      src="https://miema-assets-bucket.s3-ap-northeast-1.amazonaws.com/assets/images/dummy-profile.png"
+                      alt="プロフィール画像"
+                    )
+                  .evaluation-comment__main
+                    .evaluator-info
+                      i.evaluator-info__icon.far.fa-lg(
+                        :class="selectEvalIconClass"
+                      )
+                      p.evaluator-info__role {{ displayEvaluatorRole(evaluation.evaluator_type) }}
+                    .evaluator-info__name {{ evaluation.evaluator_name }}
+                    .comment {{ evaluation.comment }}
+              p(v-else) この項目には表示できるコメントがありません
   Footer
 </template>
 
@@ -81,11 +89,38 @@ export default {
     selectedEvalComments(evaluation) {
       return this.evalComments.filter(x => x.status === evaluation)
     },
-    displayComment(comment) {
-      if (comment === '') {
-        return ''
-      } else {
-        return comment
+    displayEvaluatorRole(role) {
+      switch (role) {
+        case 'seller':
+          return '販売者'
+          break
+        case 'buyer':
+          return '購入者'
+          break
+        default:
+          return ''
+          break
+      }
+    }
+  },
+  computed: {
+    isExistComments() {
+      return this.selectedEvalComments(this.selectedEval).length !== 0
+    },
+    selectEvalIconClass() {
+      switch (this.selectedEval) {
+        case 'good':
+          return 'fa-laugh good'
+          break
+        case 'normal':
+          return 'fa-meh normal'
+          break
+        case 'bad':
+          return 'fa-frown bad'
+          break
+        default:
+          return ''
+          break
       }
     }
   }
@@ -127,24 +162,64 @@ export default {
     background-color: #aaaaaa;
   }
 
-  .comments-background {
-    background-color: rgba(120, 255, 200, 0.3);
+  .evaluation-comments__background {
+    background-color: white;
     width: 100%;
     border-radius: 5px;
     padding: 2rem;
 
-    .user-info {
+    .evaluation-comment__column {
       display: flex;
+      margin-bottom: 1.5rem;
     }
 
-    .comment {
-      margin-left: 1rem;
-      padding: 12px 8px;
-      background-color: lightgrey;
-      display: inline-block;
-      border-radius: 10px;
-      border: 1px solid #9c9c9c;
-      word-wrap: break-word;
+    .profile {
+      max-width: 48px;
+      max-height: 48px;
+      margin: 0 1rem;
+
+      &__img {
+        border-radius: 50px;
+      }
+    }
+
+    .evaluation-comment__main {
+      max-width: 492px;
+
+      .evaluator-info {
+        display: flex;
+
+        &__icon {
+          line-height: 1.5rem;
+          margin-right: 0.5rem;
+        }
+
+        &__role {
+          color: grey;
+        }
+
+        .good {
+          color: rgb(221, 126, 221);
+        }
+
+        .normal {
+          color: rgb(219, 219, 98);
+        }
+
+        .bad {
+          color: rgb(113, 172, 226);
+        }
+      }
+
+      .evaluator-info__name {
+        display: block;
+        color: grey;
+      }
+
+      .comment {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
     }
   }
 }

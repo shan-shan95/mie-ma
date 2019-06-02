@@ -30,6 +30,7 @@ export default {}
     border-radius: 3px;
     background-color: white;
     text-align: center;
+    box-shadow: 1px 1px 2px gray;
   }
 }
 </style>
