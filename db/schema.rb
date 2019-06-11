@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2019_05_15_170046) do
     t.string "unconfirmed_email"
     t.string "nickname", null: false
     t.text "profile"
+    t.integer "grade_type"
+    t.integer "grade_rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
