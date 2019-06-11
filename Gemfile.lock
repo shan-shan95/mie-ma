@@ -88,6 +88,9 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.8.0)
+      devise (>= 4.6)
+    devise-i18n-views (0.3.7)
     dotenv (2.6.0)
     dotenv-rails (2.6.0)
       dotenv (= 2.6.0)
@@ -268,6 +271,8 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   devise (>= 4.6.0)
+  devise-i18n
+  devise-i18n-views
   dotenv-rails
   fog-aws
   foreman
