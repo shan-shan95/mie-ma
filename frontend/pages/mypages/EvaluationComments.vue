@@ -47,7 +47,7 @@
                 )
                   .profile
                     img.profile__img.is-rounded(
-                      src="https://miema-assets-bucket.s3-ap-northeast-1.amazonaws.com/assets/images/dummy-profile.png"
+                      src="https://d16vmihj9x3vj.cloudfront.net/assets/images/dummy-profile.png"
                       alt="プロフィール画像"
                     )
                   .evaluation-comment__main

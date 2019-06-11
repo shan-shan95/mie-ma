@@ -36,7 +36,7 @@ module WebpackBundleHelper
   private
 
   def asset_server
-    Rails.env.development? ? "http://#{request.host}:3035" : "https://s3-ap-northeast-1.amazonaws.com/miema-assets-bucket"
+    Rails.env.development? ? "http://#{request.host}:3035" : "https://d16vmihj9x3vj.cloudfront.net"
   end
 
   def pro_manifest
