@@ -36,8 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :id, limit: 36, null: false, primary_key: true
       t.string :nickname, null: false
       t.text :profile
-      t.integer :grade_type
-      t.integer :grade_rank
       t.timestamps null: false
     end
 
