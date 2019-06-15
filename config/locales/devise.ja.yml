@@ -17,13 +17,17 @@ ja:
               too_long: 'は%{count}文字以下に設定して下さい。'
               invalid: 'は有効でありません。'
               confirmation: 'が内容とあっていません。'
+            nickname:
+              blank: 'が入力されていません。'
+            reset_password_token:
+              invalid: 'が無効です。'
     attributes:
       user:
         current_password: '現在のパスワード'
         name: 名前
         email: 'メールアドレス'
         password: 'パスワード'
-        password_confirmation: '確認用パスワード'
+        password_confirmation: 'パスワード(もう一度入力してください)'
         remember_me: '次回から自動的にログイン'
         nickname: 'ニックネーム'
         profile: 'プロフィール'

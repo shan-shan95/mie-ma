@@ -1,0 +1,9 @@
+<p>こんにちは。ミエマ運営です。</p>
+
+<p>次のメールアドレスに変更しました。</p>
+
+<% if @resource.try(:unconfirmed_email?) %>
+  <p><%= @resource.unconfirmed_email %></p>
+<% else %>
+  <p><%= @resource.email %></p>
+<% end %>
