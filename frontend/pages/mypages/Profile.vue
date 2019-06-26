@@ -12,9 +12,9 @@
             hr
             .is-clearfix
               .is-pulled-right
-                a(href="/users/edit") 編集する
-            h2.is-size-5.has-text-black 自己紹介
-            p {{ user.profile }}
+                a(:href="editProfilePath()") 編集する
+            h2.is-size-5.has-text-black.title.profile-title 自己紹介
+            p.profile {{ user.profile }}
   Footer
 </template>
 
@@ -33,9 +33,21 @@ export default {
     Header,
     Footer,
     Menu
+  },
+  methods: {
+    editProfilePath() {
+      return '/users/' + this.user.id + '/edit'
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.profile-title {
+  margin-bottom: 1rem;
+}
+.profile {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 </style>

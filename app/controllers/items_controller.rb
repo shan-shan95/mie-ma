@@ -32,8 +32,6 @@ class ItemsController < ApplicationController
     gon.message = PublicMessage.new
     gon.seller_name = item.seller.nickname
     gon.is_seller = user_signed_in? && current_user.is_seller?(item)
-    gon.user_id = current_user.id if user_signed_in?
-    gon.user_name = current_user.nickname if user_signed_in?
     gon.public_messages = item.public_messages
   end
 

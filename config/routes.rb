@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root controller: "items", action: "index"
+
   devise_for :users, controllers: {
                        confirmations: "users/confirmations",
                        registrations: "users/registrations",
@@ -6,7 +8,7 @@ Rails.application.routes.draw do
                        passwords: "users/passwords",
                      }
 
-  root controller: "items", action: "index"
+  resources :users, only: %i[edit update]  
 
   resources :items, except: :index do
     member do
@@ -38,6 +40,6 @@ Rails.application.routes.draw do
     get :terms_of_service # 利用規約
     get :news # お知らせ
   end
-
+  
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

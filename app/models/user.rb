@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   after_create :create_user_eval
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@m.mie-u.ac.jp\z/
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@(m.mie-u.ac.jp|galaxy.ocn.ne.jp)\z/
 
   validates :nickname, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
