@@ -8,7 +8,12 @@
         hr
         p お問い合わせは
         strong mie.university.market@gmail.com
-        p にメールしていただくか、Twitter(@mie_univ_market)にリプライ、DM等よろしくお願いいたします。
+        p にメールしていただくか
+        a(
+          href="https://twitter.com/mie_univ_market"
+          target="_blank"
+        ) Twitter(@mie_univ_market)
+        p にリプライ、DM等をよろしくお願いいたします。
   Footer
 </template>
 
