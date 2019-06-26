@@ -60,8 +60,8 @@ export default {
       sellerName: gon.seller_name,
       isSeller: gon.is_seller,
       isSignedIn: gon.is_signed_in,
-      userId: gon.current_user.id,
-      userName: gon.current_user.nickname,
+      userId: gon.user_id,
+      userName: gon.user_name,
       publicMessages: gon.public_messages,
       isModalActive: false
     }
