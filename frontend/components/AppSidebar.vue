@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      twitterId: 'miecoop',
+      twitterId: 'mie_univ_market',
       twitterHeight: '450'
     }
   }
