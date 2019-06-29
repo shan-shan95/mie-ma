@@ -69,6 +69,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../init/_responsive';
+
 .carousel {
   max-height: 300px;
   width: 60%;
@@ -76,6 +78,10 @@ export default {
   position: relative;
   background-color: lightgray;
   margin: 0 auto;
+  @include sp {
+    margin: 0;
+    width: 100%;
+  }
 
   .image {
     margin: 0 auto;

@@ -1,6 +1,6 @@
 <template lang="pug">
-.hero
-  .hero-body
+.menu
+  .menu-body
     h3 メニュー
     hr
     a.menu-item.link-button(href="/mypage/profile") プロフィール
@@ -14,8 +14,13 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-.hero-body {
+@import '../init/_responsive';
+
+.menu-body {
   padding: 3rem 0;
+  @include sp {
+    padding: 1.5rem;
+  }
 
   .menu-item {
     margin-bottom: 0.2rem;

@@ -1,3 +1,5 @@
+@import './_responsive';
+
 @font-face {
   font-family: 'Font Awesome\ 5 Free', Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -6,23 +8,32 @@
     format('woff2');
   font-display: swap;
 }
+
 #app {
   background-color: #eeeeee;
 }
+
 main {
   padding: 0rem 4rem;
   min-height: 80vh;
+  @include sp {
+    padding: 0;
+  }
 }
+
 hr {
   background-color: #cccccc;
   margin: 1rem 0;
 }
+
 .columns:not(:last-child) {
   margin: 0;
 }
+
 .title:not(:last-child) {
   margin-bottom: 1rem;
 }
+
 .notice,
 .alert {
   border-radius: 4px;
@@ -43,4 +54,11 @@ hr {
 .notification {
   margin-top: 1rem;
   padding: 0.5rem;
+}
+
+.hero-body {
+  @include sp {
+    padding: 1.5rem;
+    margin: 0;
+  }
 }

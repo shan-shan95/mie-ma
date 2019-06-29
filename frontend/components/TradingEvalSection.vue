@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../init/_responsive';
+
 .trading-eval-section {
   background-color: white;
   margin-bottom: 1rem;
@@ -41,6 +43,10 @@ export default {
   .trading-eval-content {
     margin: 0rem 3rem;
     padding: 1rem 0rem;
+    @include sp {
+      margin: 0 1.5rem;
+      padding: 1rem 0;
+    }
 
     .note {
       background-color: rgba(255, 255, 110, 0.4);

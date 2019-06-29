@@ -22,11 +22,16 @@ footer.footer
 </script>
 
 <style lang="scss" scoped>
+@import '../init/_responsive';
+
 footer {
   background-color: #777777;
 }
 .footer {
   padding: 1.5rem 5rem;
+  @include sp {
+    padding: 1rem 2rem;
+  }
 
   a {
     color: #f9f9f9;

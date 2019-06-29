@@ -37,25 +37,25 @@
         label.label(for="item_images") 商品画像
       .field-body
         .field-block
-          .field-body.columns
+          .field-body.columns.is-mobile.is-multiline
             template(v-if="item.images_url > 0")
-              .images.column(
+              .images.column.is-6-mobile.is-3-tablet(
                 v-for="url in item.images_url"
               )
-                img.image.is-128x128(
+                img.image(
                   :src="url"
                   decoding="async"
                 )
             template(v-if="sumbnailUrls.length > 0")
-              .selectedfiles.column(
+              .selectedfiles.column.is-6-mobile.is-3-tablet(
                 v-for="url in sumbnailUrls"
               )
-                img.image.is-128x128(
+                img.image(
                   :src="url"
                   decoding="async"
                 )
             template(v-if="dummyNum() > 0")
-              .dummies(
+              .dummies.column.is-6-mobile.is-3-tablet(
                 v-for="num in dummyNum()"
               )
                 .dummy
@@ -190,15 +190,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../init/_responsive';
+
 .form {
   margin: 2rem 5rem;
+  @include sp {
+    margin: 1rem 2rem;
+  }
 }
+
 .dummy {
   background-color: lightgray;
-  width: 128px;
-  height: 128px;
   margin: 12px;
 }
+
+.image,
+.dummy {
+  @include pc {
+    width: 128px;
+    height: 128px;
+  }
+  @include tab {
+    width: 128px;
+    height: 128px;
+  }
+  @include sp {
+    width: 64px;
+    height: 64px;
+  }
+}
+
 .field-block {
   display: block;
 }

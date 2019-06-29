@@ -25,7 +25,7 @@ form(
         .note
           p 相手の取引までのやり取り、取引時の対応はどうでしたか？
           p 3つのうちから1つを選び、コメントがあれば入力してください。
-        .evaluations.columns.is-centered
+        .evaluations.columns.is-centered.is-mobile
           .column
             .good(
               @click="toggleIsGood()"
@@ -168,50 +168,103 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../init/_responsive';
+
+.modal-background {
+  overflow: hidden;
+}
+
 .good,
 .normal,
 .bad {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 20vh;
+  @include pc {
+    min-height: 20vh;
+  }
+
+  p {
+    @include sp {
+      font-size: 0.8rem;
+    }
+  }
+
+  i {
+    @include sp {
+      font-size: 2rem;
+    }
+  }
 }
+
 .good:hover,
 .selected-good {
   font-size: 1.2rem;
   color: rgb(221, 126, 221);
 }
+
 .normal:hover,
 .selected-normal {
   font-size: 1.2rem;
   color: rgb(219, 219, 98);
 }
+
 .bad:hover,
 .selected-bad {
   font-size: 1.2rem;
   color: rgb(113, 172, 226);
 }
+
 .eval-comment {
   max-width: 80%;
   margin: 0 auto;
 }
+
 .notification {
   margin-top: 1.5rem;
 }
+
 .eval-content {
   display: block;
   text-align: center;
+  @include sp {
+    font-size: 0.8rem;
+  }
 }
-.modal-card-body {
-  padding-top: 0;
 
-  .note {
-    margin: 1rem auto 0rem;
-    max-width: 80%;
+.modal-content {
+  @include sp {
+    width: auto;
+    max-height: 100%;
   }
 
-  .none {
-    display: none;
+  .modal-card-head {
+    @include sp {
+      padding: 1rem;
+    }
+  }
+
+  .modal-card-body {
+    padding-top: 0;
+    @include sp {
+      padding: 0 0 1rem 0;
+    }
+
+    .note {
+      margin: 1rem auto 0rem;
+      max-width: 80%;
+      @include sp {
+        font-size: 0.8rem;
+      }
+    }
+
+    .none {
+      display: none;
+    }
+  }
+
+  .modal-card-foot {
+    padding: 1rem;
   }
 }
 </style>

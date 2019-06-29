@@ -74,6 +74,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../init/_responsive';
+
 .navbar {
   box-shadow: 2px 2px 4px gray;
 
@@ -82,6 +84,10 @@ export default {
     max-height: 3rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    @include sp {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 }
 .navbar-burger {
@@ -90,6 +96,10 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 1rem;
+  @include sp {
+    margin-left: auto;
+    margin-right: 0;
+  }
 
   span {
     left: calc(50% - 10px);

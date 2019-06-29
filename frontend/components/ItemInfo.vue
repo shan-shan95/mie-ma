@@ -113,12 +113,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../init/_responsive';
+
 .item-info {
   background-color: white;
 
   .info-content {
     margin: 0rem 3rem;
     padding: 2rem 0rem;
+    @include sp {
+      margin: 0 1.5rem;
+      padding: 1rem 0;
+    }
 
     .view {
       text-align: right;

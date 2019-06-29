@@ -9,8 +9,8 @@
             h1.title.is-3 新着アイテム
             hr
             .items
-              .columns.is-multiline
-                .column.is-3(
+              .columns.is-multiline.is-mobile
+                .column.is-3-desktop.is-3-tablet.is-6-mobile(
                   v-for="(item, index) in items"
                   :key="index"
                 )
@@ -53,19 +53,38 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../init/_responsive';
+
 .hero-body {
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem;
+  @include sp {
+    padding: 1rem;
+  }
 
   .items {
     padding: 1rem;
   }
 }
 .sell-button {
-  bottom: 3rem;
-  right: 3rem;
-  width: 7rem;
-  height: 7rem;
-  font-size: 22px;
+  @include pc {
+    bottom: 3rem;
+    right: 3rem;
+    width: 7rem;
+    height: 7rem;
+  }
+  @include sp {
+    bottom: 0;
+    right: 0;
+    width: 96px;
+    height: 96px;
+    line-height: 1;
+  }
+  @include tab {
+    bottom: 0;
+    right: 0;
+    width: 128px;
+    height: 128px;
+  }
   position: fixed;
   z-index: 1002;
   border-radius: 50%;
@@ -76,13 +95,13 @@ export default {
   &__content {
     position: relative;
     top: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   &__icon {
     position: relative;
-    top: 1.5rem;
-    font-size: 2rem;
+    top: 2rem;
+    font-size: 1.5rem;
   }
 }
 .image-box {

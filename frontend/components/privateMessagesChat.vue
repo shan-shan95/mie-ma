@@ -3,14 +3,14 @@
   .message-section
     .message-content
       .message-background
-        .message-column.is-clearfix(
+        .message-column(
           v-for="(privateMessage, index) in privateMessages"
           :key="index"
         )
-          .user-info.is-pulled-left
+          .user-info
             .user-name
               p {{ currentUserName }}さん
-          .message.is-pulled-left
+          .message
             p(:key="index") {{ privateMessage.content }}
             .send-time
               small {{ postedDateOrTime(privateMessage) }}
@@ -124,6 +124,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../init/_responsive';
+
 .message-section {
   background-color: white;
   margin-bottom: 1rem;
@@ -131,6 +133,10 @@ export default {
   .message-content {
     margin: 0rem 3rem;
     padding: 2rem 0rem;
+    @include sp {
+      margin: 0 1.5rem;
+      padding: 1rem 0;
+    }
 
     .message-background {
       background-color: rgba(120, 255, 200, 0.3);
@@ -138,26 +144,33 @@ export default {
       border-radius: 5px;
 
       .message-column {
-        display: flex;
         margin: 0.5rem auto;
         padding: 0.5rem 0;
 
         .user-info {
-          padding: 10px;
+          margin: 0 1rem;
         }
 
         .message {
           background-color: transparent;
           display: inline-block;
-          position: relative;
-          margin: 0 0 0 4rem;
+          margin: 0 1.5rem;
           padding: 10px;
-          max-width: 75%;
-          min-width: 40%;
           border-radius: 12px;
           background: #eff0f4;
           border: 1px solid #9c9c9c;
           word-wrap: break-word;
+          @include sp {
+            display: block;
+          }
+          @include tab {
+            max-width: 75%;
+            min-width: 40%;
+          }
+          @include pc {
+            max-width: 75%;
+            min-width: 40%;
+          }
         }
       }
     }

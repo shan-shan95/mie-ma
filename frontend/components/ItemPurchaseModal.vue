@@ -60,17 +60,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.modal-card-body {
-  p {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+@import '../init/_responsive';
+
+.modal-content {
+  @include sp {
+    width: 80%;
+    margin: 0 auto;
   }
 
-  .map {
-    max-width: 70%;
+  .modal-card-body {
+    p {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .map {
+      max-width: 70%;
+    }
   }
-}
-.purchase-note {
-  margin-top: 2rem;
+  .purchase-note {
+    margin-top: 2rem;
+  }
 }
 </style>

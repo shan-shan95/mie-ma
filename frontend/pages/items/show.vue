@@ -38,6 +38,7 @@ import Chat from '../../components/PublicMessagesChat'
 import Modal from '../../components/ItemPurchaseModal'
 import ItemInfo from '../../components/ItemInfo'
 import axios from 'axios'
+
 axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
   'X-CSRF-TOKEN': document

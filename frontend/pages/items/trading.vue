@@ -120,7 +120,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-contents {
-  padding: 3rem 6rem;
-}
 </style>
