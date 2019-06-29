@@ -38,27 +38,27 @@
       .field-body
         .field-block
           .field-body.columns
-            .images.column(
-              v-for="(url, index) in item.images_url"
-              :key="index"
-            )
-              img.image.is-128x128(
-                :src="url"
-                decoding="async"
+            template(v-if="item.images_url > 0")
+              .images.column(
+                v-for="url in item.images_url"
               )
-            .selectedfiles.column(
-              v-for="(url, index) in sumbnailUrls"
-              :key="index"
-            )
-              img.image.is-128x128(
-                :src="url"
-                decoding="async"
+                img.image.is-128x128(
+                  :src="url"
+                  decoding="async"
+                )
+            template(v-if="sumbnailUrls.length > 0")
+              .selectedfiles.column(
+                v-for="url in sumbnailUrls"
               )
-            .dummies(
-              v-for="(num, index) in dummyNum()"
-              :key="index"
-            )
-              .dummy
+                img.image.is-128x128(
+                  :src="url"
+                  decoding="async"
+                )
+            template(v-if="dummyNum() > 0")
+              .dummies(
+                v-for="num in dummyNum()"
+              )
+                .dummy
           .field-body
             input.input#item_images(
               type="file"
