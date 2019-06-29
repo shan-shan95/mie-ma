@@ -30,6 +30,7 @@ class ItemsController < ApplicationController
 
     gon.item = item.with_images_url
     gon.message = PublicMessage.new
+    gon.seller_id = item.seller.id
     gon.seller_name = item.seller.nickname
     gon.is_seller = user_signed_in? && current_user.is_seller?(item)
     gon.public_messages = item.public_messages
@@ -84,6 +85,7 @@ class ItemsController < ApplicationController
     gon.message = PrivateMessage.new
     gon.is_completed_evaluation = current_user.is_completed_evaluation?(item)
     gon.be_evaluated_id = item.be_evaluated_id(current_user.id)
+    gon.seller_id = item.seller.id
     gon.seller_name = item.seller.nickname
     gon.role = current_user.seller_or_buyer(item)
   end

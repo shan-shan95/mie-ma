@@ -38,7 +38,8 @@
         tr
           td
             strong 出品者
-          td {{ sellerName }}
+          td
+            a(:href="userShowPath()") {{ sellerName }}
         tr
           td
             strong 商品状態
@@ -78,6 +79,9 @@ export default {
         case 'junk':
           return 'ジャンク'
       }
+    },
+    userShowPath() {
+      return '/users/' + this.sellerId
     }
   },
   props: {
@@ -87,6 +91,10 @@ export default {
     },
     isSeller: {
       type: Boolean,
+      required: true
+    },
+    sellerId: {
+      type: String,
       required: true
     },
     sellerName: {

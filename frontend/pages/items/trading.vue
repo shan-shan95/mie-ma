@@ -21,6 +21,7 @@
           :isSeller="isSeller()"
           :item="item"
           :sellerName="sellerName"
+          :sellerId="sellerId"
         )
   Footer
   Modal(
@@ -71,7 +72,8 @@ export default {
       item: gon.item,
       message: gon.message,
       privateMessages: gon.private_messages,
-      sellerName: gon.seller_name
+      sellerName: gon.seller_name,
+      sellerId: gon.seller_id
     }
   },
   methods: {

@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+  def show
+    gon.user = User.find(params[:id])
+  end
+
   def edit
   end
 

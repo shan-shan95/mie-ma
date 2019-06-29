@@ -1,5 +1,5 @@
 <template lang="pug">
-#edit-profile
+#edit
   Header
   main
     .columns

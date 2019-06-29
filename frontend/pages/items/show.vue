@@ -7,6 +7,7 @@
         ItemInfo(
           :item="item"
           :isSeller="isSeller"
+          :sellerId="sellerId"
           :sellerName="sellerName"
           :isAblePurchase="true"
           :isModalActive="isModalActive"
@@ -57,6 +58,7 @@ export default {
     return {
       item: gon.item,
       message: gon.message,
+      sellerId: gon.seller_id,
       sellerName: gon.seller_name,
       isSeller: gon.is_seller,
       isSignedIn: gon.is_signed_in,

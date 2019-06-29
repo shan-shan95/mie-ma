@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_gon
-    gon.current_user = current_user.slice(:id, :nickname) if user_signed_in?
+    gon.current_user = current_user.slice(:id, :nickname, :profile) if user_signed_in?
   end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
                        passwords: "users/passwords",
                      }
 
-  resources :users, only: %i[edit update]  
+  resources :users, only: %i[show edit update]  
 
   resources :items, except: :index do
     member do

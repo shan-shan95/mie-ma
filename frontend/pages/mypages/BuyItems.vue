@@ -26,7 +26,6 @@
                   v-for="item in selectedItems(selectedItemStatus)"
                   :key="item.id"
                   :href="itemPath(item.id)"
-                  target="_blank"
                 )
                   img.image.is-96x96.item-img(
                     :src="item.sumbnail_url"
