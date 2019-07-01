@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!, except: %i[show]
+
   def show
     gon.user = User.find(params[:id])
   end

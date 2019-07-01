@@ -7,7 +7,7 @@
       .trading-completed-button
         button.button.is-success.trading-submit(
           @click="toggleModal()"
-        ) 取引完了
+        ) 評価する
     template(v-else)
       .note
         p 現在、取引相手の評価を待っています。

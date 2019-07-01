@@ -65,6 +65,7 @@ export default {
     padding: 1rem;
   }
 }
+
 .sell-button {
   @include pc {
     bottom: 3rem;
@@ -104,6 +105,7 @@ export default {
     font-size: 1.5rem;
   }
 }
+
 .image-box {
   box-shadow: 2px 2px 4px gray;
 }

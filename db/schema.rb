@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 2019_05_15_170046) do
     t.string "recepient_id", null: false
     t.string "item_id", null: false
     t.text "content", limit: 255, null: false
-    t.boolean "is_already_read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id", "created_at"], name: "index_private_messages_on_item_id_and_created_at"

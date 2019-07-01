@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   include ResponseStatus
 
   before_action :authenticate_user!, except: %i[index show]
+  after_action :send_purchased_mail, only: %i[purchase]
 
   def index
     items = Item.all.order(created_at: :desc)
@@ -66,13 +67,12 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    item = Item.find(params[:id])
-    if !item.now_on_sale?
-      return redirect_to item_path(item.id), alert: "購入できませんでした"
+    @item = Item.find(params[:id])
+    if !@item.now_on_sale?
+      return redirect_to item_path(@item.id), alert: "購入できませんでした"
     end
 
-    item.update(buyer: current_user, trading_status: :trading)
-    return redirect_to trading_item_path(item.id), notice: "購入しました"
+    return redirect_to trading_item_path(@item.id), notice: "購入しました" if @item.update(buyer: current_user, trading_status: :trading)
   end
 
   def trading
@@ -94,5 +94,12 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :status, :seller_id, :price, images: [])
+  end
+
+  def send_purchased_mail
+    return unless @item.trading?
+
+    ClientMailer.with(user: @item.buyer, item: @item).purchased_for_buyer.deliver_later
+    ClientMailer.with(user: @item.seller, item: @item).purchased_for_seller.deliver_later
   end
 end
