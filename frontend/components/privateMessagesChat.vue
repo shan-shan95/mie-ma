@@ -3,14 +3,19 @@
   .message-section
     .message-content
       .message-background
-        .message-column(
+        .message-column.is-clearfix(
           v-for="(privateMessage, index) in privateMessages"
           :key="index"
         )
-          .user-info
+          .user-info.is-pulled-left
+            .profile
+              img.profile__img.is-rounded(
+                src="https://d16vmihj9x3vj.cloudfront.net/assets/images/dummy-profile.png"
+                alt="プロフィール画像"
+              )
             .user-name
               p {{ currentUserName }}さん
-          .message
+          .message.is-pulled-left(:class="messageBackColor(privateMessage)")
             p(:key="index") {{ privateMessage.content }}
             .send-time
               small {{ postedDateOrTime(privateMessage) }}
@@ -96,6 +101,9 @@ export default {
       } else {
         return 'たった今'
       }
+    },
+    messageBackColor(message) {
+      return message.sender_id === this.currentUserId ? 'principal' : 'others'
     }
   },
   props: {
@@ -148,17 +156,26 @@ export default {
         padding: 0.5rem 0;
 
         .user-info {
-          margin: 0 1rem;
+          padding-top: 1rem;
+          padding-bottom: 0.5rem;
+
+          .profile {
+            max-width: 48px;
+            max-height: 48px;
+            margin: 0 1rem;
+
+            &__img {
+              border-radius: 50px;
+            }
+          }
         }
 
         .message {
           background-color: transparent;
           display: inline-block;
-          margin: 0 1.5rem;
-          padding: 10px;
+          margin: 0.5rem 1.5rem;
+          padding: 1rem;
           border-radius: 12px;
-          background: #eff0f4;
-          border: 1px solid #9c9c9c;
           word-wrap: break-word;
           @include sp {
             display: block;
@@ -171,6 +188,16 @@ export default {
             max-width: 75%;
             min-width: 40%;
           }
+        }
+
+        .principal {
+          background: #def5de;
+          border: 1px solid #62c970;
+        }
+
+        .others {
+          background: #eff0f4;
+          border: 1px solid #9c9c9c;
         }
       }
     }
