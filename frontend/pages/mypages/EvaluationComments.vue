@@ -11,14 +11,14 @@
             h1.title.is-3 評価
             hr
             .content
-              .evaluations.columns.is-centered
+              .evaluations.columns.is-centered.is-mobile
                 a.evaluation.good.has-text-centered(
                   :class="{'selected': isSelectedEval('good')}"
                   @click="selectEval('good')"
                 )
                   template
                     i.far.fa-laugh.icon.is-medium.fa-lg.i-center
-                    span.is-size-5 良い
+                    span 良い
                   template
                     p {{ selectedEvalComments('good').length }}
                 a.evaluation.normal.has-text-centered(
@@ -27,7 +27,7 @@
                 )
                   template
                     i.far.fa-meh.icon.is-medium.fa-lg.i-center
-                    span.is-size-5 普通
+                    span 普通
                   template
                     p {{ selectedEvalComments('normal').length }}
                 a.evaluation.bad.has-text-centered(
@@ -36,7 +36,7 @@
                 )
                   template
                     i.far.fa-frown.icon.is-medium.fa-lg
-                    span.is-size-5 イマイチ
+                    span イマイチ
                   template
                     p {{ selectedEvalComments('bad').length }}
               hr.hr
@@ -128,6 +128,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../init/_responsive';
+
 .content {
   width: 90%;
 
@@ -137,6 +139,12 @@ export default {
     .evaluation {
       width: 33%;
       color: #4a4a4a;
+      @include pc {
+        font-size: 1.25rem;
+      }
+      @include sp {
+        font-size: 0.9rem;
+      }
     }
 
     .good {
@@ -166,11 +174,19 @@ export default {
     background-color: white;
     width: 100%;
     border-radius: 5px;
-    padding: 2rem;
+    @include pc {
+      padding: 1.5rem;
+    }
+    @include tab {
+      padding: 1rem;
+    }
+    @include sp {
+      padding: 0.5rem;
+    }
 
     .evaluation-comment__column {
       display: flex;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem 0;
     }
 
     .profile {

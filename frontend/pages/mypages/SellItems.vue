@@ -10,34 +10,33 @@
           .hero-body
             h1.title.is-3 出品した商品
             hr
-            .content
-              .statuses.columns.is-centered
-                a.status.has-text-centered(
-                  @click="selectStatus('now_on_sale')"
-                  :class="{ 'selected': isSelectedStatus('now_on_sale') }"
-                ) 出品中
-                a.status.has-text-centered(
-                  @click="selectStatus('trading')"
-                  :class="{ 'selected': isSelectedStatus('trading') }"
-                ) 取引中
-                a.status.has-text-centered(
-                  @click="selectStatus('completed')"
-                  :class="{ 'selected': isSelectedStatus('completed') }"
-                ) 売却済
-              hr.hr
-              .item-columns
-                a.item-column(
-                  v-for="item in selectedItems(selectedItemStatus)"
-                  :key="item.id"
-                  :href="itemPath(item.id)"
+            .statuses.columns.is-centered.is-mobile
+              a.status.has-text-centered(
+                @click="selectStatus('now_on_sale')"
+                :class="{ 'selected': isSelectedStatus('now_on_sale') }"
+              ) 出品中
+              a.status.has-text-centered(
+                @click="selectStatus('trading')"
+                :class="{ 'selected': isSelectedStatus('trading') }"
+              ) 取引中
+              a.status.has-text-centered(
+                @click="selectStatus('completed')"
+                :class="{ 'selected': isSelectedStatus('completed') }"
+              ) 売却済
+            hr.hr
+            .item-columns
+              a.item-column(
+                v-for="item in selectedItems(selectedItemStatus)"
+                :key="item.id"
+                :href="itemPath(item.id)"
+              )
+                img.image.is-96x96.item-img(
+                  :src="item.sumbnail_url"
+                  alt="販売商品のサムネイル"
+                  decoding="async"
                 )
-                  img.image.is-96x96.item-img(
-                    :src="item.sumbnail_url"
-                    alt="販売商品のサムネイル"
-                    decoding="async"
-                  )
-                  p.item-name {{ item.name }}
-                p(v-if="selectedItems(selectedItemStatus).length === 0") この項目には表示できる商品がありません
+                p.item-name {{ item.name }}
+              p(v-if="selectedItems(selectedItemStatus).length === 0") この項目には表示できる商品がありません
   Footer
 </template>
 
@@ -76,45 +75,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-  padding: 1rem 3rem;
+.statuses {
+  justify-content: space-around;
 
-  .statuses {
-    justify-content: space-around;
-
-    .status {
-      width: 33%;
-      color: #4a4a4a;
-    }
-
-    .selected {
-      box-shadow: 0 6px 4px -4px lightblue;
-    }
+  .status {
+    width: 33%;
+    color: #4a4a4a;
   }
-  .hr {
-    margin: 0.5rem auto;
-    background-color: #aaaaaa;
+
+  .selected {
+    box-shadow: 0 6px 4px -4px lightblue;
   }
-  .item-columns {
+}
+
+.hr {
+  margin: 0.5rem auto;
+  background-color: #aaaaaa;
+}
+
+.item-columns {
+  margin: 1rem auto;
+
+  .item-column {
+    display: flex;
     margin: 1rem auto;
+    max-width: 100%;
+    border: solid thin rgba(gray, 0.6);
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px gray;
+    overflow: hidden;
+  }
 
-    .item-column {
-      display: flex;
-      margin: 1rem auto;
-      max-width: 70%;
-      border: solid thin rgba(gray, 0.6);
-      border-radius: 10px;
-      box-shadow: 2px 2px 4px gray;
-      overflow: hidden;
-    }
-
-    .item-name {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 2rem;
-      color: #4a4a4a;
-    }
+  .item-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+    color: #4a4a4a;
   }
 }
 </style>
