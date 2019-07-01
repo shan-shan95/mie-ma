@@ -11,15 +11,15 @@ class ClientMailer < ApplicationMailer
     mail(to: @user.email, subject: '【ミエマ】出品していた商品が購入されました')
   end
 
-  def evaluated_for_be_evaluated_user
+  def evaluated_for_be_evaluated
     @user = params[:user]
     @item = params[:item]
-    mail(user: @user.email, subject: '【ミエマ】取引きが評価されました')
+    mail(to: @user.email, subject: '【ミエマ】取引きが評価されました')
   end
 
   def evaluated_for_evaluator
     @user = params[:user]
     @item = params[:item]
-    mail(user: @user.email, subject: '【ミエマ】取引きを評価しました')
+    mail(to: @user.email, subject: '【ミエマ】取引きを評価しました')
   end
 end

@@ -24,7 +24,8 @@ class EvaluationCommentsController < ApplicationController
 
   def send_evaluated_mail
     return if @comment.nil?
-    ClientMailer.with(user: @comment.be_evaluated, item: @item).evaluated_for_be_evaluated_user.deliver_later
+    
+    ClientMailer.with(user: @comment.be_evaluated, item: @item).evaluated_for_be_evaluated.deliver_later
     ClientMailer.with(user: @comment.be_evaluated, item: @item).evaluated_for_evaluator.deliver_later
   end
 end
