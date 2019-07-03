@@ -19,7 +19,7 @@
     input(
       name="authenticity_token"
       type="hidden"
-      :value="csrfToken()"
+      :value="setCsrfToken()"
     )
     .field.is-horizontal
       .field-label.is-normal
@@ -172,6 +172,9 @@ export default {
       } else {
         return true
       }
+    },
+    setCsrfToken() {
+      csrfToken()
     }
   },
   props: {
