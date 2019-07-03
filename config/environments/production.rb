@@ -98,15 +98,17 @@ Rails.application.configure do
   config.middleware.use AssetsPathProxy, ssl_verify_none: true
 
   config.action_mailer.default_url_options = { host: 'https://mie-ma.herokuapp.com' }
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings =
-{
-  user_name: ENV['SENDGRID_USERNAME'],
-  password: ENV['SENDGRID_PASSWORD'],
-  domain: "heroku.com",
-  address: "smtp.sendgrid.net",
-  port: 587,
-  authentication: :plain,
-  enable_starttls_auto: true
-}
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings =
+  {
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
+    domain: "heroku.com",
+    address: "smtp.sendgrid.net",
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+  config.action_controller.forgery_protection_origin_check = false
 end
