@@ -21,7 +21,7 @@ module.exports = merge(common, {
   mode: 'production',
   entry: {
     application: './frontend/init/application.js',
-    style: './frontend/init/application.scss',
+    application: './frontend/init/application.scss',
     ...entries
   },
   output: {
@@ -125,24 +125,5 @@ module.exports = merge(common, {
       '.eot',
       ' '
     ]
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        bundleStyle: {
-          test: /.(c|sa)ss$/,
-          name: 'bundle_style',
-          chunks: 'initial',
-          enforce: true
-        },
-        bundleScript: {
-          test: /.js$/,
-          name: 'bundle_script',
-          chunks: 'initial',
-          enforce: true
-        }
-      }
-    },
-    minimize: true
   }
 })
