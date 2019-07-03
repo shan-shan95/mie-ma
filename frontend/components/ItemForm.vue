@@ -19,7 +19,7 @@
     input(
       name="authenticity_token"
       type="hidden"
-      :value="csrfToken()"
+      value="csrf_token"
     )
     .field.is-horizontal
       .field-label.is-normal
