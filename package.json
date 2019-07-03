@@ -38,6 +38,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.21",
     "vue-tweet-embed": "^2.2.1",
+    "vuejs-paginate": "^2.1.0",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.0",
     "webpack-manifest-plugin": "^2.0.4",

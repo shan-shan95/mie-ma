@@ -11,7 +11,7 @@
             .items
               .columns.is-multiline.is-mobile
                 .column.is-3-desktop.is-3-tablet.is-6-mobile(
-                  v-for="(item, index) in items"
+                  v-for="(item, index) in sliceItems()"
                   :key="index"
                 )
                   a(
@@ -21,6 +21,16 @@
                       :src="item.sumbnail_url"
                       decoding="async"
                     )
+            .is-centered
+              paginate(
+                :page-count="pagenationNumber()"
+                v-model="currentPage"
+                container-class="pagination-list"
+                page-class="pagination-link"
+                next-class="pagination-link"
+                prev-class="pagination-link"
+                active-class="is-current"
+              )
       SideBar
     a.sell-button(href="/items/new")
       div.sell-button__content 出品
@@ -41,12 +51,24 @@ export default {
   },
   data() {
     return {
-      items: gon.items
+      items: gon.items,
+      currentPage: 1
     }
   },
   methods: {
     itemShowPath(item) {
       return '/items/' + item.id
+    },
+    pagenationNumber() {
+      return this.items.length / 4
+    },
+    sliceItems() {
+      let start = (this.currentPage - 1) * 4
+      let end = this.currentPage * 4
+      if (this.items.length / 4 + 1 === this.currentPage) {
+        let end = start + (this.items.length % 4)
+      }
+      return this.items.slice(start, end)
     }
   }
 }
@@ -63,6 +85,19 @@ export default {
 
   .items {
     padding: 1rem;
+
+    .image-box {
+      box-shadow: 2px 2px 4px gray;
+    }
+  }
+
+  .pagination-list {
+    display: block;
+    margin: 0 auto;
+
+    .is-current a {
+      color: white;
+    }
   }
 }
 
@@ -104,9 +139,5 @@ export default {
     top: 2rem;
     font-size: 1.5rem;
   }
-}
-
-.image-box {
-  box-shadow: 2px 2px 4px gray;
 }
 </style>
