@@ -123,8 +123,6 @@
 </template>
 
 <script>
-import { csrfToken } from 'rails-ujs'
-
 export default {
   data() {
     return {
@@ -173,7 +171,9 @@ export default {
         return true
       }
     },
-    csrfToken
+    csrfToken() {
+      return document.getElementsByName('csrf-token').item(0).content
+    }
   },
   props: {
     formItem: {
