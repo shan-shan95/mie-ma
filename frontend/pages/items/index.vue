@@ -60,13 +60,13 @@ export default {
       return '/items/' + item.id
     },
     pagenationNumber() {
-      return this.items.length / 4
+      return this.items.length / 20
     },
     sliceItems() {
-      let start = (this.currentPage - 1) * 4
-      let end = this.currentPage * 4
-      if (this.items.length / 4 + 1 === this.currentPage) {
-        let end = start + (this.items.length % 4)
+      let start = (this.currentPage - 1) * 20
+      let end = this.currentPage * 20
+      if (this.items.length / 20 + 1 === this.currentPage) {
+        let end = start + (this.items.length % 20)
       }
       return this.items.slice(start, end)
     }

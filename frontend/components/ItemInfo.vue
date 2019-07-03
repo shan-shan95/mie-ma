@@ -49,6 +49,9 @@
 
 <script>
 import Carousel from '../components/ItemImagesCarousel'
+import Rails from 'rails-ujs'
+
+Rails.start()
 
 export default {
   methods: {
