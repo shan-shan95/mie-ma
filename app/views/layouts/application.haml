@@ -11,7 +11,7 @@
     = Gon::Base.render_data
     = javascript_bundle_tag 'bundle_script', defer: true if Rails.env.development?
     = stylesheet_bundle_tag 'bundle_style' if Rails.env.development?
-    = javascript_bundle_tag 'application'
+    = javascript_bundle_tag 'application', defer: true
     = stylesheet_bundle_tag 'application'
     = javascript_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].split('/').last.camelize}", defer: true
     = stylesheet_bundle_tag "#{params[:controller].split('/').last.camelize}#{params[:action].split('/').last.camelize}"
