@@ -36,9 +36,6 @@ module.exports = merge(common, {
     }),
     new ManifestPlugin({
       writeToFileEmit: true
-    }),
-    new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     })
   ],
   module: {
