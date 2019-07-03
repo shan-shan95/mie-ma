@@ -38,7 +38,7 @@
               input(
                 name="authenticity_token"
                 type="hidden"
-                value="csrf_token"
+                :value="csrfToken()"
               )
               textarea.textarea.is-primary(
                 autocomplete="off"
@@ -70,6 +70,9 @@ export default {
   methods: {
     updatePath() {
       return '/users/' + this.user.id
+    },
+    csrfToken() {
+      return document.getElementsByName('csrf-token').item(0).content
     }
   }
 }

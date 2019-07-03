@@ -12,7 +12,7 @@ form(
   input(
     name="authenticity_token"
     type="hidden"
-    value="csrf_token"
+    :value="csrfToken()"
   )
   .modal(:class="{'is-active': isModalActive}")
     .modal-background(
@@ -136,6 +136,9 @@ export default {
     },
     isSelectedStatus() {
       return this.evalStatus
+    },
+    csrfToken() {
+      return document.getElementsByName('csrf-token').item(0).content
     }
   },
   props: {
