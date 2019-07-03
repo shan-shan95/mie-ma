@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_07_03_212901) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["be_evaluated_id", "created_at"], name: "index_evaluation_comments_on_be_evaluated_id_and_created_at"
+    t.index ["be_evaluated_id"], name: "index_evaluation_comments_on_be_evaluated_id"
     t.index ["evaluator_id"], name: "fk_rails_07849153e8"
     t.index ["item_id"], name: "index_evaluation_comments_on_item_id"
   end
