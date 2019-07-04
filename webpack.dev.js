@@ -17,7 +17,8 @@ module.exports = merge(common, {
   mode: 'development',
   entry: {
     application: './frontend/init/application.js',
-    style: './frontend/init/application.scss',
+    application: './frontend/init/application.scss',
+    rails_ujs: './frontend/init/rails_ujs.js',
     ...entries
   },
   output: {
