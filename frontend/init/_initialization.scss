@@ -62,3 +62,8 @@ hr {
     margin: 0;
   }
 }
+
+.delete::after,
+.modal-close::after {
+  height: 70%;
+}
