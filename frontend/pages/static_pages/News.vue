@@ -6,7 +6,7 @@
       .hero-body
         h1.title.is-3 お知らせ
         hr
-        strong ミエマ開設しました🎉
+        strong 7/4 ミエマ(β)開設しました🎉
   Footer
 </template>
 
