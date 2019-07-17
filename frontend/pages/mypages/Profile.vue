@@ -50,13 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-.profile-title {
-  margin-bottom: 1rem;
-}
-.profile {
-  background-color: #eeeeee;
-=======
 .profile-section {
   margin: 1rem 0;
 
@@ -68,6 +61,5 @@ export default {
     font-size: 1rem;
     padding: 0;
   }
->>>>>>> Edit user nickname
 }
 </style>
