@@ -6,9 +6,9 @@
       article.column.is-8
         .hero
           .hero-body
-            h1.title.is-3 ミエマの特徴
-            hr
             .features
+              h1.title.is-3 ミエマの特徴
+              hr
               p
                 i.fa.fa-check.has-text-success
                 strong 三重大生だけ
@@ -22,16 +22,16 @@
                 | 配送が大変な
                 strong 家具
                 | なども売り買いできます
-            h1.title.is-3 はじめに
-            hr
             .guides
-              p ・
+              h1.title.is-3 はじめに
+              hr
+              p.guide ・
                 a(href="/sale_guide") 出品ガイド
-              p ・
+              p.guide ・
                 a(href="/purchase_guide") 購入ガイド
-            h1.title.is-3 新着商品
-            hr
             .items
+              h1.title.is-3 新着商品
+              hr
               .columns.is-multiline.is-mobile.item-images
                 .column.is-3-desktop.is-3-tablet.is-6-mobile(
                   v-for="(item, index) in sliceItems()"
@@ -100,10 +100,6 @@ export default {
 <style lang="scss">
 @import '../../init/_responsive';
 
-* {
-  box-sizing: inherit;
-}
-
 .hero-body {
   padding: 1.5rem;
   @include sp {
@@ -111,7 +107,7 @@ export default {
   }
 
   .features {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 
     p {
       margin-bottom: 0.5rem;
@@ -123,17 +119,38 @@ export default {
   }
 
   .guides {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+
+    .guide {
+      margin-bottom: 0.5rem;
+    }
   }
 
   .items {
-    padding: 1rem;
+    padding-bottom: 2rem;
+
+    .column {
+      @include sp {
+        padding: 0.5rem 0;
+      }
+
+      &.is-3-tablet {
+        @include tab {
+          width: 25%;
+        }
+      }
+    }
 
     .item-images {
       margin-bottom: 1rem;
 
       .image-box {
         box-shadow: 2px 2px 4px gray;
+        margin: 0 auto;
+        @media (max-width: 375px) {
+          width: 96px;
+          height: 96px;
+        }
       }
     }
 
