@@ -7,4 +7,8 @@ class PrivateMessage < ApplicationRecord
   validates :recepient_id, presence: true
   validates :item_id, presence: true
   validates :content, length: {maximum: 255}, presence: true
+
+   def with_sender
+    attributes.merge(sender: sender)
+  end
 end

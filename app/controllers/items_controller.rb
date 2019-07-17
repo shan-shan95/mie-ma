@@ -81,7 +81,7 @@ class ItemsController < ApplicationController
     return redirect_to item_path(params[:id]), notice: "このページは出品者または購入者しか見れません" unless user_signed_in? && current_user.is_trading?(item)
 
     gon.item = item.with_images_url
-    gon.private_messages = item.private_messages
+    gon.private_messages = item.private_messages.map(&:with_sender)
     gon.message = PrivateMessage.new
     gon.is_completed_evaluation = current_user.is_completed_evaluation?(item)
     gon.be_evaluated_id = item.be_evaluated_id(current_user.id)
