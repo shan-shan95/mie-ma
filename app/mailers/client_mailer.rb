@@ -14,12 +14,26 @@ class ClientMailer < ApplicationMailer
   def evaluated_for_be_evaluated
     @user = params[:user]
     @item = params[:item]
-    mail(to: @user.email, subject: '【ミエマ】取引きが評価されました')
+    mail(to: @user.email, subject: '【ミエマ】取引が評価されました')
   end
 
   def evaluated_for_evaluator
     @user = params[:user]
     @item = params[:item]
-    mail(to: @user.email, subject: '【ミエマ】取引きを評価しました')
+    mail(to: @user.email, subject: '【ミエマ】取引を評価しました')
+  end
+
+  def received_public_message
+    @user = params[:user]
+    @item = params[:item]
+    @message = params[:message]
+    mail(to: @user.email, subject: '【ミエマ】商品詳細ページにメッセージが投稿されました')
+  end
+
+  def received_private_message
+    @user = params[:user]
+    @item = params[:item]
+    @message = params[:message]
+    mail(to: @user.email, subject: '【ミエマ】商品取引ページにメッセージが投稿されました')
   end
 end

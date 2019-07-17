@@ -4,7 +4,7 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <%= f.label :email %><br />
-      <small class="small">(※三重大学のメールアドレス)</small><br />
+      <small class="small">(※三重大学のメールアドレス　@m.mie-u.ac.jpで終わるもの)</small><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 

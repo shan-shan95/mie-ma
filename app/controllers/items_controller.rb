@@ -78,7 +78,7 @@ class ItemsController < ApplicationController
   def trading
     item = Item.joins(:seller).find(params[:id])
     return redirect_to item_path(params[:id]), notice: "この商品は取引が完了しています" if item.completed?
-    return redirect_to item_path(params[:id]), notice: "このページは販売者または購入者しか見れません" unless user_signed_in? && current_user.is_trading?(item)
+    return redirect_to item_path(params[:id]), notice: "このページは出品者または購入者しか見れません" unless user_signed_in? && current_user.is_trading?(item)
 
     gon.item = item.with_images_url
     gon.private_messages = item.private_messages

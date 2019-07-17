@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
-  def sell_guide
+  def sale_guide
   end
 
-  def buy_guide
+  def purchase_guide
   end
 
   def contact

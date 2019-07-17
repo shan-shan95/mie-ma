@@ -7,7 +7,7 @@
     .navbar-brand
       a.navbar-item.logo(href="/")
         img.logo(
-          src="https://d16vmihj9x3vj.cloudfront.net/assets/images/logo.png"
+          src="https://d16vmihj9x3vj.cloudfront.net/assets/images/header/logo.png"
           alt="top-banner"
           decoding="async"
         )

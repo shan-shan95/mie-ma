@@ -44,7 +44,7 @@
           td
             strong 商品状態
           td {{ itemStatus() }}
-    .description {{ item.description }}
+    pre.description {{ item.description }}
 </template>
 
 <script>
@@ -151,6 +151,10 @@ export default {
       .disabled {
         pointer-events: none;
       }
+    }
+
+    .description {
+      padding: 0 0.5rem;
     }
   }
 }

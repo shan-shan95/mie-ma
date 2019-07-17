@@ -7,15 +7,15 @@
     header.modal-card-head
       p.modal-card-title 購入確認
     section.modal-card-body
-      p 1. 購入後、出品者と購入者間で非公開メッセージのやりとりができるようになります。お金を渡す場所と時間を決め、商品とお金を交換してください。
+      p 1. 購入後、出品者と購入者間で非公開チャットができるようになります。お金を渡す場所と時間を決め、商品とお金を交換してください。
       p 2. 購入者は、取引が完了したら出品者の評価をしてください。
       .has-text-centered.purchase-note
-        span 購入した場合、
+        span 購入前に
         a(
-          href="/terms_of_service"
+          href="/purchase_guide"
           target="_blank"
-        ) 利用規約
-        span に同意したものとみなします
+        ) 購入ガイド
+        span をよくお読みください。
     footer.modal-card-foot
       a.button.is-success(
         :href="purchasePath()"

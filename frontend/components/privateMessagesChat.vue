@@ -10,13 +10,13 @@
           .user-info.is-pulled-left
             .profile
               img.profile__img.is-rounded(
-                src="https://d16vmihj9x3vj.cloudfront.net/assets/images/dummy-profile.png"
+                src="https://d16vmihj9x3vj.cloudfront.net/assets/images/profile/dummy-profile.png"
                 alt="プロフィール画像"
               )
             .user-name
               p {{ currentUserName }}さん
           .message.is-pulled-left(:class="messageBackColor(privateMessage)")
-            p(:key="index") {{ privateMessage.content }}
+            pre(:key="index") {{ privateMessage.content }}
             .send-time
               small {{ postedDateOrTime(privateMessage) }}
       .note
@@ -176,7 +176,6 @@ export default {
           margin: 0.5rem 1.5rem;
           padding: 1rem;
           border-radius: 12px;
-          word-wrap: break-word;
           @include sp {
             display: block;
           }
@@ -193,11 +192,19 @@ export default {
         .principal {
           background: #def5de;
           border: 1px solid #62c970;
+
+          pre {
+            background-color: #def5de;
+          }
         }
 
         .others {
           background: #eff0f4;
           border: 1px solid #9c9c9c;
+
+          pre {
+            background-color: #eff0f4;
+          }
         }
       }
     }

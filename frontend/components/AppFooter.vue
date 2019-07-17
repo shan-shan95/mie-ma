@@ -1,21 +1,19 @@
 <template lang="pug">
 footer.footer
   .content
-    //- a 出品ガイド
-    //- br
-    //- a 購入ガイド
-    //- br
+    a(href="/sale_guide") 出品ガイド
+    br
+    a(href="/purchase_guide") 購入ガイド
+    br
     a(
       href="/contact"
     ) お問い合わせ
     br
-    a(
-      href="/privacy_policy"
-    ) プライバシーポリシー
+    a(href="/privacy_policy") プライバシーポリシー
     br
-    a(
-      href="/terms_of_service"
-    ) 利用規約
+    a(href="/terms_of_service") 利用規約
+    br
+    a(href="/prohibited_items") 出品禁止物
 </template>
 
 <script>

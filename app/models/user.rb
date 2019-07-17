@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable
+         :confirmable, :timeoutable
 
   has_one :evaluation, class_name: "UserEvaluation", dependent: :destroy
   has_many :buy_items, foreign_key: "buyer_id", class_name: "Item", dependent: :destroy

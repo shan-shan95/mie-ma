@@ -13,6 +13,7 @@ class PublicMessagesController < ApplicationController
   def create
     message = PublicMessage.new(message_params)
     if message.save
+      ClientMailer.with(user: message.item.seller, item: message.item, message: message).received_public_message.deliver_later if message.sender != message.item.seller
       return render status: 200, json: message.to_json
     else
       return response_internal_server_error

@@ -6,10 +6,33 @@
       article.column.is-8
         .hero
           .hero-body
-            h1.title.is-3 新着アイテム
+            h1.title.is-3 ミエマの特徴
+            hr
+            .features
+              p
+                i.fa.fa-check.has-text-success
+                strong 三重大生だけ
+                | が使えるフリマサービス
+              p
+                i.fa.fa-check.has-text-success
+                | 直接会って渡すことができるので
+                strong 手数料0円！
+              p
+                i.fa.fa-check.has-text-success
+                | 配送が大変な
+                strong 家具
+                | なども売り買いできます
+            h1.title.is-3 はじめに
+            hr
+            .guides
+              p ・
+                a(href="/sale_guide") 出品ガイド
+              p ・
+                a(href="/purchase_guide") 購入ガイド
+            h1.title.is-3 新着商品
             hr
             .items
-              .columns.is-multiline.is-mobile
+              .columns.is-multiline.is-mobile.item-images
                 .column.is-3-desktop.is-3-tablet.is-6-mobile(
                   v-for="(item, index) in sliceItems()"
                   :key="index"
@@ -21,16 +44,16 @@
                       :src="item.sumbnail_url"
                       decoding="async"
                     )
-            .is-centered
-              paginate(
-                :page-count="pagenationNumber()"
-                v-model="currentPage"
-                container-class="pagination-list"
-                page-class="pagination-link"
-                next-class="pagination-link"
-                prev-class="pagination-link"
-                active-class="is-current"
-              )
+              .is-centered
+                paginate(
+                  :page-count="pagenationNumber()"
+                  v-model="currentPage"
+                  container-class="pagination-list"
+                  page-class="pagination-link"
+                  next-class="pagination-link"
+                  prev-class="pagination-link"
+                  active-class="is-current"
+                )
       SideBar
     a.sell-button(href="/items/new")
       div.sell-button__content 出品
@@ -77,26 +100,50 @@ export default {
 <style lang="scss">
 @import '../../init/_responsive';
 
+* {
+  box-sizing: inherit;
+}
+
 .hero-body {
   padding: 1.5rem;
   @include sp {
     padding: 1rem;
   }
 
-  .items {
-    padding: 1rem;
+  .features {
+    margin-bottom: 1rem;
 
-    .image-box {
-      box-shadow: 2px 2px 4px gray;
+    p {
+      margin-bottom: 0.5rem;
+
+      .fa-check::before {
+        margin-right: 5px;
+      }
     }
   }
 
-  .pagination-list {
-    display: block;
-    margin: 0 auto;
+  .guides {
+    margin-bottom: 1rem;
+  }
 
-    .is-current a {
-      color: white;
+  .items {
+    padding: 1rem;
+
+    .item-images {
+      margin-bottom: 1rem;
+
+      .image-box {
+        box-shadow: 2px 2px 4px gray;
+      }
+    }
+
+    .pagination-list {
+      display: block;
+      margin: 0 auto;
+
+      .is-current a {
+        color: white;
+      }
     }
   }
 }

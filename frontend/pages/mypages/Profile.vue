@@ -10,11 +10,18 @@
           .hero-body
             h1.title.is-3 プロフィール
             hr
-            .is-clearfix
-              .is-pulled-right
-                a(:href="editProfilePath()") 編集する
-            h2.is-size-5.has-text-black.title.profile-title 自己紹介
-            p.profile {{ user.profile }}
+            .profile-section
+              .is-clearfix
+                .is-pulled-right
+                  a(href="/users/edit") 名前を編集する
+              h2.is-size-5.has-text-black.title.profile-title 名前
+              p.nickname {{ user.nickname }}
+            .profile-section
+              .is-clearfix
+                .is-pulled-right
+                  a(:href="editProfilePath()") 自己紹介を編集する
+              h2.is-size-5.has-text-black.title.profile-title 自己紹介
+              pre.profile {{ user.profile }}
   Footer
 </template>
 
@@ -43,11 +50,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+<<<<<<< HEAD
 .profile-title {
   margin-bottom: 1rem;
 }
 .profile {
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  background-color: #eeeeee;
+=======
+.profile-section {
+  margin: 1rem 0;
+
+  .profile-title {
+    margin-bottom: 1rem;
+  }
+  .profile {
+    background-color: #eeeeee;
+    font-size: 1rem;
+    padding: 0;
+  }
+>>>>>>> Edit user nickname
 }
 </style>

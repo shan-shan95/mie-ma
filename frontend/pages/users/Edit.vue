@@ -44,6 +44,7 @@
                 autocomplete="off"
                 rows="10"
                 name="user[profile]"
+                v-model="user.profile"
               )
               button.button.is-info.submit(
                 type="submit"

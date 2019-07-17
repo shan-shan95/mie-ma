@@ -20,7 +20,7 @@ class Item < ApplicationRecord
 
   enum status: %i[brand_new excellent poor junk] # 新品 良品 傷あり ジャンク
   enum trading_status: %i[now_on_sale trading completed] # 販売中 取引中 取引完了
-  enum eval_status: %i[wait_both wait_seller wait_buyer completed_both] # 両者待ち 販売者待ち 購入者待ち 完了
+  enum eval_status: %i[wait_both wait_seller wait_buyer completed_both] # 両者待ち 出品者待ち 購入者待ち 完了
 
   def with_sumbnail_url
     if images.present?

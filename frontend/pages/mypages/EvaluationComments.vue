@@ -47,7 +47,7 @@
                 )
                   .profile
                     img.profile__img.is-rounded(
-                      src="https://d16vmihj9x3vj.cloudfront.net/assets/images/dummy-profile.png"
+                      src="https://d16vmihj9x3vj.cloudfront.net/assets/images/profile/dummy-profile.png"
                       alt="プロフィール画像"
                     )
                   .evaluation-comment__main
@@ -57,7 +57,7 @@
                       )
                       p.evaluator-info__role {{ displayEvaluatorRole(evaluation.evaluator_type) }}
                     .evaluator-info__name {{ evaluation.evaluator_name }}
-                    .comment {{ evaluation.comment }}
+                    pre.comment {{ evaluation.comment }}
               p(v-else) この項目には表示できるコメントがありません
   Footer
 </template>
@@ -92,7 +92,7 @@ export default {
     displayEvaluatorRole(role) {
       switch (role) {
         case 'seller':
-          return '販売者'
+          return '出品者'
           break
         case 'buyer':
           return '購入者'
@@ -143,7 +143,7 @@ export default {
         font-size: 1.25rem;
       }
       @include sp {
-        font-size: 0.9rem;
+        font-size: 0.75rem;
       }
     }
 
@@ -190,9 +190,13 @@ export default {
     }
 
     .profile {
-      max-width: 48px;
-      max-height: 48px;
-      margin: 0 1rem;
+      @include pc {
+        width: 10%;
+      }
+      @include sp {
+        width: 14%;
+        margin: 0 3%;
+      }
 
       &__img {
         border-radius: 50px;
@@ -200,7 +204,14 @@ export default {
     }
 
     .evaluation-comment__main {
-      max-width: 492px;
+      @include pc {
+        width: 80%;
+        margin: 0 5%;
+      }
+      @include sp {
+        width: 70%;
+        margin: 0 5%;
+      }
 
       .evaluator-info {
         display: flex;
@@ -233,8 +244,16 @@ export default {
       }
 
       .comment {
+        background-color: transparent;
+        display: inline-block;
+        margin: 0.5rem 0;
+        padding: 1rem;
+        border-radius: 12px;
+        background: #eff0f4;
+        border: 1px solid #9c9c9c;
         white-space: pre-wrap;
         word-wrap: break-word;
+        max-width: 90%;
       }
     }
   }

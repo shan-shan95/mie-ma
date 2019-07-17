@@ -28,7 +28,7 @@
               )
                 img.image.is-96x96.item-img(
                   :src="item.sumbnail_url"
-                  alt="販売商品のサムネイル"
+                  alt="出品商品のサムネイル"
                   decoding="async"
                 )
                 p.item-name {{ item.name }}

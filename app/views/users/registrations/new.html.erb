@@ -12,7 +12,7 @@
 
     <div class="field">
       <%= f.label :email %><br />
-      <small class="small">(※三重大学のメールアドレス)</small><br />
+      <small class="small">(※三重大学のメールアドレス @m.mie-u.ac.jpで終わるもの)</small><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
@@ -27,6 +27,10 @@
     <div class="field">
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div>
+      <small>登録前に<a href="/terms_of_service" target="_blank">利用規約</a>をお読みください。</small>
     </div>
 
     <div class="actions">

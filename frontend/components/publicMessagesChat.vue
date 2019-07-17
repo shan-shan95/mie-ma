@@ -3,24 +3,24 @@
   .message-section
     .message-content
       .message-background
-        .message-column.is-clearfix(
+        .message-column(
           v-for="(publicMessage, index) in publicMessages"
           :key="index"
         )
-          .user-info.is-pulled-left
+          .user-info
             .profile
               img.profile__img.is-rounded(
-                src="https://d16vmihj9x3vj.cloudfront.net/assets/images/dummy-profile.png"
+                src="https://d16vmihj9x3vj.cloudfront.net/assets/images/profile/dummy-profile.png"
                 alt="プロフィール画像"
               )
             .user-name
               p {{ userNickName() }}さん
-          .message.is-pulled-left(:class="messageBackColor(publicMessage)")
-            p(:key="index") {{ publicMessage.content }}
+          .message(:class="messageBackColor(publicMessage)")
+            pre(:key="index") {{ publicMessage.content }}
             .send-time
               small {{ postedDateOrTime(publicMessage) }}
       .note
-        p 購入前に商品の状態を出品者に聞くことができます。相手のことを考え丁寧なコメントを心がけましょう。
+        p 購入前に商品の状態やサイズを聞くことができます。相手のことを考え丁寧なコメントを心がけましょう。
       form
         textarea.textarea.is-primary.message-textarea(
           v-model="postMessage.content"
@@ -158,6 +158,7 @@ export default {
       .message-column {
         margin: 0.5rem auto;
         padding: 0.5rem 0;
+        display: flex;
 
         .user-info {
           padding-top: 1rem;
@@ -180,7 +181,6 @@ export default {
           margin: 0.5rem 1.5rem;
           padding: 1rem;
           border-radius: 12px;
-          word-wrap: break-word;
           @include sp {
             display: block;
           }
@@ -197,11 +197,19 @@ export default {
         .principal {
           background: #def5de;
           border: 1px solid #62c970;
+
+          pre {
+            background-color: #def5de;
+          }
         }
 
         .others {
           background: #eff0f4;
           border: 1px solid #9c9c9c;
+
+          pre {
+            background-color: #eff0f4;
+          }
         }
       }
     }

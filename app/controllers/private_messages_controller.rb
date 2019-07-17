@@ -21,6 +21,7 @@ class PrivateMessagesController < ApplicationController
 
     message = PrivateMessage.new(message_params)
     if message.save
+      ClientMailer.with(user: message.recepient, item: message.item, message: message).received_private_message.deliver_later if message.sender
       return render status: 200, json: message.to_json
     else
       return response_internal_server_error
