@@ -14,7 +14,7 @@
                 alt="プロフィール画像"
               )
             .user-name
-              p {{ currentUserName }}さん
+              p {{ privateMessage.sender.nickname }}さん
           .message.is-pulled-left(:class="messageBackColor(privateMessage)")
             pre(:key="index") {{ privateMessage.content }}
             .send-time
@@ -59,7 +59,11 @@ export default {
   methods: {
     postPrivateMessage() {
       this.postMessage.sender_id = this.currentUserId
-      this.postMessage.recepient_id = this.item.seller_id
+      if (this.currentUserId === this.item.seller_id) {
+        this.postMessage.recepient_id = this.item.buyer_id
+      } else if (this.currentUserId === this.item.buyer_id) {
+        this.postMessage.recepient_id = this.item.seller_id
+      }
       this.postMessage.item_id = this.item.id
       if (this.postMessage.content) {
         axios
