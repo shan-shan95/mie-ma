@@ -12,7 +12,7 @@ gem 'devise', '>= 4.6.0'
 gem 'dotenv-rails'
 gem 'gon'
 gem 'haml-rails'
-gem 'mini_magick'
+gem "mini_magick", ">= 4.9.4"
 gem 'mysql2'
 gem 'puma', '~> 3.11'
 gem 'rack-proxy'
