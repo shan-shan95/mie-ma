@@ -14,7 +14,7 @@ gem 'gon'
 gem 'haml-rails'
 gem "mini_magick", ">= 4.9.4"
 gem 'mysql2'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rack-proxy'
 gem 'rails', '~> 5.2.2'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
