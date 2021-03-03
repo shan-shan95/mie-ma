@@ -29,7 +29,7 @@
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
     "prettier": "^1.15.3",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "purgecss-webpack-plugin": "^1.5.0",
     "rails-ujs": "^5.2.3",
